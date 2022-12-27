@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import "./Banner.css";
+import fotoEle from '../imagens/he.jpg'
+import fotoEla from '../imagens/she.jpg'
+import fotoElu from '../imagens/they.jpg'
 
 const Banner = () => {
     const [sorteado, setSorteado] = useState({});
@@ -14,7 +17,7 @@ const Banner = () => {
           descricao: 'blablabadsnasdjfnsoedifd descrição da mina competitiva',
           bonus: 'nada ainda',
           habilitado: false,
-          imagem: '../imagens/she.jpg',
+          imagem: fotoEla,
           imagemChibi: 'nada ainda',
           nivel: 0,
           raridade: "SSR"
@@ -26,7 +29,7 @@ const Banner = () => {
           descricao: 'mentirosinho da porra',
           bonus: 'nada ainda',
           habilitado: false,
-          imagem: '../imagens/he.jpg',
+          imagem: fotoEle,
           imagemChibi: 'nada ainda',
           nivel: 0,
           raridade: "SSR"
@@ -38,7 +41,7 @@ const Banner = () => {
           descricao: 'zzzzzzzzzzzzzzzzzzzzzz ta dormindo po',
           bonus: 'nada ainda',
           habilitado: false,
-          imagem: '../imagens/they.jpg',
+          imagem: fotoElu,
           imagemChibi: 'nada ainda',
           nivel: 0,
           raridade: "SSR"
@@ -136,6 +139,7 @@ const Banner = () => {
       ];
 
       const rodaGacha = () => {
+        console.log(personagensItens[0].imagem)
         const raridade = Math.random() * (100 - 0) + 0;
         let numSorteio;
         if(raridade <= 5)
@@ -166,7 +170,7 @@ const Banner = () => {
                 <h1>Starter Pack</h1>
                 <button type="button">x</button>
             </div>
-            <img className="imagemBanner" src="https://i.redd.it/ucga8emsa7q71.png"></img>
+            <img className="imagemBanner" src={sorteado.imagem} alt="Minha imagem"></img>
             <div className="botoesBanner">
                 <button type="button" id="passaEsquerda">◄◄</button>
                 <button type="button" id="roda" onClick={rodaGacha}>⟳</button>
