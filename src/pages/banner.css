@@ -1,0 +1,25 @@
+.imagemBanner
+{
+    height: auto;
+    max-width: 90%;
+}
+
+.parteSuperior
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.botoesBanner
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.pagina
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
