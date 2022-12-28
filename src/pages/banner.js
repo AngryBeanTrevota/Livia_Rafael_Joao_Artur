@@ -6,9 +6,6 @@ import fotoEla from '../imagens/she.jpg'
 import fotoElu from '../imagens/they.jpg'
 
 const Banner = () => {
-    const [sorteado, setSorteado] = useState({});
-
-
     const personagensItens = [
         {
           nome: 'Stella',
@@ -20,6 +17,7 @@ const Banner = () => {
           imagem: fotoEla,
           imagemChibi: 'nada ainda',
           nivel: 0,
+          quantidade: 1,
           raridade: "SSR"
         },
         {
@@ -32,6 +30,7 @@ const Banner = () => {
           imagem: fotoEle,
           imagemChibi: 'nada ainda',
           nivel: 0,
+          quantidade: 1,
           raridade: "SSR"
         },
         {
@@ -44,6 +43,7 @@ const Banner = () => {
           imagem: fotoElu,
           imagemChibi: 'nada ainda',
           nivel: 0,
+          quantidade: 1,
           raridade: "SSR"
         },
         {
@@ -54,6 +54,7 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "SR"
         },
         {
@@ -64,6 +65,7 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "SR"
         },
         {
@@ -74,6 +76,7 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "SR"
         },
         {
@@ -84,6 +87,7 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "R"
         },
         {
@@ -94,6 +98,7 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "R"
         },
         {
@@ -104,6 +109,7 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "R"
         },
         {
@@ -114,6 +120,7 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "N"
         },
         {
@@ -124,6 +131,7 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "N"
         },
         {
@@ -134,9 +142,14 @@ const Banner = () => {
             bonus: 'nada ainda',
             habilitado: false,
             imagem: 'nada ainda',
+            quantidade: 1,
             raridade: "N"
         }
       ];
+
+
+    const [sorteado, setSorteado] = useState({});
+    const [storage, setStorage] = useState([]);
 
       const rodaGacha = () => {
         console.log(personagensItens[0].imagem)
@@ -161,6 +174,32 @@ const Banner = () => {
             numSorteio = 9 + Math.floor(Math.random() * (3 - 0) + 0);
             setSorteado(personagensItens[numSorteio])
         }
+
+        if(storage.size == 0)
+        {
+            setStorage(storage.push(personagensItens[numSorteio]))
+        }
+        else
+        {
+            const storageAtualizado = storage;
+            let itemEncontrado = false;
+
+            storageAtualizado.forEach((item) => {
+                let novoItem = item;
+                if (novoItem.nome == personagensItens[numSorteio].nome) {
+                    item.quantidade++;
+                    itemEncontrado = true;
+                }
+            });
+
+            if (!itemEncontrado) {
+                storageAtualizado.push(personagensItens[numSorteio]);
+            }
+
+            setStorage(storageAtualizado);
+            
+        }
+        console.log(storage)
       }
 
 
