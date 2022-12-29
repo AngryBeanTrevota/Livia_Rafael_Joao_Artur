@@ -8,22 +8,23 @@ import Quizzes from "../pages/Quizzes";
 import TelaInicial from "../pages/TelaInicial";
 import TelaJogoNovo from "../pages/TelaJogoNovo";
 import AnimacaoBanner from "../pages/AnimacaoBanner";
+import Banner from "../pages/Banner";
 
 const Rotas = () => {
-    return(
-        <div className="Rotas">
-            <Routes>
-                <Route exact path="/" element={<TelaInicial/>}/>
-                <Route path="/banner" element={<Banner/>}/>
-                <Route path="/menu" element={<Menu/>}/>
-                <Route path="/menuadquiridos" element={<MenuAdquiridos/>}/>
-                <Route path="/quizindividual" element={<QuizIndividual/>}/>
-                <Route path="/quizzes" element={<Quizzes/>}/>
-                <Route path="/telajogonovo" element={<TelaJogoNovo/>}/>
-                <Route path="/animacaoBanner" element={<AnimacaoBanner/>}/>
-            </Routes>
-        </div>
-    )
-}
+  return (
+    <div className="Rotas">
+      <Routes>
+        <Route exact path="/" element={<TelaInicial />} />
+        <Route path="/banner" element={<Banner />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/menuadquiridos" element={<MenuAdquiridos />} />
+        <Route path="/quizindividual" element={<QuizIndividual />} />
+        <Route path="/quizzes" element={<Quizzes />} />
+        <Route path="/telajogonovo" element={<TelaJogoNovo />} />
+        <Route path="/animacaoBanner" element={<AnimacaoBanner />} />
+      </Routes>
+    </div>
+  );
+};
 
-export default Rotas
+export default Rotas;
