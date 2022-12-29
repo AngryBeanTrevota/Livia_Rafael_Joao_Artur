@@ -1,56 +1,65 @@
-.imagemBanner
-{
-    height: auto;
-    max-width: 100%;
+.imagemBanner {
+  height: auto;
+  max-width: 100%;
 }
 
-button
-{
-    margin:2px 2px 2px 0;
-    float:right;
-    height: 90%;
-    width: auto;
-    background:#C0C0C0;
-    border-width:1px;
-    border-color:#FFFFFF #808080 #808080 #FFFFFF;
-    padding:0;
-    font-size:9px;
-    font-weight:bold;
-    font-family:Tahoma;
-    text-align:center;
+.windowsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px 2px 2px 0;
+  float: right;
+  height: 90%;
+  width: auto;
+  background: #c0c0c0;
+  border-width: 1px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 0;
+  font-size: 9px;
+  font-weight: bold;
+  font-family: Tahoma;
+  text-align: center;
 }
 
-.parteSuperior
-{
-    display: flex;
-    flex-direction: row;
-    margin:2px 0 0 1px;
-    float:left;
-    font-family:Tahoma;
-    font-weight:bold;
-    font-size:11px;
-    width:100%;
-    background:#000080;
-    color:#FFF;
+.parteSuperior {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 8px 0 8px;
+  float: left;
+  font-family: Tahoma;
+  font-weight: bold;
+  font-size: 11px;
+  width: calc(100% - 16px);
+  background: #000080;
+  color: #fff;
+  justify-content: space-between;
 }
 
-.botoesBanner
-{
-    display: flex;
-    flex-direction: row;
+.botoesBanner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.pagina
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background:#C0C0C0;
-    border-width:1px;
-    border-color:#FFFFFF #808080 #808080 #FFFFFF;
-    border-style:solid;
-    position:absolute;
-    padding:1px;
+.pagina {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: #c0c0c0;
+  border-width: 1px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-style: solid;
+  position: absolute;
+  padding: 1px;
+}
+
+.paginaCorpo {
+  margin-top: 36px;
 }

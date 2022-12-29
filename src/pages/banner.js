@@ -55,25 +55,48 @@ const Banner = () => {
     <div className="pagina">
       <div className="parteSuperior">
         <p>Starter</p>
-        <button type="button">x</button>
+        <button
+          className="windowsButton"
+          style={{
+            height: 20,
+            width: 20,
+          }}
+          type="button"
+        >
+          <span
+            style={{
+              fontSize: 13,
+              marginBottom: 3,
+            }}
+          >
+            x
+          </span>
+        </button>
       </div>
-      <img
-        className="imagemBanner"
-        src={sorteado.imagem}
-        alt="Minha imagem"
-      ></img>
-      <div className="botoesBanner">
-        <button type="button" id="passaEsquerda">
-          ◄◄
-        </button>
-        <button type="button" id="roda" onClick={rodaGacha}>
-          <Link to="/animacaoBanner" className="home-button">
-            ⟳
-          </Link>
-        </button>
-        <button type="button" id="passaDireita">
-          ►►
-        </button>
+      <div className="paginaCorpo">
+        <img
+          className="imagemBanner"
+          src={sorteado.imagem}
+          alt="Minha imagem"
+        ></img>
+        <div className="botoesBanner">
+          <button className="windowsButton" type="button" id="passaEsquerda">
+            ◄◄
+          </button>
+          <button
+            className="windowsButton"
+            type="button"
+            id="roda"
+            onClick={rodaGacha}
+          >
+            <Link to="/animacaoBanner" className="home-button">
+              ⟳
+            </Link>
+          </button>
+          <button className="windowsButton" type="button" id="passaDireita">
+            ►►
+          </button>
+        </div>
       </div>
     </div>
   );
