@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import "./Banner.css";
+import { Link } from 'react-router-dom';
 import fotoEle from '../imagens/he.jpg'
 import fotoEla from '../imagens/she.jpg'
 import fotoElu from '../imagens/they.jpg'
 
-const Banner = () => {
+ const Banner = () => {
     const personagensItens = [
         {
           nome: 'Stella',
@@ -175,7 +176,7 @@ const Banner = () => {
             setSorteado(personagensItens[numSorteio])
         }
 
-        if(storage.size == 0)
+        if(storage.size === 0)
         {
             setStorage(storage.push(personagensItens[numSorteio]))
         }
@@ -186,7 +187,7 @@ const Banner = () => {
 
             storageAtualizado.forEach((item) => {
                 let novoItem = item;
-                if (novoItem.nome == personagensItens[numSorteio].nome) {
+                if (novoItem.nome === personagensItens[numSorteio].nome) {
                     item.quantidade++;
                     itemEncontrado = true;
                 }
@@ -206,13 +207,13 @@ const Banner = () => {
     return (
         <div className="pagina">
             <div className="parteSuperior">
-                <h1>Starter Pack</h1>
+                <p>Starter</p>
                 <button type="button">x</button>
             </div>
             <img className="imagemBanner" src={sorteado.imagem} alt="Minha imagem"></img>
             <div className="botoesBanner">
                 <button type="button" id="passaEsquerda">◄◄</button>
-                <button type="button" id="roda" onClick={rodaGacha}>⟳</button>
+                <button type="button" id="roda" onClick={rodaGacha}><Link to="/animacaoBanner" className="home-button">⟳</Link></button>
                 <button type="button" id="passaDireita">►►</button>
             </div>
         </div>

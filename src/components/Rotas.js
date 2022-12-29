@@ -1,13 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Banner from "../pages/Banner";
 import Menu from "../pages/Menu";
 import MenuAdquiridos from "../pages/MenuAdquiridos";
 import QuizIndividual from "../pages/QuizIndividual";
 import Quizzes from "../pages/Quizzes";
 import TelaInicial from "../pages/TelaInicial";
 import TelaJogoNovo from "../pages/TelaJogoNovo";
+import AnimacaoBanner from "../pages/AnimacaoBanner";
 
 const Rotas = () => {
     return(
@@ -20,6 +20,7 @@ const Rotas = () => {
                 <Route path="/quizindividual" element={<QuizIndividual/>}/>
                 <Route path="/quizzes" element={<Quizzes/>}/>
                 <Route path="/telajogonovo" element={<TelaJogoNovo/>}/>
+                <Route path="/animacaoBanner" element={<AnimacaoBanner/>}/>
             </Routes>
         </div>
     )
