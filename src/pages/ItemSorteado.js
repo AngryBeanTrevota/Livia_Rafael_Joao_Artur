@@ -12,6 +12,20 @@ const Imagem = ({ sorteado }) => {
   );
 };
 
+const Cores = ({ sorteado }) => {
+  return (
+    <div className="cores" style={{ display: "flex", flexDirection: "row" }}>
+      {sorteado.cores.map((cor, indice) => (
+        <div
+          key={indice}
+          className="corIndividual"
+          style={{ backgroundColor: cor, width: "20px", height: "20px" }}
+        ></div>
+      ))}
+    </div>
+  );
+};
+
 const ItemSorteado = () => {
   const sorteado = useRecoilValue(sorteadoAtom);
 
@@ -25,8 +39,12 @@ const ItemSorteado = () => {
         <div className="corpoJanelaNome">
           <img
             style={{
-              width: 25,
-              height: 25,
+              width: 20,
+              height: 20,
+              marginTop: 4,
+              marginBottom: 4,
+              marginRight: 4,
+              marginLeft: 4,
             }}
             src="https://img.icons8.com/external-yogi-aprelliyanto-glyph-yogi-aprelliyanto/512/external-diskette-computer-hardware-yogi-aprelliyanto-glyph-yogi-aprelliyanto.png"
           ></img>
@@ -37,7 +55,16 @@ const ItemSorteado = () => {
         <div className="fundoImagem">
           <Imagem sorteado={sorteado} />
         </div>
-        <button className="windowsButton">Menu</button>
+        <Cores sorteado={sorteado} />
+        <button
+          style={{
+            width: 60,
+            marginBottom: 20,
+          }}
+          className="windowsButton"
+        >
+          Menu
+        </button>
       </div>
     </div>
   );

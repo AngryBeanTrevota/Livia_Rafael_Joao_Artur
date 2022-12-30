@@ -12,6 +12,19 @@
   border-color: #ffffff #808080 #808080 #ffffff;
 }
 
+.cores {
+  margin-bottom: 5%;
+  border: 2px;
+  border-style: solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.corIndividual {
+  border: 2px;
+  border-style: solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+
 .fundo {
   height: 100vh;
   display: flex;

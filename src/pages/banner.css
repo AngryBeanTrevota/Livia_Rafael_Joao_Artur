@@ -1,6 +1,6 @@
 .imagemBanner {
   height: auto;
-  max-width: 100%;
+  max-width: 80%;
 }
 
 .windowsButton {
@@ -12,7 +12,7 @@
   height: 90%;
   width: auto;
   background: #c0c0c0;
-  border-width: 1px;
+  border-width: 2px;
   border-color: #ffffff #808080 #808080 #ffffff;
   padding: 0;
   font-size: 9px;
@@ -33,7 +33,7 @@
   font-weight: bold;
   font-size: 11px;
   width: calc(100% - 16px);
-  background: #000080;
+  background: rgba(143, 28, 127, 0.467);
   color: #fff;
   justify-content: space-between;
 }
@@ -58,7 +58,7 @@
   height: 100%;
   width: 100%;
   background: #c0c0c0;
-  border-width: 1px;
+  border-width: 2px;
   border-color: #ffffff #808080 #808080 #ffffff;
   border-style: solid;
   position: absolute;
@@ -68,4 +68,8 @@
 .paginaCorpo {
   margin-top: 36px;
   margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
