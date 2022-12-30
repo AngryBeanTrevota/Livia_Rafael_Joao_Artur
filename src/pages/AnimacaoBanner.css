@@ -1,0 +1,13 @@
+#skipButton {
+  height: 40px;
+  width: 70px;
+  font-size: 15px;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+.tudo {
+  height: 100vh;
+  background-image: url("https://www.icegif.com/wp-content/uploads/dancing-icegif-1.gif");
+  background-repeat: repeat;
+}

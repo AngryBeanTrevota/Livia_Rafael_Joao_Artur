@@ -9,6 +9,7 @@ import TelaInicial from "../pages/TelaInicial";
 import TelaJogoNovo from "../pages/TelaJogoNovo";
 import AnimacaoBanner from "../pages/AnimacaoBanner";
 import Banner from "../pages/Banner";
+import ItemSorteado from "../pages/ItemSorteado";
 
 const Rotas = () => {
   return (
@@ -22,6 +23,7 @@ const Rotas = () => {
         <Route path="/quizzes" element={<Quizzes />} />
         <Route path="/telajogonovo" element={<TelaJogoNovo />} />
         <Route path="/animacaoBanner" element={<AnimacaoBanner />} />
+        <Route path="/itemSorteado" element={<ItemSorteado />} />
       </Routes>
     </div>
   );

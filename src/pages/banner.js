@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Banner.css";
 import { Link } from "react-router-dom";
 import { defaultBannerData } from "../data/banners/defaultBannerData";
-import { useRecoilState } from "recoil";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 import { sorteadoAtom } from "../atoms/sorteadoAtom";
 import { storageAtom } from "../atoms/storageAtom";
 
 const Banner = () => {
   const [sorteado, setSorteado] = useRecoilState(sorteadoAtom);
   const [storage, setStorage] = useRecoilState(storageAtom);
+  const [imagemExibida, setImagemExibida] = useState(
+    defaultBannerData[0].imagem
+  );
+
+  const botaoPassaEsquerda = () => {
+    if (imagemExibida === defaultBannerData[0].imagem) {
+      setImagemExibida(defaultBannerData[2].imagem);
+    } else if (imagemExibida === defaultBannerData[2].imagem) {
+      setImagemExibida(defaultBannerData[1].imagem);
+    } else {
+      setImagemExibida(defaultBannerData[0].imagem);
+    }
+  };
+
+  const botaoPassaDireita = () => {
+    if (imagemExibida === defaultBannerData[0].imagem) {
+      setImagemExibida(defaultBannerData[1].imagem);
+    } else if (imagemExibida === defaultBannerData[1].imagem) {
+      setImagemExibida(defaultBannerData[2].imagem);
+    } else {
+      setImagemExibida(defaultBannerData[0].imagem);
+    }
+  };
 
   const rodaGacha = () => {
     console.log(defaultBannerData[0].imagem);
@@ -31,14 +60,16 @@ const Banner = () => {
     if (storage.size === 0) {
       setStorage(storage.push(defaultBannerData[numSorteio]));
     } else {
-      const storageAtualizado = [...storage];
       let itemEncontrado = false;
 
-      storageAtualizado.forEach((item) => {
-        let novoItem = item;
-        if (novoItem.nome === defaultBannerData[numSorteio].nome) {
-          item.quantidade++;
+      const storageAtualizado = storage.map((item) => {
+        if (item.nome === defaultBannerData[numSorteio].nome) {
+          let novoItem = { ...item };
+          novoItem.quantidade++;
           itemEncontrado = true;
+          return novoItem;
+        } else {
+          return item;
         }
       });
 
@@ -47,8 +78,8 @@ const Banner = () => {
       }
 
       setStorage(storageAtualizado);
+      console.log(storage);
     }
-    console.log(storage);
   };
 
   return (
@@ -76,15 +107,30 @@ const Banner = () => {
       <div className="paginaCorpo">
         <img
           className="imagemBanner"
-          src={sorteado.imagem}
+          src={imagemExibida}
           alt="Minha imagem"
         ></img>
         <div className="botoesBanner">
-          <button className="windowsButton" type="button" id="passaEsquerda">
+          <button
+            className="windowsButton"
+            style={{
+              height: 40,
+              fontSize: 20,
+              width: 60,
+            }}
+            type="button"
+            id="passaEsquerda"
+            onClick={botaoPassaEsquerda}
+          >
             ◄◄
           </button>
           <button
             className="windowsButton"
+            style={{
+              height: 40,
+              fontSize: 20,
+              width: 60,
+            }}
             type="button"
             id="roda"
             onClick={rodaGacha}
@@ -93,7 +139,17 @@ const Banner = () => {
               ⟳
             </Link>
           </button>
-          <button className="windowsButton" type="button" id="passaDireita">
+          <button
+            className="windowsButton"
+            type="button"
+            id="passaDireita"
+            style={{
+              height: 40,
+              fontSize: 20,
+              width: 60,
+            }}
+            onClick={botaoPassaDireita}
+          >
             ►►
           </button>
         </div>

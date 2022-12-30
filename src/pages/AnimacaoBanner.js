@@ -15,9 +15,8 @@ const AnimacaoBanner = () => {
 
   return (
     <div className="tudo">
-      <p>{sorteado.nome}</p>
-      <button className="windowsButton" type="button">
-        <Link to="/" className="home-button">
+      <button id="skipButton" className="windowsButton" type="button">
+        <Link to="/itemSorteado" className="home-button">
           skip
         </Link>
       </button>
