@@ -1,6 +1,9 @@
 .imagemBanner {
   height: auto;
-  max-width: 100%;
+  width: 90%;
+  border-width: 2px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-style: solid;
 }
 
 .windowsButton {
@@ -12,6 +15,7 @@
   height: 90%;
   width: auto;
   background: #c0c0c0;
+  border-style: solid;
   border-width: 2px;
   border-color: #ffffff #808080 #808080 #ffffff;
   padding: 0;
@@ -36,6 +40,9 @@
   background: rgba(143, 28, 127, 0.467);
   color: #fff;
   justify-content: space-between;
+  border-width: 2px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-style: solid;
 }
 
 .botoesBanner {

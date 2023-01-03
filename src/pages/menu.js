@@ -45,17 +45,21 @@ const Menu = () => {
           <div id="corpoEsq">
             <div id="pastas">
               <button>
-                <img
-                  className="imagemPasta"
-                  src="https://icon-library.com/images/white-folder-icon-png/white-folder-icon-png-8.jpg"
-                ></img>
+                <Link to="/menuAdquiridos">
+                  <img
+                    className="imagemPasta"
+                    src="https://icon-library.com/images/white-folder-icon-png/white-folder-icon-png-8.jpg"
+                  ></img>
+                </Link>
               </button>
               <p>Storage</p>
               <button>
-                <img
-                  className="imagemPasta"
-                  src="https://icon-library.com/images/white-folder-icon-png/white-folder-icon-png-8.jpg"
-                ></img>
+                <Link to="/quizzes">
+                  <img
+                    className="imagemPasta"
+                    src="https://icon-library.com/images/white-folder-icon-png/white-folder-icon-png-8.jpg"
+                  ></img>
+                </Link>
               </button>
               <p>quizzes</p>
             </div>
