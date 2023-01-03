@@ -11,6 +11,36 @@ import {
 } from "recoil";
 import { sorteadoAtom } from "../atoms/sorteadoAtom";
 import { storageAtom } from "../atoms/storageAtom";
+import { bitsMoedaAtom } from "../atoms/bitsMoedaAtom";
+import PopupConfirmacao from "../components/PopupConfirmacao";
+
+const BotaoRodaGacha = ({ rodaGacha, bitsMoedaValor }) => {
+  let endereco;
+  if (bitsMoedaValor >= 500) {
+    endereco = "/animacaoBanner";
+  } else {
+    endereco = "/banner";
+  }
+  return (
+    <div>
+      <button
+        className="windowsButton"
+        style={{
+          height: 40,
+          fontSize: 20,
+          width: 60,
+        }}
+        type="button"
+        id="roda"
+        onClick={rodaGacha}
+      >
+        <Link to={endereco} className="home-button">
+          ⟳
+        </Link>
+      </button>
+    </div>
+  );
+};
 
 const Banner = () => {
   const [sorteado, setSorteado] = useRecoilState(sorteadoAtom);
@@ -18,6 +48,7 @@ const Banner = () => {
   const [imagemExibida, setImagemExibida] = useState(
     defaultBannerData[0].imagem
   );
+  const [bitsMoeda, setBitsMoeda] = useRecoilState(bitsMoedaAtom);
 
   const botaoPassaEsquerda = () => {
     if (imagemExibida === defaultBannerData[0].imagem) {
@@ -40,45 +71,56 @@ const Banner = () => {
   };
 
   const rodaGacha = () => {
-    console.log(defaultBannerData[0].imagem);
-    const raridade = Math.random() * (100 - 0) + 0;
-    let numSorteio;
-    if (raridade <= 5) {
-      numSorteio = Math.floor(Math.random() * (3 - 0) + 0);
-      setSorteado(defaultBannerData[numSorteio]);
-    } else if (raridade <= 20) {
-      numSorteio = 3 + Math.floor(Math.random() * (3 - 0) + 0);
-      setSorteado(defaultBannerData[numSorteio]);
-    } else if (raridade <= 55) {
-      numSorteio = 6 + Math.floor(Math.random() * (3 - 0) + 0);
-      setSorteado(defaultBannerData[numSorteio]);
-    } else {
-      numSorteio = 9 + Math.floor(Math.random() * (3 - 0) + 0);
-      setSorteado(defaultBannerData[numSorteio]);
-    }
-
-    if (storage.size === 0) {
-      setStorage(storage.push(defaultBannerData[numSorteio]));
-    } else {
-      let itemEncontrado = false;
-
-      const storageAtualizado = storage.map((item) => {
-        if (item.nome === defaultBannerData[numSorteio].nome) {
-          let novoItem = { ...item };
-          novoItem.quantidade++;
-          itemEncontrado = true;
-          return novoItem;
+    if (bitsMoeda >= 500) {
+      if (
+        window.confirm(
+          "Quer gastar 500 bits para rodar? Você possui " + bitsMoeda + " bits."
+        )
+      ) {
+        setBitsMoeda(bitsMoeda - 500);
+        console.log(defaultBannerData[0].imagem);
+        const raridade = Math.random() * (100 - 0) + 0;
+        let numSorteio;
+        if (raridade <= 5) {
+          numSorteio = Math.floor(Math.random() * (3 - 0) + 0);
+          setSorteado(defaultBannerData[numSorteio]);
+        } else if (raridade <= 20) {
+          numSorteio = 3 + Math.floor(Math.random() * (3 - 0) + 0);
+          setSorteado(defaultBannerData[numSorteio]);
+        } else if (raridade <= 55) {
+          numSorteio = 6 + Math.floor(Math.random() * (3 - 0) + 0);
+          setSorteado(defaultBannerData[numSorteio]);
         } else {
-          return item;
+          numSorteio = 9 + Math.floor(Math.random() * (3 - 0) + 0);
+          setSorteado(defaultBannerData[numSorteio]);
         }
-      });
 
-      if (!itemEncontrado) {
-        storageAtualizado.push(defaultBannerData[numSorteio]);
+        if (storage.size === 0) {
+          setStorage(storage.push(defaultBannerData[numSorteio]));
+        } else {
+          let itemEncontrado = false;
+
+          const storageAtualizado = storage.map((item) => {
+            if (item.nome === defaultBannerData[numSorteio].nome) {
+              let novoItem = { ...item };
+              novoItem.quantidade++;
+              itemEncontrado = true;
+              return novoItem;
+            } else {
+              return item;
+            }
+          });
+
+          if (!itemEncontrado) {
+            storageAtualizado.push(defaultBannerData[numSorteio]);
+          }
+
+          setStorage(storageAtualizado);
+          console.log(storage);
+        }
       }
-
-      setStorage(storageAtualizado);
-      console.log(storage);
+    } else {
+      alert("Você não possui bits suficientes.");
     }
   };
 
@@ -124,21 +166,7 @@ const Banner = () => {
           >
             ◄◄
           </button>
-          <button
-            className="windowsButton"
-            style={{
-              height: 40,
-              fontSize: 20,
-              width: 60,
-            }}
-            type="button"
-            id="roda"
-            onClick={rodaGacha}
-          >
-            <Link to="/animacaoBanner" className="home-button">
-              ⟳
-            </Link>
-          </button>
+          <BotaoRodaGacha rodaGacha={rodaGacha} bitsMoedaValor={bitsMoeda} />
           <button
             className="windowsButton"
             type="button"
