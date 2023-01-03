@@ -63,7 +63,7 @@ const ItemSorteado = () => {
           }}
           className="windowsButton"
         >
-          Menu
+          <Link to="/menu">Menu</Link>
         </button>
       </div>
     </div>
