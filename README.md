@@ -1,3 +1,7 @@
+# Information
+
+Click here to read the [Documentation and Cronogram](https://docs.google.com/document/d/145kbNvjQkaXhDxDtRutI8L8Otg6bkrshzfXJZil24Xk/edit)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
