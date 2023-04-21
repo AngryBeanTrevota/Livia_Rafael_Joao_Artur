@@ -1,5 +1,5 @@
 import React from "react";
-import "./TelaInicial.css";
+import "./telaInicial.css";
 import { Link } from 'react-router-dom';
 
 const TelaInicial = () => {

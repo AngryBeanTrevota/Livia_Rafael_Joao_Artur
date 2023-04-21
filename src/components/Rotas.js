@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Menu from "../pages/Menu";
-import MenuAdquiridos from "../pages/MenuAdquiridos";
-import QuizIndividual from "../pages/QuizIndividual";
-import Quizzes from "../pages/Quizzes";
-import TelaInicial from "../pages/TelaInicial";
-import TelaJogoNovo from "../pages/TelaJogoNovo";
+import Menu from "../pages/menu";
+import MenuAdquiridos from "../pages/menuAdquiridos";
+import QuizIndividual from "../pages/quizIndividual";
+import Quizzes from "../pages/quizzes";
+import TelaInicial from "../pages/telaInicial";
+import TelaJogoNovo from "../pages/telaJogoNovo";
 import AnimacaoBanner from "../pages/AnimacaoBanner";
-import Banner from "../pages/Banner";
+import Banner from "../pages/banner";
 import ItemSorteado from "../pages/ItemSorteado";
 
 const Rotas = () => {

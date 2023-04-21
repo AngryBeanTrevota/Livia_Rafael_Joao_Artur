@@ -1,5 +1,5 @@
 import React from "react";
-import "./Menu.css";
+import "./menu.css";
 import {
   RecoilRoot,
   atom,

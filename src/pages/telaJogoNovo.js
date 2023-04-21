@@ -1,5 +1,5 @@
 import React from "react";
-import "./TelaJogoNovo.css";
+import "./telaJogoNovo.css";
 
 const TelaJogoNovo = () => {
     return (

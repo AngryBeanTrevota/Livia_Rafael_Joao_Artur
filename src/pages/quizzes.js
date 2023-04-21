@@ -1,5 +1,5 @@
 import React from "react";
-import "./Quizzes.css";
+import "./quizzes.css";
 import { Link } from "react-router-dom";
 
 const BotaoNivel = ({ nivel }) => {

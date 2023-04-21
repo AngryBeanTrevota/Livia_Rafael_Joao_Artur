@@ -1,5 +1,5 @@
 import React from "react";
-import "./QuizIndividual.css";
+import "./quizIndividual.css";
 
 const QuizIndividual = () => {
     return (

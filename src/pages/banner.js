@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Banner.css";
+import "./banner.css";
 import { Link } from "react-router-dom";
 import { defaultBannerData } from "../data/banners/defaultBannerData";
 import {
