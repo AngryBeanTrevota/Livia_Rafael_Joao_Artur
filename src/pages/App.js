@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import Rotas from "../components/Rotas";
+import Rotas from "../routes/Rotas";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
   RecoilRoot,
