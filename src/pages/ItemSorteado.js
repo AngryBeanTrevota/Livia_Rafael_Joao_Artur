@@ -1,5 +1,5 @@
 import React from "react";
-import "./ItemSorteado.css";
+import "./itemSorteado.css";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { sorteadoAtom } from "../atoms/sorteadoAtom";

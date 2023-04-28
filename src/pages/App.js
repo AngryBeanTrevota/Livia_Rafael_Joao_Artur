@@ -1,4 +1,4 @@
-import "./App.css";
+import "./app.css";
 import React from "react";
 import Rotas from "../components/Rotas";
 import { BrowserRouter as Router } from "react-router-dom";

@@ -7,9 +7,9 @@ import QuizIndividual from "../pages/quizIndividual";
 import Quizzes from "../pages/quizzes";
 import TelaInicial from "../pages/telaInicial";
 import TelaJogoNovo from "../pages/telaJogoNovo";
-import AnimacaoBanner from "../pages/AnimacaoBanner";
+import AnimacaoBanner from "../pages/animacaoBanner";
 import Banner from "../pages/banner";
-import ItemSorteado from "../pages/ItemSorteado";
+import ItemSorteado from "../pages/itemSorteado";
 
 const Rotas = () => {
   return (
