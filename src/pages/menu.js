@@ -44,20 +44,32 @@ const Menu = () => {
         <div id="corpo">
           <div id="corpoEsq">
             <div id="pastas">
-              <button>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  borderColor: "transparent",
+                }}
+              >
                 <Link to="/menuAdquiridos">
                   <img
+                    style={{ width: 70, height: 55 }}
                     className="imagemPasta"
-                    src="https://icon-library.com/images/white-folder-icon-png/white-folder-icon-png-8.jpg"
+                    src="https://i.imgur.com/r3a0P0E.png"
                   ></img>
                 </Link>
               </button>
               <p>Storage</p>
-              <button>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  borderColor: "transparent",
+                }}
+              >
                 <Link to="/quizzes">
                   <img
+                    style={{ width: 70, height: 55 }}
                     className="imagemPasta"
-                    src="https://icon-library.com/images/white-folder-icon-png/white-folder-icon-png-8.jpg"
+                    src="https://i.imgur.com/r3a0P0E.png"
                   ></img>
                 </Link>
               </button>
