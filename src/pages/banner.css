@@ -88,3 +88,61 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+#popUpRodaBanner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.janelaWindows {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  width: 100px;
+  background: #c0c0c0;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.footerJanelaWindows {
+  background-color: rgb(124, 100, 147);
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-width: 2px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-style: solid;
+}
+
+.botaoGeralWindows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px 2px 2px 0;
+  float: right;
+  background: #c0c0c0;
+  border-width: 2px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-style: solid;
+  font-size: 9px;
+  font-weight: bold;
+  font-family: Tahoma;
+  text-align: center;
+  margin-bottom: 15%;
+}
