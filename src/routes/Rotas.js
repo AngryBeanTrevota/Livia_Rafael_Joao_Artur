@@ -10,6 +10,8 @@ import TelaJogoNovo from "../pages/telaJogoNovo";
 import AnimacaoBanner from "../pages/AnimacaoBanner";
 import Banner from "../pages/banner";
 import ItemSorteado from "../pages/ItemSorteado";
+import { RequireAuth } from "../context/Auth/RequireAuth";
+import Cadastro from "../pages/telaCadastro";
 
 const Rotas = () => {
   return (
@@ -24,6 +26,7 @@ const Rotas = () => {
         <Route path="/telajogonovo" element={<TelaJogoNovo />} />
         <Route path="/animacaoBanner" element={<AnimacaoBanner />} />
         <Route path="/itemSorteado" element={<ItemSorteado />} />
+        <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
     </div>
   );
