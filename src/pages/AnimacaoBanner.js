@@ -1,5 +1,5 @@
 import React from "react";
-import "./animacaoBanner.css";
+import "./AnimacaoBanner.css";
 import { Link } from "react-router-dom";
 import {
   RecoilRoot,
