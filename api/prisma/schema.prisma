@@ -11,19 +11,18 @@ datasource db {
 }
 
 model Student {
-  id       Int      @id @default(autoincrement())
-  
-  name     String
-  register String
-  password String
+  id Int @id @default(autoincrement())
 
-  xp       Int      @default(0)
-  shots    Int      @default(0)
-  number_quizzes Int  @default(0)
+  name            String
+  registerStudent String @unique
+  password        String
+
+  xp                     Int @default(0)
+  shots                  Int @default(0)
+  number_quizzes         Int @default(0)
   number_quizzes_success Int @default(0)
 
-  classId  Int
-  class   Class    @relation(fields: [classId], references: [id])
+  class Class[]
 
   characters Character[]
   items      Item[]
@@ -32,10 +31,10 @@ model Student {
 }
 
 model Character {
-  id       Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  name     String
-  image    String
+  name  String
+  image String
 
   students Student[]
 
@@ -43,10 +42,10 @@ model Character {
 }
 
 model Item {
-  id       Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  name     String
-  image    String
+  name  String
+  image String
 
   students Student[]
 
@@ -54,11 +53,11 @@ model Item {
 }
 
 model Teacher {
-  id       Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  register String
-  name     String
-  password String
+  registerTeacher String @unique
+  name            String
+  password        String
 
   classes Class[]
 
@@ -66,12 +65,12 @@ model Teacher {
 }
 
 model Class {
-  id       Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
   name     String
   password String
 
-  teacher  Teacher  @relation(fields: [teacherId], references: [id])
+  teacher   Teacher @relation(fields: [teacherId], references: [id])
   teacherId Int
 
   students Student[]
@@ -80,17 +79,15 @@ model Class {
   @@map("classes")
 }
 
-
-
 model Quiz {
-  id       Int      @id @default(autoincrement())
-  
-  title   String
-  options  String[]  
-  answer   Int
+  id Int @id @default(autoincrement())
 
-  class    Class    @relation(fields: [classId], references: [id])
-  classId  Int
+  title   String
+  options String[]
+  answer  Int
+
+  class   Class @relation(fields: [classId], references: [id])
+  classId Int
 
   @@map("quizzes")
 }
