@@ -33,6 +33,7 @@ const PopUpRodaGacha = ({ bits, rodaGacha, visivel, fechaPopUp }) => {
         className="janelaWindows"
         style={{
           width: 170,
+          height: 80,
         }}
       >
         <div className="footerJanelaWindows">
