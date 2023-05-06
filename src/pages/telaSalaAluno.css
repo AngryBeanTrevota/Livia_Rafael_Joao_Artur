@@ -35,3 +35,36 @@ p {
 .button-ok:hover {
     background-color: #b3b1b1;
 }
+
+.loading-codigo {
+    font-weight: bold;
+    padding-top: 2rem;
+}
+
+.loading {
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+}
+
+.text-loading {
+    font-size: medium;
+}
+
+.text-system {
+    font-size: small;
+    margin-bottom: 4px;
+}
+
+.bar {
+    width: 400px;
+    height: 16px;
+    border: 1px solid #b3b1b1;
+    
+    background: -webkit-linear-gradient(
+        left,
+        #00d328 15%,
+        #0dd632 30%,
+        #abf8aa 80%,
+        #01b423 100%
+    ) repeat;
+}
