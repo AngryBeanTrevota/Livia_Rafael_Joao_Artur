@@ -4,6 +4,10 @@ p {
 
 /* Painel 1 */
 
+.novo-jogo-aluno {
+    z-index: 3;
+}
+
 .input-codigo {
     font-weight: bold;
     padding-top: 3rem;
@@ -25,6 +29,10 @@ p {
 }
 
 /* Painel 2 */
+
+.system-aluno {
+    z-index: 2;
+}
 
 .loading-codigo {
     font-weight: bold;
@@ -61,6 +69,10 @@ p {
 
 /* Painel 3 */
 
+.hystoric-aluno {
+    z-index: 1;
+}
+
 .historic {
     padding-bottom: 1rem;
     padding-top: 1rem;
@@ -80,6 +92,8 @@ p {
 .historic-codigo {
     border-top: 1px solid #000000;
     border-bottom: 1px solid #000000;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .img-loading {
