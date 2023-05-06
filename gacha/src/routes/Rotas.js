@@ -12,6 +12,7 @@ import Banner from "../pages/banner";
 import ItemSorteado from "../pages/ItemSorteado";
 import { RequireAuth } from "../context/Auth/RequireAuth";
 import Cadastro from "../pages/telaCadastro";
+import StudentsTable from "../pages/admin/StudentsTable";
 
 const Rotas = () => {
   return (
@@ -26,6 +27,7 @@ const Rotas = () => {
         <Route path="/telajogonovo" element={<TelaJogoNovo />} />
         <Route path="/animacaoBanner" element={<AnimacaoBanner />} />
         <Route path="/itemSorteado" element={<ItemSorteado />} />
+        <Route path="/adm/students" element={<StudentsTable />} />
         <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
     </div>

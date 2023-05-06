@@ -35,9 +35,9 @@ router.get("/character", characterCtrl.index);
 router.put("/character/:id", characterCtrl.update);
 
 // Students
+router.get("/student", studentCtrl.index);
 router.post("/student", studentCtrl.create);
 router.get("/student/:id", studentCtrl.view);
-router.get("/student", studentCtrl.index);
 router.put("/student/:id", studentCtrl.update);
 
 // Teachers

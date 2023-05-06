@@ -22,11 +22,6 @@ model Student {
   number_quizzes         Int @default(0)
   number_quizzes_success Int @default(0)
 
-  class Class[]
-
-  characters Character[]
-  items      Item[]
-
   @@map("students")
 }
 
@@ -36,7 +31,6 @@ model Character {
   name  String
   image String
 
-  students Student[]
 
   @@map("characters")
 }
@@ -46,8 +40,6 @@ model Item {
 
   name  String
   image String
-
-  students Student[]
 
   @@map("items")
 }
@@ -73,7 +65,6 @@ model Class {
   teacher   Teacher @relation(fields: [teacherId], references: [id])
   teacherId Int
 
-  students Student[]
   quizzes  Quiz[]
 
   @@map("classes")

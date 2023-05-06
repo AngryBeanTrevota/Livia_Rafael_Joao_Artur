@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import { prismaClient } from "../database/prismaCient";
 import { hash } from "bcryptjs";
+import { Class } from "@prisma/client";
 
 export class studentController {
   async create(request: Request, response: Response): Promise<Response> {
     try {
       const { name, register, password } = request.body;
-      const registerAlreadyExists = await prismaClient.student.findUnique({
+/*       const registerAlreadyExists = await prismaClient.student.findUnique({
         where: {
           registerStudent: register,
         },
@@ -14,10 +15,13 @@ export class studentController {
 
       if (registerAlreadyExists) {
         return response.status(400).json({ error: "Matrícula já cadastrada!" });
-      }
+      } */
 
       const passwordHash = await hash(password, 8);
 
+      
+      //criar vetor Class
+    
       const student = await prismaClient.student.create({
         data: {
           name: name,
