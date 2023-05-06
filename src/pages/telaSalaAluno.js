@@ -1,4 +1,7 @@
 import Window from "../components/Window";
+import "./telaSalaAluno.css";
+
+
 
 const TelaSalaAluno = () => {
     return (
@@ -11,9 +14,32 @@ const TelaSalaAluno = () => {
                 gap: 60,
             }}
         >
-            <div>
-                <h1>Tela Sala Aluno</h1>
-            </div>
+            <Window titulo={"NOVO JOGO"} 
+                styleContainer={{
+                    width: 500,
+                    height: 400,
+                }}
+            >
+                {/* <div 
+                // className="Conteudo-codigo"
+                > */}
+                    <div  className="input-codigo">
+                        <input
+                            style={{
+                                width: 400,
+                                height: 40,
+                                fontSize: 22,
+                            }}
+                            placeholder="Digite o código da sala..."
+                        />
+                    </div>
+                    <div className="button-ok-cont">
+                        <button className="button-ok">
+                            <p>OK</p>
+                        </button>
+                    </div>
+                {/* </div> */}
+            </Window>
         </Window>
     )
 }
