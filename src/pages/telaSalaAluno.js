@@ -1,7 +1,7 @@
 import Window from "../components/Window";
 import "./telaSalaAluno.css";
 
-
+import load from "../icones/load.png";
 
 const TelaSalaAluno = () => {
     return (
@@ -35,52 +35,46 @@ const TelaSalaAluno = () => {
                     height: 400,
                 }}
             >
-                {/* <div 
-                // className="Conteudo-codigo"
-                > */}
-                    <div  className="input-codigo">
-                        <input
-                            style={{
-                                width: 400,
-                                height: 40,
-                                fontSize: 22,
-                            }}
-                            placeholder="Digite o código da sala..."
-                        />
-                    </div>
-                    <div className="button-ok-cont">
-                        <button className="button-ok">
-                            <p>OK</p>
-                        </button>
-                    </div>
-                {/* </div> */}
+                <div  className="input-codigo">
+                    <input
+                        style={{
+                            width: 400,
+                            height: 40,
+                            fontSize: 22,
+                        }}
+                        placeholder="Digite o código da sala..."
+                    />
+                </div>
+                <div className="button-ok-cont">
+                    <button className="button-ok">
+                        <p>OK</p>
+                    </button>
+                </div>
             </Window>
 
-            <Window titulo={"NOVO JOGO"} 
+            <Window titulo={"HISTORYC"} 
                 styleContainer={{
                     width: 500,
                     height: 400,
                 }}
             >
-                {/* <div 
-                // className="Conteudo-codigo"
-                > */}
-                    <div  className="input-codigo">
-                        <input
+                <div className="historic">
+                    <p className="text-verifiyng">Verifiyng Historic of rooms</p>
+                    <div  className="historic-codigo">
+                        <p>Sala 1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . #</p>
+                        <p>Sala 2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . #</p>
+                        <p>Sala 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . #</p>
+                        <p>Sala ... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . #</p>
+                        <p>Sala ... . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . #</p>
+                    </div>
+                    <div className="img-loading">
+                        <img src={load} alt="load" 
                             style={{
-                                width: 400,
-                                height: 40,
-                                fontSize: 22,
+                                maxWidth: 50,
                             }}
-                            placeholder="Digite o código da sala..."
                         />
                     </div>
-                    <div className="button-ok-cont">
-                        <button className="button-ok">
-                            <p>OK</p>
-                        </button>
-                    </div>
-                {/* </div> */}
+                </div>
             </Window>
         </Window>
     )

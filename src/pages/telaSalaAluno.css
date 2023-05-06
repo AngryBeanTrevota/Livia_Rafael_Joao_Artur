@@ -1,16 +1,8 @@
-.Conteudo-codigo {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 10px; */
-    width: 100%;
-    height: 100%;
-    /* background-color: #F2F2F2;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px #000000; */
+p {
+    margin: 0;
 }
+
+/* Painel 1 */
 
 .input-codigo {
     font-weight: bold;
@@ -22,10 +14,6 @@
     padding-bottom: 2rem;
 }
 
-p {
-    margin: 0;
-}
-
 .button-ok {
     font-size: small;
     width: 8rem;
@@ -35,6 +23,8 @@ p {
 .button-ok:hover {
     background-color: #b3b1b1;
 }
+
+/* Painel 2 */
 
 .loading-codigo {
     font-weight: bold;
@@ -67,4 +57,33 @@ p {
         #abf8aa 80%,
         #01b423 100%
     ) repeat;
+}
+
+/* Painel 3 */
+
+.historic {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.text-verifiyng {
+    font-size: medium;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.historic-codigo {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.img-loading {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
 }
