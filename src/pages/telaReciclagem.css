@@ -17,6 +17,10 @@ p {
 
 /* Painel Reciclagem */
 
+.reciclar-painel {
+    z-index: 2;
+}
+
 .recycle-cont {
     width: 100%;
     padding-top: 2rem;
@@ -58,6 +62,10 @@ p {
 
 /* Painel Tiros */
 
+.trocar-painel {
+    z-index: 1;
+}
+
 .troca-cont {
     padding-top: 2rem;
     display: flex;
@@ -90,6 +98,10 @@ p {
 }
 
 /* Popup */
+
+.troca-feita-painel {
+    z-index: 3;
+}
 
 .recycle-feita {
     padding-top: 2rem;
