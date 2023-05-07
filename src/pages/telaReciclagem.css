@@ -2,6 +2,19 @@ p {
     margin: 0;
 }
 
+#corpoRecycle {
+    background-image: url(https://thumbs.dreamstime.com/b/imitation-transparent-background-seamless-vector-illustration-69028332.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90%;
+    width: 80%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    overflow: scroll;
+}
+
 /* Painel Reciclagem */
 
 .recycle-cont {
