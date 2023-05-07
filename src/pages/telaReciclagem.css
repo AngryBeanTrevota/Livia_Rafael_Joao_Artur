@@ -1,0 +1,47 @@
+p {
+    margin: 0;
+}
+
+/* Painel Reciclagem */
+
+.recycle-cont {
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.recycle {
+    max-width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.itens-folder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.itens-folder .item-name {
+    display: none;
+    font-size: 16px;
+}
+
+.itens-folder:hover {
+    cursor: pointer;
+}
+
+.itens-folder:hover .item-name {
+    display: block;
+}
+
+/* Painel Tiros */
+
