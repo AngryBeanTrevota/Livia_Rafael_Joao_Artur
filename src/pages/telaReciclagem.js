@@ -78,6 +78,23 @@ const TelaReciclagem = () => {
                         </div>
                     </div>
                 </Window>
+
+                <Window titulo={"TROCAR"} 
+                    styleContainer={{
+                        width: 350,
+                        height: 400,
+                    }}
+                >
+                    <div className="troca-cont">
+                        <p className="obter-text">OBTER:</p>
+                        <p className="tiros-text">20 Tiros</p>
+                    </div>
+                    <div className="button-troca-cont">
+                        <button className="button-troca">
+                            <p>OK</p>
+                        </button>
+                    </div>
+                </Window>
             </div>
         </Window>
     )

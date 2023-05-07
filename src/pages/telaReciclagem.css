@@ -58,3 +58,33 @@ p {
 
 /* Painel Tiros */
 
+.troca-cont {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: baseline;
+}
+
+.obter-text {
+    font-size: 30px;
+}
+
+.tiros-text {
+    font-size: 22px;
+}
+
+.button-troca-cont {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.button-troca {
+    font-size: small;
+    width: 8rem;
+    height: 2rem;
+}
+
+.button-troca:hover {
+    background-color: #b3b1b1;
+}
