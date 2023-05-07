@@ -4,6 +4,7 @@ import CreateModal from "../../components/modals/CreateModal";
 import EditModal from "../../components/modals/EditModal";
 import ViewModal from "../../components/modals/ViewModal";
 import DeleteModal from "../../components/modals/DeleteModal";
+import NavbarAdm from "../../components/NavbarAdm";
 
 function StudentsTable() {
   const [students, setStudents] = useState([]);
@@ -104,6 +105,8 @@ function StudentsTable() {
   };
 
   return (
+    <>
+      <NavbarAdm />
     <div className="flex items-center flex-col w-full">
       <div className="mt-12">
         <h2 className="text-2xl font-bold mb-4">Lista de Estudantes</h2>
@@ -181,6 +184,8 @@ function StudentsTable() {
         />
       )}
     </div>
+    </>
+
   );
 }
 
