@@ -1,7 +1,19 @@
 import Window from "../components/Window";
 import "./telaReciclagem.css";
 
+import React, { useState } from "react";
+
 const TelaReciclagem = () => {
+    const [popUpVisivel, setPopUpVisivel] = useState(false);
+    
+    const abrePopUp = () => {
+        setPopUpVisivel(true);
+    };
+    
+    const fechaPopUp = () => {
+        setPopUpVisivel(false);
+    };    
+
     return (
         <Window titulo={"Tela de Reciclagem"}
             styleWindow={{
@@ -90,7 +102,28 @@ const TelaReciclagem = () => {
                         <p className="tiros-text">20 Tiros</p>
                     </div>
                     <div className="button-troca-cont">
-                        <button className="button-troca">
+                        <button className="button-troca" 
+                            onClick={abrePopUp}
+                        >
+                            <p>OK</p>
+                        </button>
+                    </div>
+                </Window>
+
+                <Window titulo={"TROCA CONCLUÍDA"} 
+                    styleContainer={{
+                        width: 250,
+                        height: 400,
+                        visibility: popUpVisivel ? "visible" : "hidden",
+                    }}
+                >
+                    <div className="recycle-feita">
+                        <p className="feita-text">TROCA CONCLUÍDA!</p>
+                    </div>
+                    <div className="button-troca-cont">
+                        <button className="button-troca" 
+                            onClick={fechaPopUp}
+                        >
                             <p>OK</p>
                         </button>
                     </div>

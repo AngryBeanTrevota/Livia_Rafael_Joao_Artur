@@ -67,7 +67,7 @@ p {
 }
 
 .obter-text {
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .tiros-text {
@@ -87,4 +87,14 @@ p {
 
 .button-troca:hover {
     background-color: #b3b1b1;
+}
+
+/* Popup */
+
+.recycle-feita {
+    padding-top: 2rem;
+}
+
+.feita-text {
+    font-size: 22px;
 }
