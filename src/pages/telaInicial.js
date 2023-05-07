@@ -13,6 +13,7 @@ const TelaInicial = () => {
             <Link to="/quizzes" className="home-button">Quizzes </Link>
             <Link to="/telajogonovo" className="home-button">TelaJogoNovo </Link>
             <Link to="/telaSalaAluno" className="home-button">TelaSalaAluno </Link>
+            <Link to="/telareciclagem" className="home-button">TelaReciclagem </Link>
         </div>
     )
 }
