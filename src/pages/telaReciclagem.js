@@ -2,6 +2,7 @@ import Window from "../components/Window";
 import "./telaReciclagem.css";
 
 import React, { useState } from "react";
+import recycle from "../icones/recycle.png";
 
 const TelaReciclagem = () => {
     const [popUpVisivel, setPopUpVisivel] = useState(false);
@@ -115,7 +116,11 @@ const TelaReciclagem = () => {
                             <button className="button-troca" 
                                 onClick={abrePopUp}
                             >
-                                <p>OK</p>
+                                <img src={recycle} alt="recycle" 
+                                    style={{
+                                        maxWidth: 25,
+                                    }}
+                                />
                             </button>
                         </div>
                     </Window>
