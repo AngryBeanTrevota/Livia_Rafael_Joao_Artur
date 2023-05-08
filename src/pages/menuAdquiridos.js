@@ -38,17 +38,17 @@ const ConjuntoPastas = ({ listaItems }) => {
   );
 };
 
-const MenuAdquirido = () => {
-  const listaItens = [
-    { tipo: "item", nome: "Item 1" },
-    { tipo: "item", nome: "Item 2" },
-    { tipo: "item", nome: "Item 3" },
-    { tipo: "personagem", nome: "Personagem 1" },
-    { tipo: "item", nome: "Item 4" },
-    { tipo: "personagem", nome: "Personagem 2" },
-    { tipo: "item", nome: "Item 5" },
-  ];
+const listaItens = [
+  { tipo: "item", nome: "Item 1" },
+  { tipo: "item", nome: "Item 2" },
+  { tipo: "item", nome: "Item 3" },
+  { tipo: "personagem", nome: "Personagem 1" },
+  { tipo: "item", nome: "Item 4" },
+  { tipo: "personagem", nome: "Personagem 2" },
+  { tipo: "item", nome: "Item 5" },
+];
 
+const MenuAdquirido = () => {
   return (
     <div
       style={{
