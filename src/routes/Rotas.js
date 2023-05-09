@@ -14,6 +14,7 @@ import { RequireAuth } from "../context/Auth/RequireAuth";
 import Cadastro from "../pages/telaCadastro";
 import TelaSalaAluno from "../pages/telaSalaAluno";
 import TelaReciclagem from "../pages/telaReciclagem";
+import TelaListaQuestionario from "../pages/telaListaQuestionario";
 
 const Rotas = () => {
   return (
@@ -31,6 +32,7 @@ const Rotas = () => {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/telasalaaluno" element={<TelaSalaAluno />} />
         <Route path="/telareciclagem" element={<TelaReciclagem />} />
+        <Route path="/telalistaquestionario" element={<TelaListaQuestionario />} />
       </Routes>
     </div>
   );
