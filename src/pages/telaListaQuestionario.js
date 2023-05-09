@@ -14,25 +14,30 @@ const BotaoNivel = ({ nivel }) => {
       visivel = false;
     }
     return (
-      <div style={{ marginTop: 25, marginBottom: 25 }}>
-        <img 
-            src={talk} alt="recycle" 
-            style={{
-                visibility: visivel ? "hidden" : "visible",
-                maxWidth: 25,
-                marginBottom: -20,
-                marginLeft: -23,
-            }}
-        />
-        <img
-          style={{ visibility: visivel ? "visible" : "hidden" }}
-          id="imagemCadeadoQuiz"
-          src="https://static.thenounproject.com/png/228611-200.png"
-        ></img>
-        <div className={tipoQuiz}>
-          <botao className="botaoNivelQuiz">{nivel}</botao>
+        <div style={{ marginTop: 25, marginBottom: 25 }}>
+            <img 
+                src={talk} alt="recycle" 
+                style={{
+                    visibility: visivel ? "hidden" : "visible",
+                    maxWidth: 25,
+                    marginBottom: -20,
+                    marginLeft: -23,
+                }}
+            />
+            <img
+                style={{ visibility: visivel ? "visible" : "hidden" }}
+                id="imagemCadeadoQuiz"
+                src="https://static.thenounproject.com/png/228611-200.png"
+            ></img>
+            <div className={tipoQuiz}>
+                <botao style={{ cursor: "pointer" }} className="botaoNivelQuiz">{nivel}</botao>
+                <img
+                    style={{ width: 70, height: 55, paddingLeft: 5 }}
+                    className="imagemPasta"
+                    src="https://i.imgur.com/r3a0P0E.png"
+                />
+            </div>
         </div>
-      </div>
     );
   };
 
