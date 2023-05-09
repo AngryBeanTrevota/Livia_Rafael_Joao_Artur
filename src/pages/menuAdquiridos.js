@@ -1,9 +1,44 @@
 import React from "react";
 import "./menuAdquirido.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const PastaStorage = ({ tipoAdquirido }) => {
-  let imagem;
+const DisplayInformacao = ({ displayObj, funcaoMudaDisplay }) => {
+  return (
+    <div
+      style={{
+        display: displayObj,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+        }}
+      >
+        <button
+          className="botaoGeralWindows"
+          onClick={() => funcaoMudaDisplay({})}
+        >
+          retornar
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const InformacaoItem = () => {
+  return <div></div>;
+};
+
+const InformacaoPersonagem = () => {
+  return <div></div>;
+};
+
+const PastaStorage = ({ item, funcaoMudaDisplay }) => {
+  let imagem, tipoAdquirido;
+  tipoAdquirido = item.tipo;
   if (tipoAdquirido === "item") {
     imagem = "https://i.imgur.com/GQnUQrT.png";
   } else {
@@ -11,14 +46,18 @@ const PastaStorage = ({ tipoAdquirido }) => {
   }
   return (
     <div>
-      <Link>
+      <button
+        style={{ backgroundColor: "transparent", borderColor: "transparent" }}
+        onClick={funcaoMudaDisplay}
+      >
         <img style={{ width: 70, height: 55 }} src={imagem}></img>
-      </Link>
+        <p className="textoCorpo">{item.nome}</p>
+      </button>
     </div>
   );
 };
 
-const ConjuntoPastas = ({ listaItems }) => {
+const ConjuntoPastas = ({ listaItems, displayObj, funcaoMudaDisplay }) => {
   return (
     <div
       style={{
@@ -27,11 +66,15 @@ const ConjuntoPastas = ({ listaItems }) => {
         flexWrap: "wrap",
         justifyContent: "space-between",
         margin: 10,
+        display: displayObj,
       }}
     >
       {listaItems.map((item, i) => (
         <div key={i}>
-          <PastaStorage tipoAdquirido={item.tipo} />
+          <PastaStorage
+            item={item}
+            funcaoMudaDisplay={() => funcaoMudaDisplay(item)}
+          />
         </div>
       ))}
     </div>
@@ -49,6 +92,25 @@ const listaItens = [
 ];
 
 const MenuAdquirido = () => {
+  const [pastasVisiveis, setPastasVisiveis] = useState("flex");
+  const [infoVisivel, setInfoVisivel] = useState("none");
+  const [enderecoDecorativo, setEnderecoDecorativo] = useState("");
+  const [objetoDisplay, setObjetoDisplay] = useState("");
+
+  const mudaDisplay = (item) => {
+    console.log("click");
+    if (pastasVisiveis === "flex") {
+      setPastasVisiveis("none");
+      setInfoVisivel("flex");
+      setEnderecoDecorativo(item.nome);
+      setObjetoDisplay(item);
+    } else {
+      setPastasVisiveis("flex");
+      setInfoVisivel("none");
+      setEnderecoDecorativo("");
+    }
+  };
+
   return (
     <div
       style={{
@@ -72,11 +134,19 @@ const MenuAdquirido = () => {
       </div>
       <div id="mostraEndereco">
         <div className="janelaWindows" id="barraEndereco">
-          <p className="textoCorpo">all//</p>
+          <p className="textoCorpo">all//{enderecoDecorativo}</p>
         </div>
       </div>
       <div id="corpoStorage">
-        <ConjuntoPastas listaItems={listaItens}></ConjuntoPastas>
+        <DisplayInformacao
+          displayObj={infoVisivel}
+          funcaoMudaDisplay={mudaDisplay}
+        />
+        <ConjuntoPastas
+          listaItems={listaItens}
+          displayObj={pastasVisiveis}
+          funcaoMudaDisplay={mudaDisplay}
+        ></ConjuntoPastas>
       </div>
     </div>
   );
