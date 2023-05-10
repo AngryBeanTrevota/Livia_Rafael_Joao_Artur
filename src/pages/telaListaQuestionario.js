@@ -19,9 +19,9 @@ const BotaoNivel = ({ nivel }) => {
                 src={talk} alt="recycle" 
                 style={{
                     visibility: visivel ? "hidden" : "visible",
-                    maxWidth: 25,
-                    marginBottom: -20,
-                    marginLeft: -23,
+                    maxWidth: 30,
+                    marginBottom: -60,
+                    marginLeft: -30,
                 }}
             />
             <img
