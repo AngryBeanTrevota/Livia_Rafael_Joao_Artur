@@ -1,20 +1,34 @@
 import React from "react";
 import "./menuAdquirido.css";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import { storageAtom } from "../atoms/storageAtom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const DisplayInformacao = ({ displayObj, funcaoMudaDisplay }) => {
+  let item = displayObj;
   return (
     <div
       style={{
         display: displayObj,
+        width: "100%",
+        height: "100%",
       }}
     >
       <div
         style={{
+          width: "100%",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
+          alignItems: "center",
+          justifyItems: "center",
         }}
       >
         <button
@@ -81,24 +95,15 @@ const ConjuntoPastas = ({ listaItems, displayObj, funcaoMudaDisplay }) => {
   );
 };
 
-const listaItens = [
-  { tipo: "item", nome: "Item 1" },
-  { tipo: "item", nome: "Item 2" },
-  { tipo: "item", nome: "Item 3" },
-  { tipo: "personagem", nome: "Personagem 1" },
-  { tipo: "item", nome: "Item 4" },
-  { tipo: "personagem", nome: "Personagem 2" },
-  { tipo: "item", nome: "Item 5" },
-];
-
 const MenuAdquirido = () => {
   const [pastasVisiveis, setPastasVisiveis] = useState("flex");
   const [infoVisivel, setInfoVisivel] = useState("none");
   const [enderecoDecorativo, setEnderecoDecorativo] = useState("");
   const [objetoDisplay, setObjetoDisplay] = useState("");
+  const [storage, setStorage] = useRecoilState(storageAtom);
+  const listaItens = storage;
 
   const mudaDisplay = (item) => {
-    console.log("click");
     if (pastasVisiveis === "flex") {
       setPastasVisiveis("none");
       setInfoVisivel("flex");
