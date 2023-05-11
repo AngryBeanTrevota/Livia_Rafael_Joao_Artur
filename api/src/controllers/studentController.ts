@@ -7,21 +7,25 @@ export class studentController {
   async create(request: Request, response: Response): Promise<Response> {
     try {
       const { name, register, password } = request.body;
-/*       const registerAlreadyExists = await prismaClient.student.findUnique({
+
+      const passwordHash = await hash(password, 8);
+
+      // Verifica se já existe um estudante com o mesmo registro
+      const existingStudent = await prismaClient.student.findUnique({
         where: {
           registerStudent: register,
         },
       });
 
-      if (registerAlreadyExists) {
-        return response.status(400).json({ error: "Matrícula já cadastrada!" });
-      } */
+      if (existingStudent) {
+        return response
+          .status(400)
+          .json({
+            error: "Já existe um estudante com este número de registro",
+          });
+      }
 
-      const passwordHash = await hash(password, 8);
-
-      
-      //criar vetor Class
-    
+      // Cria o estudante se não houver duplicatas
       const student = await prismaClient.student.create({
         data: {
           name: name,
@@ -59,50 +63,47 @@ export class studentController {
   async index(request: Request, response: Response): Promise<Response> {
     try {
       const students = await prismaClient.student.findMany();
-
       return response.json(students);
     } catch (err) {
       return response.status(500).json({ error: err.message });
     }
   }
 
-    async update(request: Request, response: Response): Promise<Response> {
-        try{
-            const { id } = request.params;
-            const { name, register, password } = request.body;
+  async update(request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.params;
+      const { name, register, password } = request.body;
 
-            const student = await prismaClient.student.update({
-                where: {
-                    id: Number(id)
-                },
-                data: {
-                    name: name,
-                    registerStudent: register,
-                    password: password
-                }
-            });
+      const student = await prismaClient.student.update({
+        where: {
+          id: Number(id),
+        },
+        data: {
+          name: name,
+          registerStudent: register,
+          password: password,
+        },
+      });
 
-            return response.json(student);
-
-        }catch(err){
-          return response.status(500).json({ error: err.message });
-        }
+      return response.json(student);
+    } catch (err) {
+      return response.status(500).json({ error: err.message });
     }
+  }
 
-    async delete(request: Request, response: Response): Promise<Response> {
-        try{
-            const { id } = request.params;
+  async delete(request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.params;
 
-            const student = await prismaClient.student.delete({
-                where: {
-                    id: Number(id)
-                }
-            });
+      const student = await prismaClient.student.delete({
+        where: {
+          id: Number(id),
+        },
+      });
 
-            return response.json(student);
-
-        }catch(err){
-          return response.status(500).json({ error: err.message });
-        }
+      return response.json(student);
+    } catch (err) {
+      return response.status(500).json({ error: err.message });
     }
+  }
 }
