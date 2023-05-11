@@ -44,7 +44,9 @@ function StudentsTable() {
                     {student.registerStudent}
                   </td>
                   <td className="border px-4 py-2">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                      onClick={() => navigate(`/admin/students/view/${student.id}`)}
+                    >
                       Visualizar
                     </button>
                     <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mx-2">

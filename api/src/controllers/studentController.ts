@@ -54,6 +54,7 @@ export class studentController {
         return response.status(404).json({ error: "Aluno não encontrado!" });
       }
 
+      console.log(student);
       return response.json(student);
     } catch (err) {
       return response.status(500).json({ error: err.message });

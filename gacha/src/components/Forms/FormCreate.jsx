@@ -19,7 +19,7 @@ function FormCreate({ fields, handleSubmit, voltar }) {
   };
 
   return (
-    <form onSubmit={onSubmit} className="mt-8 space-y-6 w-3/4">
+    <form onSubmit={onSubmit} className="mt-8 space-y-6 w-1/2">
       {fields.map((field) => (
         <div key={field.name} className="mt-4">
           <label

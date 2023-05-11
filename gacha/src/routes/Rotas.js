@@ -15,6 +15,7 @@ import Cadastro from "../pages/telaCadastro";
 
 import StudentsTable from "../pages/admin/Students/StudentsTable";
 import CreateStudent from "../pages/admin/Students/CreateStudent";
+import ViewStudent from "../pages/admin/Students/ViewStudent";
 import Dashboard from "../pages/admin/Dashboard";
 import ClassesTable from "../pages/admin/ClassesTable";
 import TeachersTable from "../pages/admin/ClassesTable";
@@ -37,6 +38,7 @@ const Rotas = () => {
         <Route path="/admin" element={<Dashboard/>} />
         <Route path="/admin/students" element={<StudentsTable />} />
         <Route path="/admin/students/create" element={<CreateStudent />} />
+        <Route path="/admin/students/view/:id" element={<ViewStudent />} />
         
         <Route path="/admin/teachers" element={<TeachersTable />} />
         <Route path="/admin/classes" element={<ClassesTable />} />

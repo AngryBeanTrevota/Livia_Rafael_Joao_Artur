@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function FormView({ data, fields, voltar }) {
+function FormView({ data, fields, table }) {
+  const navigate = useNavigate();
+
+  console.log(data);
+  console.log(fields);
   return (
-    <div className="mt-8 space-y-6 w-3/4">
+    <div className="mt-8 space-y-6 w-1/2 m-auto">
       {fields.map((field) => (
         <div key={field.name} className="mt-4">
           <label
@@ -11,7 +16,7 @@ function FormView({ data, fields, voltar }) {
             {field.label}
           </label>
           <input
-            type="text"
+            type={field.type}
             name={field.name}
             id={field.name}
             value={data[field.name] || ""}
@@ -23,7 +28,7 @@ function FormView({ data, fields, voltar }) {
       <div className="mt-8 flex gap-7">
         <button
           onClick={() => {
-            window.history.back();
+            navigate(table);
           }}
           className="bg-slate-400 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded">
           Voltar
