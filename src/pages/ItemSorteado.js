@@ -6,8 +6,18 @@ import { sorteadoAtom } from "../atoms/sorteadoAtom";
 
 const Imagem = ({ sorteado }) => {
   return (
-    <div>
-      <img className="imagemSorteada" src={sorteado.imagem}></img>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        className="imagemSorteada"
+        src={sorteado.imagem}
+        style={{ display: "flex" }}
+      ></img>
     </div>
   );
 };
@@ -34,7 +44,9 @@ const ItemSorteado = () => {
       <div className="janelaNome">
         <div className="tituloJanelaNome">
           <p>New!</p>
-          <button className="windowsButton">x</button>
+          <button className="windowsButton">
+            <Link to="/banner">x</Link>
+          </button>
         </div>
         <div className="corpoJanelaNome">
           <img

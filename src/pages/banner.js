@@ -33,19 +33,27 @@ const PopUpRodaGacha = ({ bits, rodaGacha, visivel, fechaPopUp }) => {
         className="janelaWindows"
         style={{
           width: 170,
-          height: 100,
+          height: 80,
         }}
       >
         <div className="footerJanelaWindows">
           <p className="textoCorpo">Banner</p>
-          <button className="windowsButton" onClick={fechaPopUp}>
+          <button
+            className="windowsButton"
+            style={{ marginBottom: 15 }}
+            onClick={fechaPopUp}
+          >
             <Link to="/banner" className="home-button">
               <p className="textoCorpo">x</p>
             </Link>
           </button>
         </div>
         <p className="textoCorpo">{textoCorpo}</p>
-        <button className="botaoGeralWindows" onClick={funcaoBotaoConfirmacao}>
+        <button
+          className="botaoGeralWindows"
+          style={{ marginBottom: 50 }}
+          onClick={funcaoBotaoConfirmacao}
+        >
           <Link to={endereco} className="home-button">
             <p className="textoCorpo">{textoBotao}</p>
           </Link>
@@ -189,7 +197,7 @@ const Banner = () => {
                 marginBottom: 3,
               }}
             >
-              x
+              <Link to="/menu">x</Link>
             </span>
           </button>
         </div>
