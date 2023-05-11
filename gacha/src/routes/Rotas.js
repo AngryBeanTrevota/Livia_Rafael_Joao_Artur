@@ -12,6 +12,10 @@ import AnimacaoBanner from "../pages/AnimacaoBanner";
 import Banner from "../pages/banner";
 import ItemSorteado from "../pages/ItemSorteado";
 import Cadastro from "../pages/telaCadastro";
+import TelaHistoria from "../pages/telaHistoria";
+import TelaSalaAluno from "../pages/telaSalaAluno";
+import TelaReciclagem from "../pages/telaReciclagem";
+import TelaListaQuestionario from "../pages/telaListaQuestionario";
 
 import StudentsTable from "../pages/admin/Students/StudentsTable";
 import CreateStudent from "../pages/admin/Students/CreateStudent";
@@ -26,7 +30,8 @@ const Rotas = () => {
   return (
     <div className="Rotas">
       <Routes>
-        <Route exact path="/" element={<TelaInicial />} />
+        <Route exact path="/" element={<Menu />} />
+        <Route path="/nav" element={<TelaInicial />} />
         <Route path="/banner" element={<Banner />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/menuadquiridos" element={<MenuAdquiridos />} />
@@ -36,6 +41,10 @@ const Rotas = () => {
         <Route path="/animacaoBanner" element={<AnimacaoBanner />} />
         <Route path="/itemSorteado" element={<ItemSorteado />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/telasalaaluno" element={<TelaSalaAluno />} />
+        <Route path="/telareciclagem" element={<TelaReciclagem />} />
+        <Route path="/telalistaquestionario" element={<TelaListaQuestionario />} />
+        <Route path="/historia" element={<TelaHistoria />}></Route>
         
         <Route path="/admin" element={<Dashboard/>} />
         <Route path="/admin/students" element={<StudentsTable />} />
