@@ -27,24 +27,28 @@ router.post("/class", classCtrl.create);
 router.get("/class/:id", classCtrl.view);
 router.get("/class", classCtrl.index);
 router.put("/class/:id", classCtrl.update);
+router.delete("/class/:id", classCtrl.delete);
 
 // Characters
 router.post("/character", characterCtrl.create);
 router.get("/character/:id", characterCtrl.view);
 router.get("/character", characterCtrl.index);
 router.put("/character/:id", characterCtrl.update);
+router.delete("/character/:id", characterCtrl.delete);
 
 // Students
 router.get("/student", studentCtrl.index);
 router.post("/student", studentCtrl.create);
 router.get("/student/:id", studentCtrl.view);
 router.put("/student/:id", studentCtrl.update);
+router.delete("/student/:id", studentCtrl.delete);
 
 // Teachers
 router.post("/teacher", teacherCtrl.create);
 router.get("/teacher/:id", teacherCtrl.view);
 router.get("/teacher", teacherCtrl.index);
 router.put("/teacher/:id", teacherCtrl.update);
+router.delete("/teacher/:id", teacherCtrl.delete);
 
 // Items
 router.post("/item", itemCtrl.create);
@@ -57,5 +61,6 @@ router.post("/quiz", quizCtrl.create);
 router.get("/quiz/:id", quizCtrl.view);
 router.get("/quiz", quizCtrl.index);
 router.put("/quiz/:id", quizCtrl.update);
+router.delete("/quiz/:id", quizCtrl.delete);
 
 export { router };

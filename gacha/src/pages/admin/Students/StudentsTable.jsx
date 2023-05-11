@@ -5,13 +5,17 @@ import { useNavigate } from "react-router";
 
 function StudentsTable() {
   const [students, setStudents] = useState([]);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:3333/student").then((response) => {
       setStudents(response.data);
     });
   }, []);
+
+  students.sort((a, b) => {
+    return a.id - b.id;
+  });
 
   return (
     <>
@@ -21,9 +25,9 @@ function StudentsTable() {
           <h2 className="text-2xl font-bold mb-4">Lista de Estudantes</h2>
         </div>
         <div className="flex flex-col items-center">
-          <button className=" self-start bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => navigate("/admin/students/create")}
-          >
+          <button
+            className=" self-start bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => navigate("/admin/students/create")}>
             Adicionar Estudante
           </button>
           <table className="table-auto my-5">
@@ -44,15 +48,25 @@ function StudentsTable() {
                     {student.registerStudent}
                   </td>
                   <td className="border px-4 py-2">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-                      onClick={() => navigate(`/admin/students/view/${student.id}`)}
-                    >
+                    <button
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                      onClick={() =>
+                        navigate(`/admin/students/view/${student.id}`)
+                      }>
                       Visualizar
                     </button>
-                    <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mx-2">
+                    <button
+                      className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mx-2"
+                      onClick={() =>
+                        navigate(`/admin/students/edit/${student.id}`)
+                      }>
                       Editar
                     </button>
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                    <button
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      onClick={() =>
+                        navigate(`/admin/students/delete/${student.id}`)
+                      }>
                       Excluir
                     </button>
                   </td>

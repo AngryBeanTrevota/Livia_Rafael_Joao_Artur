@@ -1,7 +1,7 @@
 import React from "react";
 import NavbarAdm from "../../../components/NavbarAdm";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import FormView from "../../../components/Forms/FormView";
 
 function ViewStudent() {

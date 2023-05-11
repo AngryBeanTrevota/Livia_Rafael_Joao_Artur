@@ -50,11 +50,11 @@ export class studentController {
         },
       });
 
+
       if (!student) {
         return response.status(404).json({ error: "Aluno não encontrado!" });
       }
 
-      console.log(student);
       return response.json(student);
     } catch (err) {
       return response.status(500).json({ error: err.message });
@@ -73,7 +73,17 @@ export class studentController {
   async update(request: Request, response: Response): Promise<Response> {
     try {
       const { id } = request.params;
-      const { name, register, password } = request.body;
+      const {
+        name,
+        register,
+        password,
+        shots,
+        xp,
+        number_quizzes,
+        number_quizzes_success,
+      } = request.body;
+
+      const hashedPassword = await hash(password, 8);
 
       const student = await prismaClient.student.update({
         where: {
@@ -82,7 +92,11 @@ export class studentController {
         data: {
           name: name,
           registerStudent: register,
-          password: password,
+          password: hashedPassword,
+          shots: shots,
+          xp: xp,
+          number_quizzes: number_quizzes,
+          number_quizzes_success: number_quizzes_success,
         },
       });
 
@@ -101,7 +115,6 @@ export class studentController {
           id: Number(id),
         },
       });
-
       return response.json(student);
     } catch (err) {
       return response.status(500).json({ error: err.message });
