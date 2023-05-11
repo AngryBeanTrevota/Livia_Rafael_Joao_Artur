@@ -10,6 +10,7 @@ import TelaJogoNovo from "../pages/telaJogoNovo";
 import AnimacaoBanner from "../pages/AnimacaoBanner";
 import Banner from "../pages/banner";
 import ItemSorteado from "../pages/ItemSorteado";
+import TelaHistoria from "../pages/telaHistoria";
 import { RequireAuth } from "../context/Auth/RequireAuth";
 import Cadastro from "../pages/telaCadastro";
 import TelaSalaAluno from "../pages/telaSalaAluno";
@@ -33,6 +34,7 @@ const Rotas = () => {
         <Route path="/telasalaaluno" element={<TelaSalaAluno />} />
         <Route path="/telareciclagem" element={<TelaReciclagem />} />
         <Route path="/telalistaquestionario" element={<TelaListaQuestionario />} />
+        <Route path="/historia" element={<TelaHistoria />}></Route>
       </Routes>
     </div>
   );
