@@ -3,6 +3,7 @@ import Window from "../components/Window";
 import "./telaListaQuestionario.css";
 
 import talk from "../icones/talk.png";
+import talk2 from "../icones/talk2.png";
 
 const BotaoNivel = ({ nivel }) => {
     let tipoQuiz, visivel;
@@ -16,12 +17,12 @@ const BotaoNivel = ({ nivel }) => {
     return (
         <div style={{ marginTop: 25, marginBottom: 25 }}>
             <img 
-                src={talk} alt="recycle" 
+                src={talk2} alt="recycle" 
                 style={{
                     visibility: visivel ? "hidden" : "visible",
-                    maxWidth: 30,
-                    marginBottom: -60,
-                    marginLeft: -30,
+                    maxWidth: 50,
+                    marginBottom: -65,
+                    marginLeft: -50,
                 }}
             />
             <img
