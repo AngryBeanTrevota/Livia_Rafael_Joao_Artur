@@ -44,7 +44,9 @@ const ItemSorteado = () => {
       <div className="janelaNome">
         <div className="tituloJanelaNome">
           <p>New!</p>
-          <button className="windowsButton">x</button>
+          <button className="windowsButton">
+            <Link to="/banner">x</Link>
+          </button>
         </div>
         <div className="corpoJanelaNome">
           <img
