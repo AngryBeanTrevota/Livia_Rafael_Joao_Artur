@@ -197,7 +197,7 @@ const Banner = () => {
                 marginBottom: 3,
               }}
             >
-              x
+              <Link to="/menu">x</Link>
             </span>
           </button>
         </div>

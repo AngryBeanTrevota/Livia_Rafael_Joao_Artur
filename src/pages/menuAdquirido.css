@@ -17,7 +17,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   border-width: 2px;
   border-color: #ffffff #808080 #808080 #ffffff;
@@ -71,4 +71,11 @@
   display: flex;
   align-content: center;
   justify-content: center;
+}
+
+.cores {
+  margin-bottom: 5%;
+  border: 2px;
+  border-style: solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
 }
