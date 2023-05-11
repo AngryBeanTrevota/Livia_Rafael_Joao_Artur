@@ -139,7 +139,7 @@ export const defaultBannerData = [
     cores: ["#e6d7f4", "#7b3eb3", "#ab75b4", "#93759e", "#8e5083"],
     habilitado: false,
     imagem:
-      "https://i.pinimg.com/originals/7f/ae/97/7fae97b0d62464f833f75a7cce0a9902.gif",
+      "https://i.imgur.com/TpgAFTI_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
     quantidade: 1,
     raridade: "N",
   },
@@ -152,7 +152,7 @@ export const defaultBannerData = [
     cores: ["#a8caeb", "#67c7d3", "#58549b", "#927997", "#9f5977"],
     habilitado: false,
     imagem:
-      "https://i.pinimg.com/originals/7f/ae/97/7fae97b0d62464f833f75a7cce0a9902.gif",
+      "https://i.imgur.com/TCONO13_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
     quantidade: 1,
     raridade: "N",
   },
@@ -164,8 +164,7 @@ export const defaultBannerData = [
     bonus: "nada ainda",
     cores: ["#ffb0e1", "#ce519f", "#df80a8", "#ea7091", "#f8ccf2"],
     habilitado: false,
-    imagem:
-      "https://i.pinimg.com/originals/7f/ae/97/7fae97b0d62464f833f75a7cce0a9902.gif",
+    imagem: "https://imgur.com/QG0fMIa",
     quantidade: 1,
     raridade: "N",
   },

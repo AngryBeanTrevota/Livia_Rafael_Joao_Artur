@@ -6,8 +6,18 @@ import { sorteadoAtom } from "../atoms/sorteadoAtom";
 
 const Imagem = ({ sorteado }) => {
   return (
-    <div>
-      <img className="imagemSorteada" src={sorteado.imagem}></img>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        className="imagemSorteada"
+        src={sorteado.imagem}
+        style={{ display: "flex" }}
+      ></img>
     </div>
   );
 };

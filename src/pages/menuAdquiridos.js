@@ -11,33 +11,94 @@ import { storageAtom } from "../atoms/storageAtom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const DisplayInformacao = ({ displayObj, funcaoMudaDisplay }) => {
-  let item = displayObj;
+const Cores = ({ sorteado }) => {
+  if (!sorteado || !sorteado.cores || sorteado.cores.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="cores" style={{ display: "flex", flexDirection: "row" }}>
+      {sorteado.cores.map((cor, indice) => (
+        <div
+          key={indice}
+          className="corIndividual"
+          style={{ backgroundColor: cor, width: "40px", height: "40px" }}
+        ></div>
+      ))}
+    </div>
+  );
+};
+
+const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
+  let corJanelas = "#f0f0f0";
   return (
     <div
       style={{
         display: displayObj,
         width: "100%",
         height: "100%",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        alignItems: "center",
       }}
     >
       <div
+        className="janelaWindows"
         style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyItems: "center",
+          marginTop: 10,
+          marginBottom: 10,
+          backgroundColor: { corJanelas },
         }}
       >
-        <button
-          className="botaoGeralWindows"
-          onClick={() => funcaoMudaDisplay({})}
+        <p
+          className="textoCorpo"
+          style={{ fontSize: 20, marginLeft: 10, marginRight: 10 }}
         >
-          retornar
-        </button>
+          {item.nome}
+        </p>
       </div>
+      <div
+        className="janelaWindows"
+        style={{
+          backgroundImage:
+            "url(https://opengameart.org/sites/default/files/Transparency500.png)",
+        }}
+      >
+        <img src={item.imagem} style={{ height: 150, width: 150 }}></img>
+      </div>
+      <div
+        className="janelaWindows"
+        style={{
+          marginLeft: 10,
+          marginRight: 10,
+          marginBottom: 10,
+          marginTop: 10,
+          backgroundColor: { corJanelas },
+        }}
+      >
+        <p
+          className="textoCorpo"
+          style={{
+            marginLeft: 10,
+            marginRight: 10,
+          }}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+      <Cores sorteado={item} />
+      <button
+        className="botaoGeralWindows"
+        onClick={() => funcaoMudaDisplay({})}
+      >
+        retornar
+      </button>
     </div>
   );
 };
@@ -146,6 +207,7 @@ const MenuAdquirido = () => {
         <DisplayInformacao
           displayObj={infoVisivel}
           funcaoMudaDisplay={mudaDisplay}
+          item={objetoDisplay}
         />
         <ConjuntoPastas
           listaItems={listaItens}

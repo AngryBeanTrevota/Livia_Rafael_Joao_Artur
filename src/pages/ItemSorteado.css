@@ -91,6 +91,7 @@
 }
 
 .imagemSorteada {
+  background-color: transparent;
   max-width: 80%;
   height: auto;
   display: flex;

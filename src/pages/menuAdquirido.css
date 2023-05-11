@@ -72,3 +72,10 @@
   align-content: center;
   justify-content: center;
 }
+
+.cores {
+  margin-bottom: 5%;
+  border: 2px;
+  border-style: solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
