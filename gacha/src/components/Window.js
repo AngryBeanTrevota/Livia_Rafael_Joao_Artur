@@ -1,7 +1,7 @@
 import "./Window.css"
 import WindowsButton from "./WindowsButton"
 
-export default function Window({ children, titulo, styleContainer, styleTitulo, styleWindow}) {
+export default function Window({ clickX, children, titulo, styleContainer, styleTitulo, styleWindow, showX=true, windowRef}) {
 
     return (
 
@@ -9,10 +9,16 @@ export default function Window({ children, titulo, styleContainer, styleTitulo, 
 
             <div className="titulo-container" style={styleTitulo}>
                 <h5 className="titulo">{titulo}</h5>
-                <WindowsButton style={{maxWidth: 18, maxHeight: 18, margin: 5}} >X</WindowsButton>
+                {
+                    showX
+                    ?
+                    <WindowsButton onClick={clickX} style={{maxWidth: 18, maxHeight: 18, margin: 5}} >X</WindowsButton>
+                    :
+                    null
+                }
             </div>
 
-            <div className="window" style={styleWindow}>
+            <div className="window"  ref={windowRef} style={styleWindow}>
 
                 {children}
 

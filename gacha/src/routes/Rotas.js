@@ -17,6 +17,7 @@ import TelaHistoria from "../pages/telaHistoria";
 import TelaSalaAluno from "../pages/telaSalaAluno";
 import TelaReciclagem from "../pages/telaReciclagem";
 import TelaListaQuestionario from "../pages/telaListaQuestionario";
+import TelaRevisao from "../pages/telaRevisao";
 
 import Dashboard from "../pages/admin/Dashboard";
 
@@ -58,6 +59,7 @@ const Rotas = () => {
         <Route path="/telareciclagem" element={<TelaReciclagem />} />
         <Route path="/telalistaquestionario" element={<TelaListaQuestionario />} />
         <Route path="/historia" element={<TelaHistoria />}></Route>
+        <Route path="/revisao" element={<TelaRevisao/>}></Route>
         
         <Route path="/admin" element={<Dashboard/>} />
 

@@ -30,6 +30,13 @@
 
 }
 
+.window::-webkit-scrollbar-thumb{
+    width: 50px;
+    border-radius: 0px;
+    background-color: #c0c0c0;
+    border-color: transparent #808080 #808080 #ffffff;
+}
+
 .container{
 
     display: flex;
