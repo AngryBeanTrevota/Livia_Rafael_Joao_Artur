@@ -4,16 +4,14 @@ import { prismaClient } from "../database/prismaCient";
 export class quizController {
     async create(request: Request, response: Response): Promise<Response> {
         try {
-            const { title, option1, option2, option3, option4, answer, classId } = request.body;
+            const { title, option1, option2, option3, option4, answer } = request.body;
             const options = [option1, option2, option3, option4];
 
             const quiz = await prismaClient.quiz.create({
                 data: {
                     title: title,
                     options: options,
-                    answer: answer,
-                    classId: classId,
-                },
+                    answer: answer,                },
             });
 
             return response.json(quiz);
@@ -55,7 +53,7 @@ export class quizController {
     async update(request: Request, response: Response): Promise<Response> {
         try {
             const { id } = request.params;
-            const { title, option1, option2, option3, option4, answer, classId } = request.body;
+            const { title, option1, option2, option3, option4, answer } = request.body;
             const options = [option1, option2, option3, option4];
 
             const quiz = await prismaClient.quiz.update({
@@ -65,8 +63,7 @@ export class quizController {
                 data: {
                     title: title,
                     options: options,
-                    answer: answer,
-                    classId: classId,
+                    answer: answer,                
                 },
             });
 
@@ -92,7 +89,7 @@ export class quizController {
         }
     }
 
-    async indexByClass(request: Request, response: Response): Promise<Response> {
+/*     async indexByClass(request: Request, response: Response): Promise<Response> {
         try {
             const { classId } = request.params;
 
@@ -106,5 +103,5 @@ export class quizController {
         } catch (err) {
             return response.status(500).json({ error: err.message });
         }
-    }
+    } */
 }

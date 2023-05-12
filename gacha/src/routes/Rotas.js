@@ -32,6 +32,12 @@ import CreateTeacher from "../pages/admin/Teachers/CreateTeacher";
 import EditTeacher from "../pages/admin/Teachers/EditTeacher";
 import DeleteTeacher from "../pages/admin/Teachers/DeleteTeacher";
 
+import ClassesTable from "../pages/admin/Classes/ClassesTable";
+import CreateClass from "../pages/admin/Classes/CreateClass";
+import EditClass from "../pages/admin/Classes/EditClass";
+import DeleteClass from "../pages/admin/Classes/DeleteClass";
+import ViewClass from "../pages/admin/Classes/ViewClass";
+
 
 const Rotas = () => {
   return (
@@ -66,6 +72,12 @@ const Rotas = () => {
         <Route path="/admin/teachers/view/:id" element={<ViewTeacher />} />
         <Route path="/admin/teachers/edit/:id" element={<EditTeacher />} />
         <Route path="/admin/teachers/delete/:id" element={<DeleteTeacher />} />
+
+        <Route path="/admin/classes" element={<ClassesTable />} />
+        <Route path="/admin/classes/create" element={<CreateClass />} />
+        <Route path="/admin/classes/view/:id" element={<ViewClass />} />
+        <Route path="/admin/classes/edit/:id" element={<EditClass />} />
+        <Route path="/admin/classes/delete/:id" element={<DeleteClass />} />
       </Routes>
     </div>
   );

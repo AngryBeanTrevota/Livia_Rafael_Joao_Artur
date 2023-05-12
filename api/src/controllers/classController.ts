@@ -5,13 +5,13 @@ export class classController {
     async create(request: Request, response: Response): Promise<Response> {
         try{
             const { name, password, teacherId } = request.body;
-            const classe = await prismaClient.class.create({
+            const sala = await prismaClient.class.create({
                 data: {
                     name: name,
                     password: password,
-                    teacherId: teacherId,
                 }
             });
+            return response.json(sala);
         }catch(err){
             return response.status(500).json({ error: err.message });
         }
@@ -46,7 +46,7 @@ export class classController {
     async update(request: Request, response: Response): Promise<Response> {
         try{
             const { id } = request.params;
-            const { name, password, teacherId } = request.body;
+            const { name, password } = request.body;
             const classe = await prismaClient.class.update({
                 where: {
                     id: Number(id),
@@ -54,7 +54,6 @@ export class classController {
                 data: {
                     name: name,
                     password: password,
-                    teacherId: teacherId,
                 },
             });
             return response.json(classe);

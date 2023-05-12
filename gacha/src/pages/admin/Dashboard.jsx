@@ -28,7 +28,7 @@ function Dashboard() {
             </Link>
           </div>
           <div className="col-12 col-md-6 col-lg-4">
-            <Link to="/admin/teachers" className="card-link">
+            <Link to="/admin/classes" className="card-link">
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">Salas</h5>

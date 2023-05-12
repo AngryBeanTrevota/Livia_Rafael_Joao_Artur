@@ -31,7 +31,6 @@ model Character {
   name  String
   image String
 
-
   @@map("characters")
 }
 
@@ -51,8 +50,6 @@ model Teacher {
   name            String
   password        String
 
-  classes Class[]
-
   @@map("teachers")
 }
 
@@ -61,11 +58,6 @@ model Class {
 
   name     String
   password String
-
-  teacher   Teacher @relation(fields: [teacherId], references: [id])
-  teacherId Int
-
-  quizzes  Quiz[]
 
   @@map("classes")
 }
@@ -76,9 +68,6 @@ model Quiz {
   title   String
   options String[]
   answer  Int
-
-  class   Class @relation(fields: [classId], references: [id])
-  classId Int
 
   @@map("quizzes")
 }
