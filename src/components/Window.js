@@ -1,7 +1,7 @@
 import "./Window.css"
 import WindowsButton from "./WindowsButton"
 
-export default function Window({ children, titulo, styleContainer, styleTitulo, styleWindow, showX=true, windowRef}) {
+export default function Window({ clickX, children, titulo, styleContainer, styleTitulo, styleWindow, showX=true, windowRef}) {
 
     return (
 
@@ -12,7 +12,7 @@ export default function Window({ children, titulo, styleContainer, styleTitulo, 
                 {
                     showX
                     ?
-                    <WindowsButton style={{maxWidth: 18, maxHeight: 18, margin: 5}} >X</WindowsButton>
+                    <WindowsButton onClick={clickX} style={{maxWidth: 18, maxHeight: 18, margin: 5}} >X</WindowsButton>
                     :
                     null
                 }
