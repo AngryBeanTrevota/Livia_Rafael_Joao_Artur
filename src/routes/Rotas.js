@@ -21,8 +21,8 @@ const Rotas = () => {
   return (
     <div className="Rotas">
       <Routes>
-        <Route exact path="/" element={<TelaInicial />} />
         <Route path="/banner" element={<Banner />} />
+        <Route exact path="/" element={<TelaInicial />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/menuadquiridos" element={<MenuAdquiridos />} />
         <Route path="/quizindividual" element={<QuizIndividual />} />
