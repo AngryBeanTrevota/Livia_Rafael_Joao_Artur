@@ -1,0 +1,114 @@
+#tudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #c0c0c0;
+  overflow: hidden;
+}
+
+.divNivelQuiz {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 40px, 0, 40px, 0;
+}
+
+.botaoNivelQuiz {
+  height: 40px;
+  width: 40px;
+  background-color: #cda9cb;
+  border: 2px;
+  border-style: solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  text-align: center;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: Tahoma;
+}
+
+#imagemCadeadoQuiz {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  top: 90%;
+  right: 20%;
+}
+
+.divNivelQuizBloqueado {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 40px, 0, 40px, 0;
+  opacity: 50%;
+}
+
+.windowsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px 2px 2px 0;
+  float: right;
+  height: 20px;
+  width: 20px;
+  background: #c0c0c0;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 0;
+  font-weight: bold;
+  font-family: Tahoma;
+  text-align: center;
+}
+
+.windowsBox {
+  border: 2px;
+  border-style: solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+#headerQuizBackground {
+  width: 100%;
+  height: 8%;
+  background-color: rgb(133, 79, 133);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#header {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Tahoma;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+
+#corpoQuizzes {
+  background-image: url(https://thumbs.dreamstime.com/b/imitation-transparent-background-seamless-vector-illustration-69028332.jpg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 90%;
+  width: 80%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  overflow: scroll;
+}

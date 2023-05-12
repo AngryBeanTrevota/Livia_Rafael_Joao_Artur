@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id Int @id @default(autoincrement())
+
+  name            String
+  registerStudent String @unique
+  password        String
+
+  xp                     Int @default(0)
+  shots                  Int @default(0)
+  number_quizzes         Int @default(0)
+  number_quizzes_success Int @default(0)
+
+  @@map("students")
+}
+
+model Character {
+  id Int @id @default(autoincrement())
+
+  name  String
+  image String
+
+  @@map("characters")
+}
+
+model Item {
+  id Int @id @default(autoincrement())
+
+  name  String
+  image String
+
+  @@map("items")
+}
+
+model Teacher {
+  id Int @id @default(autoincrement())
+
+  registerTeacher String @unique
+  name            String
+  password        String
+
+  @@map("teachers")
+}
+
+model Class {
+  id Int @id @default(autoincrement())
+
+  name     String
+  password String
+
+  @@map("classes")
+}
+
+model Quiz {
+  id Int @id @default(autoincrement())
+
+  title   String
+  options String[]
+  answer  Int
+
+  @@map("quizzes")
+}

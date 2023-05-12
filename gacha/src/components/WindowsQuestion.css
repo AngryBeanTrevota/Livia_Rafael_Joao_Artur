@@ -1,0 +1,22 @@
+.windowsQuestion-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.windowsQuestion-button {
+    all:unset;
+    width: 50%;
+    border-color: #808080 #fff #fff #808080;
+    border-style: solid;
+    font-size: 2rem;
+    font-family: Tahoma;
+    padding: 0 2rem;
+  }
+
+.windowsQuestion-button:hover {
+    border-color: #fff #808080 #808080 #fff;
+    color: rgb(69, 25, 113);
+}
