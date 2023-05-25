@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 /* import { RequireAuth } from "../context/Auth/RequireAuth";
  */
 import Menu from "../pages/menu";
+import TelaLogin from "../pages/telaLogin";
 import MenuAdquiridos from "../pages/menuAdquiridos";
 import QuizIndividual from "../pages/quizIndividual";
 import Quizzes from "../pages/quizzes";
@@ -44,20 +45,20 @@ const Rotas = () => {
   return (
     <div className="Rotas">
       <Routes>
+        <Route path="/login" element={<TelaLogin />} />
         <Route exact path="/" element={<Menu />} />
         <Route path="/nav" element={<TelaInicial />} />
         <Route path="/banner" element={<Banner />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/menuadquiridos" element={<MenuAdquiridos />} />
         <Route path="/quizindividual" element={<QuizIndividual />} />
-        <Route path="/quizzes" element={<Quizzes />} />
         <Route path="/telajogonovo" element={<TelaJogoNovo />} />
         <Route path="/animacaoBanner" element={<AnimacaoBanner />} />
         <Route path="/itemSorteado" element={<ItemSorteado />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/telasalaaluno" element={<TelaSalaAluno />} />
         <Route path="/telareciclagem" element={<TelaReciclagem />} />
-        <Route path="/telalistaquestionario" element={<TelaListaQuestionario />} />
+        <Route path="/quizzes" element={<TelaListaQuestionario />} />
         <Route path="/historia" element={<TelaHistoria />}></Route>
         <Route path="/revisao" element={<TelaRevisao/>}></Route>
         

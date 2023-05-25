@@ -1,0 +1,79 @@
+.custom-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.custom-mt-12 {
+  margin-top: 3rem;
+}
+
+.custom-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.custom-flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-add-btn,
+.custom-view-btn,
+.custom-edit-btn,
+.custom-delete-btn {
+  all: unset;
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.custom-add-btn:hover,
+.custom-view-btn:hover,
+.custom-edit-btn:hover,
+.custom-delete-btn:hover {
+  background-color: #2563eb;
+}
+
+.custom-edit-btn,
+.custom-delete-btn {
+  margin-left: 0.5rem;
+}
+
+.custom-edit-btn {
+  background-color: #fbbf24;
+}
+
+.custom-edit-btn:hover {
+  background-color: #f59e0b;
+}
+
+.custom-delete-btn {
+  background-color: #ef4444;
+}
+
+.custom-delete-btn:hover {
+  background-color: #dc2626;
+}
+
+.custom-table {
+  width: 100%;
+  margin-top: 1.25rem;
+  border-collapse: collapse;
+}
+
+.custom-cell {
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+.custom-bordered-cell {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem 1rem;
+}

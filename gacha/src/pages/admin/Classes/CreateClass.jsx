@@ -29,7 +29,6 @@ function CreateClass() {
     <>
       <NavbarAdm />
       <div className="flex flex-col items-center">
-        <h2 className="text-2xl font-bold my-6">Criar nova sala</h2>
         <FormCreate
           fields={fields}
           handleSubmit={handleSubmit}

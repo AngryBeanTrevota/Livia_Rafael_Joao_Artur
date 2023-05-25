@@ -1,0 +1,23 @@
+.navbar-nav {
+  background-color: #1f2937;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 1rem 4rem;
+}
+
+.nav-item.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+
+}
+
+.nav-item.nav-link.self-end {
+  margin-left: auto;
+}

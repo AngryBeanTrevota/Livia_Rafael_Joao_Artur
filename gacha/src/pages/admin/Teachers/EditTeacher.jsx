@@ -30,7 +30,6 @@ function EditTeacher() {
   return (
     <>
       <NavbarAdm />
-      <h1 className="text-xl font-bold mt-4 ml-4 flex justify-center items-center">Editar Aluno</h1>
         <FormEdit
             fields={fields}
             initialData={teacher}

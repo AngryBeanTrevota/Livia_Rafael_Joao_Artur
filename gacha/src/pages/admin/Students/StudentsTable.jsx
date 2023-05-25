@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import NavbarAdm from "../../../components/NavbarAdm";
 import { useNavigate } from "react-router";
+import "../Tables.css"
 
 function StudentsTable() {
   const [students, setStudents] = useState([]);
@@ -20,50 +21,50 @@ function StudentsTable() {
   return (
     <>
       <NavbarAdm />
-      <div className="flex items-center flex-col w-full">
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">Lista de Estudantes</h2>
+      <div class="custom-container">
+        <div class="custom-mt-12">
+          <h2 class="custom-heading">Lista de Estudantes</h2>
         </div>
-        <div className="flex flex-col items-center">
+        <div class="custom-flex-col">
           <button
-            className=" self-start bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            class="custom-add-btn"
             onClick={() => navigate("/admin/students/create")}>
             Adicionar Estudante
           </button>
-          <table className="table-auto my-5">
+          <table class="custom-table">
             <thead>
               <tr>
-                <th className="px-4 py-2">ID</th>
-                <th className="px-4 py-2">Nome</th>
-                <th className="px-4 py-2">Matrícula</th>
-                <th className="px-4 py-2">Ações</th>
+                <th class="custom-cell">ID</th>
+                <th class="custom-cell">Nome</th>
+                <th class="custom-cell">Matrícula</th>
+                <th class="custom-cell">Ações</th>
               </tr>
             </thead>
             <tbody>
               {students.map((student) => (
                 <tr key={student.id}>
-                  <td className="border px-4 py-2">{student.id}</td>
-                  <td className="border px-4 py-2">{student.name}</td>
-                  <td className="border px-4 py-2">
+                  <td class="custom-bordered-cell">{student.id}</td>
+                  <td class="custom-bordered-cell">{student.name}</td>
+                  <td class="custom-bordered-cell">
                     {student.registerStudent}
                   </td>
-                  <td className="border px-4 py-2">
+                  <td class="custom-bordered-cell">
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                      class="custom-view-btn"
                       onClick={() =>
                         navigate(`/admin/students/view/${student.id}`)
                       }>
                       Visualizar
                     </button>
                     <button
-                      className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mx-2"
+                      class="custom-edit-btn"
                       onClick={() =>
                         navigate(`/admin/students/edit/${student.id}`)
                       }>
                       Editar
                     </button>
                     <button
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      class="custom-delete-btn"
                       onClick={() =>
                         navigate(`/admin/students/delete/${student.id}`)
                       }>

@@ -1,0 +1,87 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form class="form">
+        <div class="input-container">
+            <label for="example-field" class="input-label">Example Label</label>
+            <input type="text" name="example-field" id="example-field" class="input">
+        </div>
+        <div class="buttons">
+            <button type="submit" class="button-save">Salvar</button>
+            <button type="button" class="button-back">Voltar</button>
+        </div>
+    </form>
+</body>
+</html>
+
+
+css
+.form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 50%;
+}
+
+.input-container {
+  margin-top: 1rem;
+}
+
+.input-label {
+  display: block;
+  color: #4a5568;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  appearance: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  color: #4a5568;
+  line-height: 1.75;
+  outline: none;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.75rem;
+}
+
+.button-save,
+.button-back {
+  background-color: #4299e1;
+  transition: background-color 0.15s ease-in-out;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.button-save:hover {
+  background-color: #2b7cb2;
+}
+
+.button-back {
+  background-color: #1e293b;
+}
+
+.button-back:hover {
+  background-color: #1e293b;
+}

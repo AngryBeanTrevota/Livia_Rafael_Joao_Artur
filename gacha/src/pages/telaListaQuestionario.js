@@ -5,6 +5,8 @@ import "./telaListaQuestionario.css";
 import talk from "../icones/talk.png";
 import talk2 from "../icones/talk2.png";
 
+import { Link } from "react-router-dom";
+
 const BotaoNivel = ({ nivel }) => {
     let tipoQuiz, visivel;
     if (nivel > 1) {
@@ -26,13 +28,14 @@ const BotaoNivel = ({ nivel }) => {
                 }}
             />
             <img
+                alt="cadeado"
                 style={{ visibility: visivel ? "visible" : "hidden" }}
                 id="imagemCadeadoQuiz"
                 src="https://static.thenounproject.com/png/228611-200.png"
             ></img>
             <div className={tipoQuiz}>
-                <botao style={{ cursor: "pointer" }} className="botaoNivelQuiz">{nivel}</botao>
                 <img
+                    alt="pasta"
                     style={{ width: 70, height: 55, paddingLeft: 5 }}
                     className="imagemPasta"
                     src="https://i.imgur.com/r3a0P0E.png"
@@ -61,7 +64,11 @@ const TelaListaQuestionario = () => {
                 <BotaoNivel nivel="4" />
                 <BotaoNivel nivel="3" />
                 <BotaoNivel nivel="2" />
-                <BotaoNivel nivel="1" />
+                <Link
+                    to="/quizindividual"
+                >
+                    <BotaoNivel nivel="1" />
+                </Link>
             </div>
         </Window>
     )

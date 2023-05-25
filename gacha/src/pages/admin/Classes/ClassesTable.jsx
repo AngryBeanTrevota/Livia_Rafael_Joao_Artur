@@ -20,50 +20,48 @@ function ClassesTable() {
   return (
     <>
       <NavbarAdm />
-      <div className="flex items-center flex-col w-full">
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">Lista de Salas</h2>
+      <div className="custom-container">
+        <div className="custom-mt-12">
+          <h2 className="custom-heading">Lista de Salas</h2>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="custom-flex-col">
           <button
-            className=" self-start bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className=" custom-add-btn"
             onClick={() => navigate("/admin/classes/create")}>
             Adicionar Sala
           </button>
-          <table className="table-auto my-5">
+          <table className="custom-table">
             <thead>
               <tr>
-                <th className="px-4 py-2">ID</th>
-                <th className="px-4 py-2">Nome</th>
-                <th className="px-4 py-2">Senha</th>
-                <th className="px-4 py-2">Ações</th>
+                <th className="custom-cell">Nome</th>
+                <th className="custom-cell">Senha</th>
               </tr>
             </thead>
             <tbody>
               {classes.map((sala) => (
                 <tr key={sala.id}>
-                  <td className="border px-4 py-2">{sala.id}</td>
-                  <td className="border px-4 py-2">{sala.name}</td>
-                  <td className="border px-4 py-2">
+                  <td className="custom-bordered-cell">{sala.id}</td>
+                  <td className="custom-bordered-cell">{sala.name}</td>
+                  <td className="custom-bordered-cell">
                     {sala.password}
                   </td>
-                  <td className="border px-4 py-2">
+                  <td className="custom-bordered-cell">
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                      className="custom-view-btn"
                       onClick={() =>
                         navigate(`/admin/classes/view/${sala.id}`)
                       }>
                       Visualizar
                     </button>
                     <button
-                      className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded mx-2"
+                      className="custom-edit-btn"
                       onClick={() =>
                         navigate(`/admin/classes/edit/${sala.id}`)
                       }>
                       Editar
                     </button>
                     <button
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      class="custom-delete-btn"
                       onClick={() =>
                         navigate(`/admin/classes/delete/${sala.id}`)
                       }>

@@ -68,16 +68,16 @@ const QuizIndividual = () => {
                         </div>
                         <div className="question-options">
                             <WindowsQuestion>
-                                1. AAAAAAAA
+                                1. Resposta 1
                             </WindowsQuestion>
                             <WindowsQuestion>
-                                2. AAAAAAAA
+                                2. Resposta 2
                             </WindowsQuestion>
                             <WindowsQuestion>
-                                3. AAAAAAAA
+                                3. Resposta 3
                             </WindowsQuestion>
                             <WindowsQuestion>
-                                4. AAAAAAAA
+                                4. Resposta 4
                             </WindowsQuestion>  
                             <WindowsButton
                                 style={

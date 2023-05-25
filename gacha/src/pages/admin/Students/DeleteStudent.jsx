@@ -23,7 +23,6 @@ function DeleteStudent() {
     <>
       <NavbarAdm />
       <div className="flex flex-col items-center">
-        <h2 className="text-2xl font-bold my-6">Excluir Estudante</h2>
         <FormDelete handleSubmit={handleSubmit} />
       </div>
     </>
