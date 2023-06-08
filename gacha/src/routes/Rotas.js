@@ -1,8 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { RequireAuth } from "../context/Auth/RequireAuth";
 
-/* import { RequireAuth } from "../context/Auth/RequireAuth";
- */
 import Menu from "../pages/menu";
 import TelaLogin from "../pages/telaLogin";
 import MenuAdquiridos from "../pages/menuAdquiridos";
@@ -39,37 +38,40 @@ import CreateClass from "../pages/admin/Classes/CreateClass";
 import EditClass from "../pages/admin/Classes/EditClass";
 import DeleteClass from "../pages/admin/Classes/DeleteClass";
 import ViewClass from "../pages/admin/Classes/ViewClass";
+import { AuthProvider } from "../context/Auth/AuthProvider";
+
 
 
 const Rotas = () => {
+
   return (
     <div className="Rotas">
       <Routes>
-        <Route path="/login" element={<TelaLogin />} />
-        <Route exact path="/" element={<Menu />} />
-        <Route path="/nav" element={<TelaInicial />} />
-        <Route path="/banner" element={<Banner />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/menuadquiridos" element={<MenuAdquiridos />} />
-        <Route path="/quizindividual" element={<QuizIndividual />} />
-        <Route path="/telajogonovo" element={<TelaJogoNovo />} />
-        <Route path="/animacaoBanner" element={<AnimacaoBanner />} />
-        <Route path="/itemSorteado" element={<ItemSorteado />} />
+        <Route path="/" element={<TelaLogin />} />
         <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/telasalaaluno" element={<TelaSalaAluno />} />
-        <Route path="/telareciclagem" element={<TelaReciclagem />} />
-        <Route path="/quizzes" element={<TelaListaQuestionario />} />
-        <Route path="/historia" element={<TelaHistoria />}></Route>
-        <Route path="/revisao" element={<TelaRevisao/>}></Route>
-        
-        <Route path="/admin" element={<Dashboard/>} />
+
+        <Route path="/nav" element={<RequireAuth><TelaInicial /></RequireAuth>} />
+        <Route path="/banner" element={<RequireAuth><Banner /></RequireAuth>} />
+        <Route path="/menu" element={<RequireAuth><Menu /></RequireAuth>} />
+        <Route path="/menuadquiridos" element={<RequireAuth><MenuAdquiridos /></RequireAuth>} />
+        <Route path="/quizindividual" element={<RequireAuth><QuizIndividual /></RequireAuth>} />
+        <Route path="/telajogonovo" element={<RequireAuth><TelaJogoNovo /></RequireAuth>} />
+        <Route path="/animacaoBanner" element={<RequireAuth><AnimacaoBanner /></RequireAuth>} />
+        <Route path="/itemSorteado" element={<RequireAuth><ItemSorteado /></RequireAuth>} />
+        <Route path="/telasalaaluno" element={<RequireAuth><TelaSalaAluno /></RequireAuth>} />
+        <Route path="/telareciclagem" element={<RequireAuth><TelaReciclagem /></RequireAuth>} />
+        <Route path="/quizzes" element={<RequireAuth><TelaListaQuestionario /></RequireAuth>} />
+        <Route path="/historia" element={<RequireAuth><TelaHistoria /></RequireAuth>} />
+        <Route path="/revisao" element={<RequireAuth><TelaRevisao /></RequireAuth>} />
+
+        <Route path="/admin" element={<Dashboard />} />
 
         <Route path="/admin/students" element={<StudentsTable />} />
         <Route path="/admin/students/create" element={<CreateStudent />} />
         <Route path="/admin/students/view/:id" element={<ViewStudent />} />
         <Route path="/admin/students/edit/:id" element={<EditStudent />} />
         <Route path="/admin/students/delete/:id" element={<DeleteStudent />} />
-        
+
         <Route path="/admin/teachers" element={<TeachersTable />} />
         <Route path="/admin/teachers/create" element={<CreateTeacher />} />
         <Route path="/admin/teachers/view/:id" element={<ViewTeacher />} />

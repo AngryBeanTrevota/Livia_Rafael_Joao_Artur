@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './pages/App';
-/* import { AuthProvider } from './context/Auth/AuthProvider';
+import { AuthProvider } from './context/Auth/AuthProvider';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,8 +13,6 @@ root.render(
         </AuthProvider>
     </React.StrictMode>
 
-); */
+);
 
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);

@@ -4,42 +4,30 @@ import { prismaClient } from "../database/prismaCient";
 import { Request, Response } from "express";
 
 interface IRequest {
-  userType: string;
-  register: string;
+  registerStudent: string;
   password: string;
 }
 
-
 export class loginController {
-  async execute({ register, password, userType }: IRequest, response: Response) {
+  constructor() {
+    this.login = this.login.bind(this);
+  }
+
+  async execute({ registerStudent, password }: IRequest, response: Response) {
     try {
-      let user:any;
+      const student = await prismaClient.student.findUnique({
+        where: {
+          registerStudent: registerStudent,
+        },
+      });
 
-      if (userType === "teacher") {
-        user = await prismaClient.teacher.findUnique({
-          where: {
-            registerTeacher: register,
-          },
-        });
-      } else if (userType === "student") {
-        user = await prismaClient.student.findUnique({
-          where: {
-            registerStudent: register,
-          },
-        });
-      } else {
-        return response
-          .status(400)
-          .json({ error: "Tipo de usuário inválido!" });
-      }
-
-      if (!user) {
+      if (!student) {
         return response
           .status(403)
           .json({ error: "Matrícula ou senha inválidos!" });
       }
 
-      const passwordMatch = await compare(password, user.password);
+      const passwordMatch = await compare(password, student.password);
 
       if (!passwordMatch) {
         return response
@@ -48,30 +36,42 @@ export class loginController {
       }
 
       const token = sign({}, "code", {
-        subject: user.id,
+        subject: "student.id",
         expiresIn: "1h",
       });
-
       return { token };
     } catch (err) {
       return response.status(500).json({ error: err.message });
     }
   }
 
+  async getUser(request: Request, response: Response) {
+    const { registerStudent } = request.body;
+
+    const student = await prismaClient.student.findUnique({
+      where: {
+        registerStudent: registerStudent,
+      },
+    });
+
+    return student;
+  }
+
   async login(request: Request, response: Response): Promise<Response> {
-    const { register, password, userType } = request.body;
+    const { registerStudent, password } = request.body;
 
     try {
+
       const token = await this.execute(
         {
-          register,
+          registerStudent,
           password,
-          userType,
         },
         response
       );
 
-      return response.json(token);
+      const student = await this.getUser(request, response);
+      return response.json({student, token});
     } catch (err) {
       return response.status(403).json({ error: err.message });
     }
