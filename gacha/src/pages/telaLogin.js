@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import WindowsButton from "../components/WindowsButton";
 import WindowsInput from "../components/WindowsInput";
 import Window from "../components/Window";
-import  AuthContext  from "../context/Auth/AuthContext";
+import { AuthContext } from "../context/Auth/AuthContext";
 
 export default function Login() {
     const auth = useContext(AuthContext);
@@ -16,16 +16,16 @@ export default function Login() {
 
     const handleLogin = () => {
         if (registerStudent && password) {
-            auth.signin(registerStudent, password)
-                .then(() => {
-                    navigate("/menu");
-                })
-                .catch((error) => {
-                    alert("Matricula ou senha incorretos");
-                    console.log(error);
-                });
+            auth.signin(registerStudent, password);
+            console.log(auth.user);
         } else {
             alert("Preencha todos os campos");
+        }
+
+        if (auth.user) {
+            navigate("/menu");
+        }else {
+            alert("Matricula ou senha incorretos");
         }
     };
 
