@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import WindowsButton from "../components/WindowsButton";
 import WindowsInput from "../components/WindowsInput";
 import Window from "../components/Window";
-import { AuthContext } from "../context/Auth/AuthContext";
+import  AuthContext  from "../context/Auth/AuthContext";
 
 export default function Login() {
     const auth = useContext(AuthContext);

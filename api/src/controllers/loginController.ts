@@ -2,6 +2,7 @@ import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { prismaClient } from "../database/prismaCient";
 import { Request, Response } from "express";
+import { json } from "stream/consumers";
 
 interface IRequest {
   registerStudent: string;
@@ -37,7 +38,7 @@ export class loginController {
 
       const token = sign({}, "code", {
         subject: "student.id",
-        expiresIn: "1h",
+        expiresIn: "24h",
       });
       return { token };
     } catch (err) {
@@ -45,23 +46,11 @@ export class loginController {
     }
   }
 
-  async getUser(request: Request, response: Response) {
-    const { registerStudent } = request.body;
-
-    const student = await prismaClient.student.findUnique({
-      where: {
-        registerStudent: registerStudent,
-      },
-    });
-
-    return student;
-  }
 
   async login(request: Request, response: Response): Promise<Response> {
     const { registerStudent, password } = request.body;
 
     try {
-
       const token = await this.execute(
         {
           registerStudent,
@@ -70,8 +59,13 @@ export class loginController {
         response
       );
 
-      const student = await this.getUser(request, response);
-      return response.json({student, token});
+      const student = await prismaClient.student.findUnique({
+        where: {
+          registerStudent: registerStudent,
+        },
+      });
+
+      return response.json({ student, token });
     } catch (err) {
       return response.status(403).json({ error: err.message });
     }

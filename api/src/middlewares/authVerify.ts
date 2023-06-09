@@ -13,7 +13,6 @@ export function authVerify(
   }
   const [, token] = authToken.split(" ");
   try {
-    console.log("aaa");
     verify(token, "code");
     return next();
   } catch (err) {

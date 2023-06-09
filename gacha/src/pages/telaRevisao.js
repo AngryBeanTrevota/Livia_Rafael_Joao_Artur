@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../context/Auth/AuthContext";
+import { AuthContext } from "../context/Auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 import "./telaRevisao.css"

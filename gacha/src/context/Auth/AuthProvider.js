@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AuthContext } from "./AuthContext";
 import axios from "axios";
+import AuthContext from "./AuthContext";
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, signin }}>
+        <AuthContext.Provider value={{ user, isLogged, signin }}>
             {children}
         </AuthContext.Provider>
     );
