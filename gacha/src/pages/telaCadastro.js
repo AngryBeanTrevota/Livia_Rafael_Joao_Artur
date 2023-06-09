@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../context/Auth/AuthContext";
+import  {AuthContext}  from "../context/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 import "./telaLogin.css"

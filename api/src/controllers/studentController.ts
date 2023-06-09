@@ -40,6 +40,26 @@ export class studentController {
     }
   }
 
+  async getStudentById(request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.params;
+
+      const student = await prismaClient.student.findUnique({
+        where: {
+          id: Number(id),
+        },
+      });
+
+      if (!student) {
+        return response.status(404).json({ error: "Aluno não encontrado!" });
+      }
+
+      return response.json(student);
+    } catch (err) {
+      return response.status(500).json({ error: err.message });
+    }
+  }
+
   async view(request: Request, response: Response): Promise<Response> {
     try {
       const { id } = request.params;
