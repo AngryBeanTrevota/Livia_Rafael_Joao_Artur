@@ -20,8 +20,7 @@ const loginCtrl = new loginController();
 
 // Login
 router.post("/login", loginCtrl.login);
-router.get("/studentid", studentCtrl.getStudentById);
-router.post("/cadastro", studentCtrl.create);
+router.post("/register", studentCtrl.register);
 
 // Classes
 router.post("/class", classCtrl.create);

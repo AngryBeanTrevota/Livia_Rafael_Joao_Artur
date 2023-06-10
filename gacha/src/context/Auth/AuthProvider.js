@@ -18,8 +18,22 @@ export const AuthProvider = ({ children }) => {
         
     };
 
+    const register = (name, registerStudent, password) => {
+        axios
+            .post("http://localhost:3333/register", {
+                name,
+                registerStudent,
+                password,
+            })
+            .then((response) => {
+                console.log(response.data);
+                localStorage.setItem("token", response.data.token);
+                setUser(response.data.student);
+            });
+    }
+
     return (
-        <AuthContext.Provider value={{ user, signin }}>
+        <AuthContext.Provider value={{ user, signin, register }}>
             {children}
         </AuthContext.Provider>
     );
