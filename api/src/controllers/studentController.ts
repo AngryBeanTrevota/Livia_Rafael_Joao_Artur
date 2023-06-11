@@ -129,21 +129,21 @@ export class studentController {
         number_quizzes_success,
       } = request.body;
 
-      const hashedPassword = await hash(password, 8);
+      const updateData: any = {};
+
+      updateData.name = name ? name : undefined;
+      updateData.registerStudent = register ? register : undefined;
+      updateData.password = password ? await hash(password, 8) : undefined;
+      updateData.shots = shots !== undefined ? shots : undefined;
+      updateData.xp = xp !== undefined ? xp : undefined;
+      updateData.number_quizzes = number_quizzes !== undefined ? number_quizzes : undefined;
+      updateData.number_quizzes_success = number_quizzes_success !== undefined ? number_quizzes_success : undefined;
 
       const student = await prismaClient.student.update({
         where: {
           id: Number(id),
         },
-        data: {
-          name: name,
-          registerStudent: register,
-          password: hashedPassword,
-          shots: shots,
-          xp: xp,
-          number_quizzes: number_quizzes,
-          number_quizzes_success: number_quizzes_success,
-        },
+        data: updateData,
       });
 
       return response.json(student);

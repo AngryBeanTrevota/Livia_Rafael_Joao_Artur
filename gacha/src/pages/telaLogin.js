@@ -22,6 +22,8 @@ export default function Login() {
             alert("Preencha todos os campos");
         }
 
+        console.log(auth.user);
+
         if (auth.user) {
             navigate("/menu");
         }else {
