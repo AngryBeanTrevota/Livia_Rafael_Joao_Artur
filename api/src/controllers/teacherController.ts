@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { prismaClient } from "../database/prismaCient";
 import { hash } from "bcryptjs";
+import { Prisma } from "@prisma/client";
 
 export class teacherController {
   async create(request: Request, response: Response): Promise<Response> {
@@ -40,6 +41,9 @@ export class teacherController {
         where: {
           id: Number(id),
         },
+        include: {
+          classroom: true,
+        }
       });
 
       if (!teacher) {
@@ -56,7 +60,13 @@ export class teacherController {
 
   async index(request: Request, response: Response): Promise<Response> {
     try {
-      const teachers = await prismaClient.teacher.findMany();
+      const teachers = await prismaClient.teacher.findMany(
+        {
+          include: {
+            classroom: true,
+          }
+        }
+      );
 
       return response.json(teachers);
     } catch (err) {
@@ -67,20 +77,25 @@ export class teacherController {
   async update(request: Request, response: Response): Promise<Response> {
     try {
       const { id } = request.params;
-      const { name, registerTeacher, password } = request.body;
+      const { name, registerTeacher, password, class_id } = request.body;
+
+      const updateData: Prisma.TeacherUpdateInput = {
+        name: name ?? undefined,
+        registerTeacher: registerTeacher ?? undefined,
+        password: password ? await hash(password, 8) : undefined,
+        classroom: class_id ? { connect: { id: class_id } } : undefined,
+      };
 
       const teacher = await prismaClient.teacher.update({
         where: {
           id: Number(id),
         },
-        data: {
-          name,
-          registerTeacher,
-          password,
+        include: {
+          classroom: true,
         },
+        data: updateData,
       });
 
-      console.log("Teacher:", teacher);
 
       return response.json(teacher);
     } catch (err) {

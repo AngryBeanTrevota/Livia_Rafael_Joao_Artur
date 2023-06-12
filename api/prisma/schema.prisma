@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,60 +8,54 @@ datasource db {
 }
 
 model Student {
-  id Int @id @default(autoincrement())
-
-  name            String
-  registerStudent String @unique
-  password        String
-
-  xp                     Int @default(0)
-  shots                  Int @default(0)
-  number_quizzes         Int @default(0)
-  number_quizzes_success Int @default(0)
+  id                     Int    @id @default(autoincrement())
+  name                   String
+  password               String
+  xp                     Int    @default(0)
+  shots                  Int    @default(0)
+  number_quizzes         Int    @default(0)
+  number_quizzes_success Int    @default(0)
+  registerStudent        String @unique
+  class_id               Int?
+  classroom              Class? @relation(fields: [class_id], references: [id])
+  itens                  Item[] @relation("ItemToStudent")
 
   @@map("students")
 }
 
-model Character {
-  id Int @id @default(autoincrement())
-
-  name  String
-  image String
-
-  @@map("characters")
-}
-
 model Item {
-  id Int @id @default(autoincrement())
-
-  name  String
-  image String
+  id           Int       @id @default(autoincrement())
+  name         String
+  image        String
+  is_character Boolean
+  students     Student[] @relation("ItemToStudent")
 
   @@map("items")
 }
 
 model Teacher {
-  id Int @id @default(autoincrement())
-
-  registerTeacher String @unique
+  id              Int    @id @default(autoincrement())
   name            String
   password        String
+  registerTeacher String @unique
+  classroom       Class?
 
   @@map("teachers")
 }
 
 model Class {
-  id Int @id @default(autoincrement())
-
-  name     String
-  password String
+  id         Int       @id @default(autoincrement())
+  name       String
+  password   String
+  teacher_id Int       @unique
+  teacher    Teacher   @relation(fields: [teacher_id], references: [id])
+  Students   Student[]
 
   @@map("classes")
 }
 
 model Quiz {
-  id Int @id @default(autoincrement())
-
+  id      Int      @id @default(autoincrement())
   title   String
   options String[]
   answer  Int
