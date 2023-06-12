@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { loginController } from "./controllers/loginController";
-import { classController } from "./controllers/classController";
-import { characterController } from "./controllers/characterController";
-import { studentController } from "./controllers/studentController";
+import { classController } from "./controllers/classController";import { studentController } from "./controllers/studentController";
 import { teacherController } from "./controllers/teacherController";
 import { itemController } from "./controllers/itemController";
 import { quizController } from "./controllers/quizController";
@@ -11,7 +9,6 @@ import { authVerify } from "./middlewares/authVerify";
 const router = Router();
 
 const classCtrl = new classController();
-const characterCtrl = new characterController();
 const studentCtrl = new studentController();
 const teacherCtrl = new teacherController();
 const itemCtrl = new itemController();
@@ -29,12 +26,6 @@ router.get("/class", classCtrl.index);
 router.put("/class/:id", classCtrl.update);
 router.delete("/class/:id", classCtrl.delete);
 
-// Characters
-router.post("/character", characterCtrl.create);
-router.get("/character/:id", characterCtrl.view);
-router.get("/character", characterCtrl.index);
-router.put("/character/:id", characterCtrl.update);
-router.delete("/character/:id", characterCtrl.delete);
 
 // Students
 router.get("/student", studentCtrl.index);

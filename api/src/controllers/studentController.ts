@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { prismaClient } from "../database/prismaCient";
 import { hash } from "bcryptjs";
-import { Class } from "@prisma/client";
+import { Class, Item, Prisma, Teacher } from "@prisma/client";
 import { loginController } from "./loginController";
 
 export class studentController {
@@ -11,7 +11,6 @@ export class studentController {
 
       const passwordHash = await hash(password, 8);
 
-      // Verifica se já existe um estudante com o mesmo registro
       const existingStudent = await prismaClient.student.findUnique({
         where: {
           registerStudent: register,
@@ -24,7 +23,6 @@ export class studentController {
         });
       }
 
-      // Cria o estudante se não houver duplicatas
       const student = await prismaClient.student.create({
         data: {
           name: name,
@@ -82,7 +80,6 @@ export class studentController {
         response
       );
     } catch (err) {
-      console.log("Erro ao registrar:", err);
       return response.status(500).json({ error: "Erro ao registrar" });
     }
   }
@@ -94,6 +91,10 @@ export class studentController {
       const student = await prismaClient.student.findUnique({
         where: {
           id: Number(id),
+        },
+        include: {
+          classroom: true,
+          itens: true,
         },
       });
 
@@ -127,23 +128,39 @@ export class studentController {
         xp,
         number_quizzes,
         number_quizzes_success,
+        class_id,
+        itens_id,
       } = request.body;
 
-      const updateData: any = {};
-
-      updateData.name = name ? name : undefined;
-      updateData.registerStudent = register ? register : undefined;
-      updateData.password = password ? await hash(password, 8) : undefined;
-      updateData.shots = shots !== undefined ? shots : undefined;
-      updateData.xp = xp !== undefined ? xp : undefined;
-      updateData.number_quizzes = number_quizzes !== undefined ? number_quizzes : undefined;
-      updateData.number_quizzes_success = number_quizzes_success !== undefined ? number_quizzes_success : undefined;
+      const updateData: Prisma.StudentUpdateInput = {
+        name: name ?? undefined,
+        registerStudent: register ?? undefined,
+        password: password ? await hash(password, 8) : undefined,
+        shots: shots !== undefined ? shots : undefined,
+        xp: xp !== undefined ? xp : undefined,
+        number_quizzes:
+          number_quizzes !== undefined ? number_quizzes : undefined,
+        number_quizzes_success:
+          number_quizzes_success !== undefined
+            ? number_quizzes_success
+            : undefined,
+        classroom: {
+          connect: class_id ? { id: class_id } : undefined,
+        },
+        itens: {
+          connect: itens_id?.map((itemId: number) => ({ id: itemId })),
+        },
+      };
 
       const student = await prismaClient.student.update({
         where: {
           id: Number(id),
         },
         data: updateData,
+        include: {
+          classroom: true,
+          itens: true,
+        }
       });
 
       return response.json(student);

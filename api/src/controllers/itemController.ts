@@ -1,15 +1,17 @@
 import { Request, Response } from "express";
 import { prismaClient } from "../database/prismaCient";
+import { Prisma } from "@prisma/client";
 
 export class itemController {
     async create(request: Request, response: Response): Promise<Response> {
         try{
-            const { name, image } = request.body;
+            const { name, image, is_character } = request.body;
             const item = await prismaClient.item.create({
-                data: {
-                    name: name,
-                    image: image,
-                },
+              data: {
+                name: name,
+                image: image,
+                is_character: is_character,
+              },
             });
             return response.json(item);
         }
@@ -49,15 +51,20 @@ export class itemController {
     async update(request: Request, response: Response): Promise<Response> {
         try{
             const { id } = request.params;
-            const { name, image } = request.body;
+            const { name, image, is_character, student_ids } = request.body;
+
+            const updateData: Prisma.ItemUpdateInput = {
+                name: name ?? undefined,
+                image: image ?? undefined,
+                is_character: is_character ?? undefined,
+                students: student_ids ? { connect: student_ids.map((id: number) => ({ id })) } : undefined,
+            };
+            
             const item = await prismaClient.item.update({
-                where: {
-                    id: Number(id)
-                },
-                data: {
-                    name: name,
-                    image: image,
-                }
+              where: {
+                id: Number(id),
+              },
+              data: updateData,
             });
             return response.json(item);
         }
