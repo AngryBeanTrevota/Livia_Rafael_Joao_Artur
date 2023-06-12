@@ -38,7 +38,7 @@ export class loginController {
 
       const token = sign({}, "code", {
         subject: "student.id",
-        expiresIn: "24h",
+        expiresIn: "60h",
       });
       return { token };
     } catch (err) {
@@ -49,7 +49,6 @@ export class loginController {
 
   async login(request: Request, response: Response): Promise<Response> {
     const { registerStudent, password } = request.body;
-
     try {
       const token = await this.execute(
         {

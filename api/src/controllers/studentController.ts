@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prismaClient } from "../database/prismaCient";
 import { hash } from "bcryptjs";
 import { Class } from "@prisma/client";
+import { loginController } from "./loginController";
 
 export class studentController {
   async create(request: Request, response: Response): Promise<Response> {
@@ -18,11 +19,9 @@ export class studentController {
       });
 
       if (existingStudent) {
-        return response
-          .status(400)
-          .json({
-            error: "Já existe um estudante com este número de registro",
-          });
+        return response.status(400).json({
+          error: "Já existe um estudante com este número de registro",
+        });
       }
 
       // Cria o estudante se não houver duplicatas
@@ -40,23 +39,51 @@ export class studentController {
     }
   }
 
-  async getStudentById(request: Request, response: Response): Promise<Response> {
+  async register(request: Request, response: Response): Promise<Response> {
     try {
-      const { id } = request.params;
+      const { name, registerStudent, password } = request.body;
+      const passwordHash = await hash(password, 8);
 
-      const student = await prismaClient.student.findUnique({
+      const existingStudent = await prismaClient.student.findUnique({
         where: {
-          id: Number(id),
+          registerStudent: registerStudent,
         },
       });
 
-      if (!student) {
-        return response.status(404).json({ error: "Aluno não encontrado!" });
+      if (existingStudent) {
+        return response.status(400).json({
+          error: "Já existe um estudante com este número de registro",
+        });
       }
 
-      return response.json(student);
+      try {
+        const student = await prismaClient.student.create({
+          data: {
+            name: name,
+            registerStudent: registerStudent,
+            password: passwordHash,
+          },
+        });
+      } catch (err) {
+        console.log("Erro ao criar o estudante:", err);
+        return response
+          .status(500)
+          .json({ error: "Erro ao criar o estudante" });
+      }
+
+      const loginCtrl = new loginController();
+      return loginCtrl.login(
+        {
+          body: {
+            registerStudent: registerStudent,
+            password: password,
+          },
+        } as Request,
+        response
+      );
     } catch (err) {
-      return response.status(500).json({ error: err.message });
+      console.log("Erro ao registrar:", err);
+      return response.status(500).json({ error: "Erro ao registrar" });
     }
   }
 
@@ -69,7 +96,6 @@ export class studentController {
           id: Number(id),
         },
       });
-
 
       if (!student) {
         return response.status(404).json({ error: "Aluno não encontrado!" });
@@ -103,21 +129,21 @@ export class studentController {
         number_quizzes_success,
       } = request.body;
 
-      const hashedPassword = await hash(password, 8);
+      const updateData: any = {};
+
+      updateData.name = name ? name : undefined;
+      updateData.registerStudent = register ? register : undefined;
+      updateData.password = password ? await hash(password, 8) : undefined;
+      updateData.shots = shots !== undefined ? shots : undefined;
+      updateData.xp = xp !== undefined ? xp : undefined;
+      updateData.number_quizzes = number_quizzes !== undefined ? number_quizzes : undefined;
+      updateData.number_quizzes_success = number_quizzes_success !== undefined ? number_quizzes_success : undefined;
 
       const student = await prismaClient.student.update({
         where: {
           id: Number(id),
         },
-        data: {
-          name: name,
-          registerStudent: register,
-          password: hashedPassword,
-          shots: shots,
-          xp: xp,
-          number_quizzes: number_quizzes,
-          number_quizzes_success: number_quizzes_success,
-        },
+        data: updateData,
       });
 
       return response.json(student);

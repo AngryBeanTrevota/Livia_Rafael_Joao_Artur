@@ -24,7 +24,8 @@ function EditStudent() {
       setStudent(response.data);
     });
   }, [id]);
-
+  student.password = "";
+  
   const handleSubmit = (data) => {
     axios.put(`http://localhost:3333/student/${id}`, data).then(() => {
       navigate("/admin/students");
