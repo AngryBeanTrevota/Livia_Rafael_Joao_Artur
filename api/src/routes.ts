@@ -43,9 +43,13 @@ router.delete("/teacher/:id", teacherCtrl.delete);
 
 // Items
 router.post("/item", itemCtrl.create);
+router.post("/itens", itemCtrl.createMany);
 router.get("/item/:id", itemCtrl.view);
 router.get("/item", itemCtrl.index);
 router.put("/item/:id", itemCtrl.update);
+router.delete("/item/:id", itemCtrl.delete);
+router.delete("/item", itemCtrl.deleteAll);
+
 
 // Quizzes
 router.post("/quiz", quizCtrl.create);

@@ -21,50 +21,50 @@ function StudentsTable() {
   return (
     <>
       <NavbarAdm />
-      <div class="custom-container">
-        <div class="custom-mt-12">
-          <h2 class="custom-heading">Lista de Estudantes</h2>
+      <div className="custom-container">
+        <div className="custom-mt-12">
+          <h2 className="custom-heading">Lista de Estudantes</h2>
         </div>
-        <div class="custom-flex-col">
+        <div className="custom-flex-col">
           <button
-            class="custom-add-btn"
+            className="custom-add-btn"
             onClick={() => navigate("/admin/students/create")}>
             Adicionar Estudante
           </button>
-          <table class="custom-table">
+          <table className="custom-table">
             <thead>
               <tr>
-                <th class="custom-cell">ID</th>
-                <th class="custom-cell">Nome</th>
-                <th class="custom-cell">Matrícula</th>
-                <th class="custom-cell">Ações</th>
+                <th className="custom-cell">ID</th>
+                <th className="custom-cell">Nome</th>
+                <th className="custom-cell">Matrícula</th>
+                <th className="custom-cell">Ações</th>
               </tr>
             </thead>
             <tbody>
               {students.map((student) => (
                 <tr key={student.id}>
-                  <td class="custom-bordered-cell">{student.id}</td>
-                  <td class="custom-bordered-cell">{student.name}</td>
-                  <td class="custom-bordered-cell">
+                  <td className="custom-bordered-cell">{student.id}</td>
+                  <td className="custom-bordered-cell">{student.name}</td>
+                  <td className="custom-bordered-cell">
                     {student.registerStudent}
                   </td>
-                  <td class="custom-bordered-cell">
+                  <td className="custom-bordered-cell">
                     <button
-                      class="custom-view-btn"
+                      className="custom-view-btn"
                       onClick={() =>
                         navigate(`/admin/students/view/${student.id}`)
                       }>
                       Visualizar
                     </button>
                     <button
-                      class="custom-edit-btn"
+                      className="custom-edit-btn"
                       onClick={() =>
                         navigate(`/admin/students/edit/${student.id}`)
                       }>
                       Editar
                     </button>
                     <button
-                      class="custom-delete-btn"
+                      className="custom-delete-btn"
                       onClick={() =>
                         navigate(`/admin/students/delete/${student.id}`)
                       }>
