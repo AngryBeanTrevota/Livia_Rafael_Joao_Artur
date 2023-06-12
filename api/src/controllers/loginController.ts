@@ -62,6 +62,10 @@ export class loginController {
         where: {
           registerStudent: registerStudent,
         },
+        include: {
+          classroom: true,
+          itens: true,
+        }
       });
 
       return response.json({ student, token });
