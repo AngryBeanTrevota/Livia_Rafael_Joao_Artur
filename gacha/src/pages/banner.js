@@ -65,7 +65,13 @@ const PopUpRodaGacha = ({ bits, rodaGacha, visivel, fechaPopUp }) => {
   );
 };
 
-const BotaoRodaGacha = ({ abrePopUp, bitsMoedaValor }) => {
+const BotaoRodaGacha = ({
+  abrePopUp,
+  bitsMoedaValor,
+  auth,
+  atualizaEstudante,
+}) => {
+  atualizaEstudante();
   let endereco;
   if (bitsMoedaValor >= 500) {
     endereco = "/animacaoBanner";
@@ -103,23 +109,27 @@ const Banner = () => {
 
   // TENTANDO ATUALIZAR O USER
 
-  const atualizaEstudante = () => {
+  const atualizaEstudante = (itensAtualizados) => {
+    let bla = [{ id: 122, qtd: 1 }];
     axios
-      .put(`http://localhost:3333/student/${auth.user.id}`, auth.user)
+      .put(`http://localhost:3333/student/${auth.user.id}`, {
+        itens: bla,
+      })
       .then(() => {
-        console.log("mudado");
+        console.log("atualizaEstudante", itensAtualizados);
       });
   };
 
-  const verEstudante = () => {
+  const pegaItens = () => {
     axios
       .get(`http://localhost:3333/student/${auth.user.id}`)
       .then((response) => {
-        console.log("aluno: ", response.data);
+        console.log(response.data);
       });
   };
 
   const botaoPassaEsquerda = () => {
+    pegaItens();
     if (imagemExibida === defaultBannerData[0][0].obj.imagem) {
       setImagemExibida(defaultBannerData[2][0].obj.imagem);
     } else if (imagemExibida === defaultBannerData[2].imagem) {
@@ -144,46 +154,74 @@ const Banner = () => {
   };
 
   const rodaGacha = () => {
-    if (bitsMoeda >= 500) {
-      setBitsMoeda(bitsMoeda - 500);
-      const raridade = Math.random() * (100 - 0) + 0;
-      let numSorteio;
-      if (raridade <= 5) {
-        numSorteio = Math.floor(Math.random() * (3 - 0) + 0);
-        setSorteado(defaultBannerData[numSorteio][0].obj);
-      } else if (raridade <= 20) {
-        numSorteio = 3 + Math.floor(Math.random() * (3 - 0) + 0);
-        setSorteado(defaultBannerData[numSorteio][0].obj);
-      } else if (raridade <= 55) {
-        numSorteio = 6 + Math.floor(Math.random() * (3 - 0) + 0);
-        setSorteado(defaultBannerData[numSorteio][0].obj);
-      } else {
-        numSorteio = 9 + Math.floor(Math.random() * (3 - 0) + 0);
-        setSorteado(defaultBannerData[numSorteio][0].obj);
-      }
+    setBitsMoeda(bitsMoeda - 500);
+    const raridade = Math.random() * (100 - 0) + 0;
+    let numSorteio;
+    if (raridade <= 5) {
+      numSorteio = Math.floor(Math.random() * (3 - 0) + 0);
+      setSorteado(defaultBannerData[numSorteio][0].obj);
+    } else if (raridade <= 20) {
+      numSorteio = 3 + Math.floor(Math.random() * (3 - 0) + 0);
+      setSorteado(defaultBannerData[numSorteio][0].obj);
+    } else if (raridade <= 55) {
+      numSorteio = 6 + Math.floor(Math.random() * (3 - 0) + 0);
+      setSorteado(defaultBannerData[numSorteio][0].obj);
+    } else {
+      numSorteio = 9 + Math.floor(Math.random() * (3 - 0) + 0);
+      setSorteado(defaultBannerData[numSorteio][0].obj);
+    }
 
-      if (storage.size === 0) {
-        setStorage(storage.push(defaultBannerData[numSorteio][0].id));
-      } else {
-        let itemEncontrado = false;
+    // Parte pra salvar no banco
 
-        const storageAtualizado = storage.map((item) => {
-          if (item === defaultBannerData[numSorteio][0].id) {
-            let novoItem = { ...item };
-            novoItem.quantidade++;
-            itemEncontrado = true;
-            return novoItem;
-          } else {
-            return item;
-          }
-        });
+    // Pega lista do usuário
 
-        if (!itemEncontrado) {
-          storageAtualizado.push(defaultBannerData[numSorteio][0].id);
+    axios
+      .get(`http://localhost:3333/student/${auth.user.id}`)
+      .then((response) => {
+        console.log(response.data.itens);
+        let itens = [...response.data.itens];
+        let encontrado = false;
+        if (itens.length != 0) {
+          itens.map((item) => {
+            if (item.id === defaultBannerData[numSorteio][0].id) {
+              item.qtd += item.qtd;
+              encontrado = true;
+              console.log("clone: ", item);
+            }
+          });
+        }
+        if (encontrado === false) {
+          let item = { id: defaultBannerData[numSorteio][0].id, qtd: 1 };
+          itens.push(item);
+          console.log("itens atualizado: ", itens);
         }
 
-        setStorage(storageAtualizado);
+        // Atualiza no banco de dados
+
+        atualizaEstudante(itens);
+      });
+
+    if (storage.size === 0) {
+      setStorage(storage.push(defaultBannerData[numSorteio][0].id));
+    } else {
+      let itemEncontrado = false;
+
+      const storageAtualizado = storage.map((item) => {
+        if (item === defaultBannerData[numSorteio][0].id) {
+          let novoItem = { ...item };
+          novoItem.quantidade++;
+          itemEncontrado = true;
+          return novoItem;
+        } else {
+          return item;
+        }
+      });
+
+      if (!itemEncontrado) {
+        storageAtualizado.push(defaultBannerData[numSorteio][0].id);
       }
+
+      setStorage(storageAtualizado);
     }
   };
 
@@ -240,7 +278,12 @@ const Banner = () => {
             >
               ◄◄
             </button>
-            <BotaoRodaGacha abrePopUp={abrePopUp} bitsMoedaValor={bitsMoeda} />
+            <BotaoRodaGacha
+              abrePopUp={abrePopUp}
+              bitsMoedaValor={bitsMoeda}
+              auth={auth}
+              atualizaEstudante={atualizaEstudante}
+            />
             <button
               className="windowsButton"
               type="button"

@@ -6,7 +6,6 @@ function FormEdit({ fields, initialData, handleSubmit, table }) {
   const [formData, setFormData] = useState(initialData);
   const navigate = useNavigate();
 
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -50,7 +49,8 @@ function FormEdit({ fields, initialData, handleSubmit, table }) {
           onClick={() => {
             navigate(table);
           }}
-          className="button-back">
+          className="button-back"
+        >
           Voltar
         </button>
       </div>

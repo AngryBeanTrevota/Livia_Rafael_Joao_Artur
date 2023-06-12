@@ -15,7 +15,11 @@ function EditStudent() {
     { label: "XP", name: "xp", type: "number" },
     { label: "Tiros", name: "shots", type: "number" },
     { label: "Número de quizzes", name: "number_quizzes", type: "number" },
-    { label: "Número de quizzes acertados", name: "number_quizzes_success", type: "number" },
+    {
+      label: "Número de quizzes acertados",
+      name: "number_quizzes_success",
+      type: "number",
+    },
   ];
 
   const [student, setStudent] = useState({});
@@ -25,7 +29,7 @@ function EditStudent() {
     });
   }, [id]);
   student.password = "";
-  
+
   const handleSubmit = (data) => {
     axios.put(`http://localhost:3333/student/${id}`, data).then(() => {
       navigate("/admin/students");
@@ -35,12 +39,12 @@ function EditStudent() {
   return (
     <>
       <NavbarAdm />
-        <FormEdit
-            fields={fields}
-            initialData={student}
-            handleSubmit={handleSubmit}
-            table="/admin/students"
-        />
+      <FormEdit
+        fields={fields}
+        initialData={student}
+        handleSubmit={handleSubmit}
+        table="/admin/students"
+      />
     </>
   );
 }
