@@ -1,8 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
+import axios from "axios";
+import { defaultBannerData } from "../../data/banners/defaultBannerData";
+
 
 function Dashboard() {
+  
+  const atualizarItens = async () => {
+    try {
+      const response = await axios.delete("http://localhost:3333/item");
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+
+    const itens = [];
+    for (const banner of defaultBannerData) {
+      let item = {};
+      let is_character = false;
+      if (banner.tipo === "personagem") {
+        is_character = true;
+      }
+  
+      banner.imagemChibi = banner.imagemChibi ? banner.imagemChibi : (banner.imagemChibi = "");
+      banner.frases = banner.frases ? banner.frases : (banner.frases = [""]);
+  
+      item = {
+        name: banner.nome,
+        image: banner.imagem,
+        image_chibi: banner.imagemChibi,
+        quotes: banner.frases,
+        is_character: is_character,
+        description: banner.descricao,
+        bonus: banner.bonus,
+        colors: banner.cores,
+        rarity: banner.raridade,
+      };
+      console.log(item);
+      itens.push(item);
+    }
+  
+    try {
+      const response = await axios.post("http://localhost:3333/itens", itens);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
       <div className="containerDashboard">
@@ -36,6 +81,17 @@ function Dashboard() {
                 </div>
               </div>
             </Link>
+          </div>
+          <div className="col-12 col-md-6 col-lg-4">
+            <div
+              className="card"
+              onClick={() => {
+                atualizarItens();
+              }}>
+              <div className="card-body">
+                <h5 className="card-title">Atualizar itens</h5>
+              </div>
+            </div>
           </div>
           <div className="col-12 col-md-6 col-lg-4">
             <Link

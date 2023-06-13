@@ -24,11 +24,19 @@ model Student {
 }
 
 model Item {
-  id           Int       @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   name         String
   image        String
+  image_chibi  String?
   is_character Boolean
-  students     Student[] @relation("ItemToStudent")
+  description  String
+  bonus        String
+  colors       String[]
+  equiped      Boolean  @default(false)
+  rarity       String
+  quotes       String[]
+
+  students Student[] @relation("ItemToStudent")
 
   @@map("items")
 }
