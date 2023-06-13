@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./menu.css";
 import {
   RecoilRoot,
@@ -9,9 +9,11 @@ import {
 } from "recoil";
 import { bitsMoedaAtom } from "../atoms/bitsMoedaAtom";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/Auth/AuthContext";
 
 const Menu = () => {
   const [bitsMoeda, setBitsMoeda] = useRecoilState(bitsMoedaAtom);
+  const auth = useContext(AuthContext);
 
   return (
     <div>
@@ -37,7 +39,12 @@ const Menu = () => {
           <div id="moedas">
             <p>¢{bitsMoeda}</p>
           </div>
-          <button id="botaoFechar" className="windowsButton">
+          <button id="botaoFechar" className="windowsButton"
+            onClick={() => {
+              auth.signout();
+            }
+          }
+          >
             x
           </button>
         </div>

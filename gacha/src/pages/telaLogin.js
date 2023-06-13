@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import WindowsButton from "../components/WindowsButton";
@@ -14,20 +14,18 @@ export default function Login() {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (auth.user) {
+            navigate("/menu");
+        }
+    }, [auth.user]);
+
     const handleLogin = () => {
         if (registerStudent && password) {
             auth.signin(registerStudent, password);
             console.log(auth.user);
         } else {
             alert("Preencha todos os campos");
-        }
-
-        console.log(auth.user);
-
-        if (auth.user) {
-            navigate("/menu");
-        }else {
-            alert("Matricula ou senha incorretos");
         }
     };
 
