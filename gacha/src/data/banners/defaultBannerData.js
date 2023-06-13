@@ -164,7 +164,7 @@ export const defaultBannerData = [
     bonus: "nada ainda",
     cores: ["#ffb0e1", "#ce519f", "#df80a8", "#ea7091", "#f8ccf2"],
     habilitado: false,
-    imagem: "https://imgur.com/QG0fMIa",
+    imagem: "https://i.imgur.com/QG0fMIa.png",
     quantidade: 1,
     raridade: "N",
   },

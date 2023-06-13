@@ -3,16 +3,11 @@ import "./banner.css";
 import { Link } from "react-router-dom";
 import { defaultBannerData } from "../data/banners/defaultBannerData2";
 import {
-  RecoilRoot,
-  atom,
-  selector,
   useRecoilState,
-  useRecoilValue,
 } from "recoil";
 import { sorteadoAtom } from "../atoms/sorteadoAtom";
 import { storageAtom } from "../atoms/storageAtom";
 import { bitsMoedaAtom } from "../atoms/bitsMoedaAtom";
-import PopupConfirmacao from "../components/PopupConfirmacao";
 import { AuthContext } from "../context/Auth/AuthContext";
 import axios from "axios";
 
@@ -109,7 +104,6 @@ const Banner = () => {
         itens: itensAtualizados,
       })
       .then(() => {
-        console.log("atualizaEstudante", itensAtualizados);
       });
     setStorage(itensAtualizados);
   };
@@ -118,7 +112,6 @@ const Banner = () => {
     axios
       .get(`http://localhost:3333/student/${auth.user.id}`)
       .then((response) => {
-        console.log(response);
       });
   };
 

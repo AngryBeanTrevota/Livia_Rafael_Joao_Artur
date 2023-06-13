@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./ItemSorteado.css";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -47,15 +47,9 @@ const ItemSorteado = () => {
   async function postItem(item_id) {
 
     try {
-      console.log("User id:", auth.user.id);
-      console.log("Item id:", item_id);
-      const response = await axios.put(`http://localhost:3333/student/${auth.user.id}`, {
+      await axios.put(`http://localhost:3333/student/${auth.user.id}`, {
         itens_id: item_id,
       });
-
-      console.log(response.data);
-
-
     } catch (error) {
       console.error("Error posting item:", error);
     }

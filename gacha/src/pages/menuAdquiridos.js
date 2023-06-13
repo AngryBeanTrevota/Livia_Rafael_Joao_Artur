@@ -1,25 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./menuAdquirido.css";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
-import { storageAtom } from "../atoms/storageAtom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { defaultBannerData } from "../data/banners/defaultBannerData";
+import axios from "axios";
+import { AuthContext } from "../context/Auth/AuthContext";
 
-const Cores = ({ sorteado }) => {
-  if (!sorteado || !sorteado.cores || sorteado.cores.length === 0) {
+const Cores = ({ item }) => {
+  if (!item || !item.cores || item.cores.length === 0) {
     return null;
   }
 
   return (
     <div className="cores" style={{ display: "flex", flexDirection: "row" }}>
-      {sorteado.cores.map((cor, indice) => (
+      {item.colors.map((cor, indice) => (
         <div
           key={indice}
           className="corIndividual"
@@ -55,7 +48,7 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
           className="textoCorpo"
           style={{ fontSize: 20, marginLeft: 10, marginRight: 10 }}
         >
-          {item.nome}
+          {item.name}
         </p>
       </div>
       <div
@@ -65,7 +58,7 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
             "url(https://opengameart.org/sites/default/files/Transparency500.png)",
         }}
       >
-        <img src={item.imagem} style={{ height: 150, width: 150 }}></img>
+        <img src={item.image} alt="" style={{ height: 150, width: 150 }}/>
       </div>
       <div
         className="janelaWindows"
@@ -93,7 +86,7 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </div>
-      <Cores sorteado={item} />
+      <Cores item={item} />
       <button
         className="botaoGeralWindows"
         onClick={() => funcaoMudaDisplay({})}
@@ -105,9 +98,8 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
 };
 
 const PastaStorage = ({ item, funcaoMudaDisplay }) => {
-  let imagem, tipoAdquirido;
-  tipoAdquirido = item.tipo;
-  if (tipoAdquirido === "item") {
+  let imagem;
+  if (!item.is_character) {
     imagem = "https://i.imgur.com/GQnUQrT.png";
   } else {
     imagem = "https://i.imgur.com/EbQIEPz.png";
@@ -118,8 +110,8 @@ const PastaStorage = ({ item, funcaoMudaDisplay }) => {
         style={{ backgroundColor: "transparent", borderColor: "transparent" }}
         onClick={funcaoMudaDisplay}
       >
-        <img style={{ width: 70, height: 55 }} src={imagem}></img>
-        <p className="textoCorpo">{item.nome}</p>
+        <img style={{ width: 70, height: 55 }} alt="" src={imagem}/>
+        <p className="textoCorpo">{item.name}</p>
       </button>
     </div>
   );
@@ -149,41 +141,34 @@ const ConjuntoPastas = ({ listaItems, displayObj, funcaoMudaDisplay }) => {
   );
 };
 
+
+
 const MenuAdquirido = () => {
   const [pastasVisiveis, setPastasVisiveis] = useState("flex");
   const [infoVisivel, setInfoVisivel] = useState("none");
   const [enderecoDecorativo, setEnderecoDecorativo] = useState("");
   const [objetoDisplay, setObjetoDisplay] = useState("");
-  const [storage, setStorage] = useRecoilState(storageAtom);
-  const listaItens = [];
-
-  storage.map((id) => {
-    if (!listaItens.includes(defaultBannerData[id][0].obj)) {
-      listaItens.push(defaultBannerData[id][0].obj);
-    }
-  });
-
-  // Quando conseguir atualizar a lista de itens, apague esse map de cima e coloque isso aqui:
-
-  /* 
+  const auth = useContext(AuthContext);
   
-  auth.user.itens.map((id) => {
-    await axios.get(`http://localhost:3333/item/${id}")
-    .then((response) => {
-      if(!listaItens.includes(response))
-      {
-        listaItens.push(response);
+  const [listaItens, setListaItens] = useState([]);
+
+  useEffect(() => {
+    async function fetchItems() {
+      try {
+        const response = await axios.get(`http://localhost:3333/student/${auth.user.id}/itens`);
+        setListaItens(response.data);
+      } catch (error) {
+        console.error("Error fetching items:", error);
       }
-    });
-  });
-  
-  */
+    }
+    fetchItems();
+  }, [auth.user.id]);  
 
   const mudaDisplay = (item) => {
     if (pastasVisiveis === "flex") {
       setPastasVisiveis("none");
       setInfoVisivel("flex");
-      setEnderecoDecorativo(item.nome);
+      setEnderecoDecorativo(item.name);
       setObjetoDisplay(item);
     } else {
       setPastasVisiveis("flex");
@@ -224,11 +209,13 @@ const MenuAdquirido = () => {
           funcaoMudaDisplay={mudaDisplay}
           item={objetoDisplay}
         />
-        <ConjuntoPastas
-          listaItems={listaItens}
-          displayObj={pastasVisiveis}
-          funcaoMudaDisplay={mudaDisplay}
-        ></ConjuntoPastas>
+        {listaItens.length > 0 && (
+          <ConjuntoPastas
+            listaItems={listaItens}
+            displayObj={pastasVisiveis}
+            funcaoMudaDisplay={mudaDisplay}
+          />
+        )}
       </div>
     </div>
   );
