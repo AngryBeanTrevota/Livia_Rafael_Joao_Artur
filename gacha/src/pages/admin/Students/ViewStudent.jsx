@@ -14,6 +14,7 @@ function ViewStudent() {
     { label: "Tiros", name: "shots", type: "number" },
     { label: "Número de quizzes", name: "number_quizzes", type: "number" },
     { label: "Número de quizzes acertados", name: "number_quizzes_success", type: "number" },
+    { label: "Sala de Aula", name: "classroom", type: "text"}
   ];
 
   const [student, setStudent] = React.useState({});
@@ -22,6 +23,8 @@ function ViewStudent() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:3333/student/${id}`);
+        if (response.data.classroom)
+          response.data.classroom = response.data.classroom.name;
         setStudent(response.data);
       } catch (error) {
         console.log(error);

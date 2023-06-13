@@ -7,12 +7,14 @@ export class classController {
   async create(request: Request, response: Response): Promise<Response> {
     try {
       const { name, password, teacher_id } = request.body;
-
-      const teacher = await prisma.teacher.findUnique({
-        where: {
-          id: teacher_id,
-        },
-      });
+      const teacherId = parseInt(teacher_id);
+      const teacher = await prisma.teacher.findUnique(
+        {
+          where: {
+            id: teacherId,
+          }
+        }
+      )
 
       if (!teacher) {
         return response
@@ -26,10 +28,13 @@ export class classController {
           password: password,
           teacher: {
             connect: {
-              id: teacher_id,
+              id: teacherId,
             },
           },
         },
+        include: {
+          teacher: true,
+        }
       });
 
       return response.json(classe);
@@ -46,6 +51,10 @@ export class classController {
         where: {
           id: Number(id),
         },
+        include: {
+          teacher: true,
+          Students: true,
+        }
       });
 
       if (!classe) {

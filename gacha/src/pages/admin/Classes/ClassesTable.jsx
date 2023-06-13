@@ -61,7 +61,7 @@ function ClassesTable() {
                       Editar
                     </button>
                     <button
-                      class="custom-delete-btn"
+                      className="custom-delete-btn"
                       onClick={() =>
                         navigate(`/admin/classes/delete/${sala.id}`)
                       }>

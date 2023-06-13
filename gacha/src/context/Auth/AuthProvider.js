@@ -18,6 +18,11 @@ export const AuthProvider = ({ children }) => {
         
     };
 
+    const signout = () => {
+        setUser(null);
+        localStorage.removeItem("token");
+    }
+
     const register = (name, registerStudent, password) => {
         axios
             .post("http://localhost:3333/register", {
@@ -33,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ user, signin, register }}>
+        <AuthContext.Provider value={{ user, signin, register, signout }}>
             {children}
         </AuthContext.Provider>
     );

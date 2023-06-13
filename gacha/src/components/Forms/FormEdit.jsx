@@ -30,14 +30,29 @@ function FormEdit({ fields, initialData, handleSubmit, table }) {
           <label htmlFor={field.name} className="input-label">
             {field.label}
           </label>
-          <input
-            type={field.type || "text"}
-            name={field.name}
-            id={field.name}
-            value={formData[field.name] || ""}
-            onChange={handleChange}
-            className="input"
-          />
+          {field.type === "dropdown" ? (
+            <select
+              name={field.name}
+              id={field.name}
+              value={formData[field.name] || ""}
+              onChange={handleChange}
+              className="input">
+              {field.options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type={field.type || "text"}
+              name={field.name}
+              id={field.name}
+              value={formData[field.name] || ""}
+              onChange={handleChange}
+              className="input"
+            />
+          )}
         </div>
       ))}
       <div className="buttons">

@@ -23,25 +23,36 @@ function FormCreate({ fields, handleSubmit, voltar }) {
     <form onSubmit={onSubmit} className="form">
       {fields.map((field) => (
         <div key={field.name} className="input-container">
-          <label
-            htmlFor={field.name}
-            className="input-label">
+          <label htmlFor={field.name} className="input-label">
             {field.label}
           </label>
-          <input
-            type={field.type || "text"}
-            name={field.name}
-            id={field.name}
-            value={formData[field.name] || ""}
-            onChange={handleChange}
-            className="input"
-          />
+          {field.type === "dropdown" ? (
+            <select
+              name={field.name}
+              id={field.name}
+              value={formData[field.name] || ""}
+              onChange={handleChange}
+              className="input">
+              {field.options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type={field.type || "text"}
+              name={field.name}
+              id={field.name}
+              value={formData[field.name] || ""}
+              onChange={handleChange}
+              className="input"
+            />
+          )}
         </div>
       ))}
       <div className="buttons">
-        <button
-          type="submit"
-          className="button-save">
+        <button type="submit" className="button-save">
           Salvar
         </button>
         <button
@@ -50,7 +61,7 @@ function FormCreate({ fields, handleSubmit, voltar }) {
             navigate(voltar);
           }}
           className="button-back">
-         Voltar
+          Voltar
         </button>
       </div>
     </form>

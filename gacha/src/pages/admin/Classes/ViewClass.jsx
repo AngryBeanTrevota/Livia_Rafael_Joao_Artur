@@ -6,9 +6,22 @@ import FormView from "../../../components/Forms/FormView";
 
 function ViewClass() {
   const { id } = useParams();
+
+  const [studentsOptions, setStudentsOptions] = React.useState([]);
+
   const fields = [
     { label: "Nome", name: "name", type: "text" },
     { label: "Senha", name: "password", type: "text" },
+    { label: "Professor", name: "teacher", type: "text" },
+    {
+      label: "Alunos",
+      name: "students",
+      type: "dropdown",
+      options: [
+        { label: "Alunos inscritos", value: "" },
+        ...studentsOptions,
+      ]
+    },
   ];
 
   const [sala, setSala] = React.useState({});
@@ -17,6 +30,14 @@ function ViewClass() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:3333/class/${id}`);
+        response.data.teacher = response.data.teacher.name;
+        const students = response.data.Students;
+        const options = students.map((student) => ({
+          label: student.name,
+          value: student.id,
+        }));
+        setStudentsOptions(options);
+        response.data.students = options;
         setSala(response.data);
       } catch (error) {
         console.log(error);

@@ -64,7 +64,7 @@ function TeachersTable() {
                       Editar
                     </button>
                     <button
-                      class="custom-delete-btn"
+                      className="custom-delete-btn"
                       onClick={() =>
                         navigate(`/admin/teachers/delete/${teacher.id}`)
                       }>

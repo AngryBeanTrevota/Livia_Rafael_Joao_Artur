@@ -9,7 +9,7 @@ function ViewTeacher() {
   const fields = [
     { label: "Nome", name: "name", type: "text" },
     { label: "Matrícula", name: "registerTeacher", type: "text" },
-    { label: "Senha", name: "password", type: "password" },
+    { label: "Sala de Aula", name: "classroom", type: "text"}    
   ];
 
   const [teacher, setTeacher] = React.useState({});
@@ -18,6 +18,7 @@ function ViewTeacher() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:3333/teacher/${id}`);
+        response.data.classroom = response.data.classroom.name;
         setTeacher(response.data);
       } catch (error) {
         console.log(error);
