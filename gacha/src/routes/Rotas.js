@@ -8,7 +8,6 @@ import MenuAdquiridos from "../pages/menuAdquiridos";
 import QuizIndividual from "../pages/quizIndividual";
 import Quizzes from "../pages/quizzes";
 import TelaInicial from "../pages/telaInicial";
-import TelaJogoNovo from "../pages/telaJogoNovo";
 import AnimacaoBanner from "../pages/AnimacaoBanner";
 import Banner from "../pages/banner";
 import ItemSorteado from "../pages/ItemSorteado";
@@ -38,7 +37,6 @@ import CreateClass from "../pages/admin/Classes/CreateClass";
 import EditClass from "../pages/admin/Classes/EditClass";
 import DeleteClass from "../pages/admin/Classes/DeleteClass";
 import ViewClass from "../pages/admin/Classes/ViewClass";
-import { AuthProvider } from "../context/Auth/AuthProvider";
 
 
 
@@ -55,7 +53,6 @@ const Rotas = () => {
         <Route path="/menu" element={<RequireAuth><Menu /></RequireAuth>} />
         <Route path="/menuadquiridos" element={<RequireAuth><MenuAdquiridos /></RequireAuth>} />
         <Route path="/quizindividual" element={<RequireAuth><QuizIndividual /></RequireAuth>} />
-        <Route path="/criarsala" element={<RequireAuth><TelaJogoNovo /></RequireAuth>} />
         <Route path="/animacaoBanner" element={<RequireAuth><AnimacaoBanner /></RequireAuth>} />
         <Route path="/itemSorteado" element={<RequireAuth><ItemSorteado /></RequireAuth>} />
         <Route path="/sala" element={<RequireAuth><TelaSalaAluno /></RequireAuth>} />

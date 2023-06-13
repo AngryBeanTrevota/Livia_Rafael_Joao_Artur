@@ -23,7 +23,8 @@ function ViewStudent() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:3333/student/${id}`);
-        console.log(response.data);
+        if (response.data.classroom)
+          response.data.classroom = response.data.classroom.name;
         setStudent(response.data);
       } catch (error) {
         console.log(error);

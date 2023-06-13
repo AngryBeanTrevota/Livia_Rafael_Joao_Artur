@@ -2,17 +2,41 @@ import Window from "../components/Window";
 import "./telaSalaAluno.css";
 
 import load from "../icones/load.png";
+import { useContext} from "react";
+import axios from "axios";
+import { AuthContext } from "../context/Auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const TelaSalaAluno = () => {
+    const auth = useContext(AuthContext);
+    const navigate = useNavigate();
+
+
+    const handleSubmmit = async (e) => {
+        e.preventDefault();
+        const password = document.getElementById("password").value;
+        const response = await axios.get("http://localhost:3333/class");
+        const foundClass = response.data.find((classroom) => classroom.password === password);
+        console.log("Found class:", foundClass);
+        
+        if (foundClass) {
+            await axios.put(`http://localhost:3333/student/${auth.user.id}`, {
+                class_id: foundClass.id,
+            });
+            navigate("/historia");
+        } else {
+            alert("Senha inválida");
+        }
+    };
+
+    
+
     return (
         <Window titulo={"Tela de Sala"}
             styleWindow={{
                 height: "100vh",
                 width: "100vw",
                 display: "",
-                // display: "flex",
-                // flexDirection: "column",
-                // gap: 60,
             }}
         >
             <div id="corpo">
@@ -54,10 +78,14 @@ const TelaSalaAluno = () => {
                                     fontSize: 22,
                                 }}
                                 placeholder="Digite o código da sala..."
+                                id="password"
                             />
                         </div>
                         <div className="button-ok-cont">
-                            <button className="button-ok">
+                            <button className="button-ok"
+                                type="submit"
+                                onClick={handleSubmmit}
+                            >
                                 <p>OK</p>
                             </button>
                         </div>

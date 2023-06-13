@@ -9,23 +9,6 @@ function ViewClass() {
 
   const [studentsOptions, setStudentsOptions] = React.useState([]);
 
-  React.useEffect(() => {
-    //pegar todos os estudantes que estão na sala
-    async function fetchStudents() {
-      try {
-        const response = await axios.get("http://localhost:3333/student");
-        const students = response.data;
-        const options = students.map((student) => ({
-          label: student.name,
-          value: student.id,
-        }));
-        setStudentsOptions(options);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  });
-
   const fields = [
     { label: "Nome", name: "name", type: "text" },
     { label: "Senha", name: "password", type: "text" },
