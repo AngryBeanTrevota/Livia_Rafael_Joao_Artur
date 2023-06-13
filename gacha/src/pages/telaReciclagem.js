@@ -15,6 +15,23 @@ const TelaReciclagem = () => {
         setPopUpVisivel(false);
     };
 
+    const [valorReciclagem, setValorReciclagem] = useState(0);
+
+    const itens = [
+        { nome: "Item 1", valorReciclagem: 5 },
+        { nome: "Item 2", valorReciclagem: 10 },
+        { nome: "Item 3", valorReciclagem: 8 },
+        { nome: "Item 4", valorReciclagem: 3 },
+        { nome: "Item 5", valorReciclagem: 7 },
+        { nome: "Item 6", valorReciclagem: 12 },
+        { nome: "Item 7", valorReciclagem: 23 },
+        { nome: "Item 8", valorReciclagem: 45 },
+    ];
+
+    const atualizarValorReciclagem = (valor) => {
+        setValorReciclagem(valor);
+    };
+
     return (
         <Window titulo={"Tela de Reciclagem"}
             styleWindow={{
@@ -39,61 +56,22 @@ const TelaReciclagem = () => {
                     >
                         <div className="recycle-cont">
                             <div className="recycle">
-                                <div className="itens-folder">
-                                    <img
-                                        style={{ width: 70, height: 55 }}
-                                        className="imagemPasta"
-                                        src="https://i.imgur.com/r3a0P0E.png"
-                                    />
-                                    <p className="item-name">Personagem</p>
-                                    <p>3x</p>
-                                </div>
-                                <div className="itens-folder">
-                                    <img
-                                        style={{ width: 70, height: 55 }}
-                                        className="imagemPasta"
-                                        src="https://i.imgur.com/r3a0P0E.png"
-                                    />
-                                    <p className="item-name">Personagem</p>
-                                    <p>2x</p>
-                                </div>
-                                <div className="itens-folder">
-                                    <img
-                                        style={{ width: 70, height: 55 }}
-                                        className="imagemPasta"
-                                        src="https://i.imgur.com/r3a0P0E.png"
-                                    />
-                                    <p className="item-name">Personagem</p>
-                                    <p>4x</p>
-                                </div>
-                                <div className="itens-folder">
-                                    <img
-                                        style={{ width: 70, height: 55 }}
-                                        className="imagemPasta"
-                                        src="https://i.imgur.com/r3a0P0E.png"
-                                    />
-                                    <p className="item-name">Personagem</p>
-                                    <p>3x</p>
-                                </div>
-                                <div className="itens-folder">
-                                    <img
-                                        style={{ width: 70, height: 55 }}
-                                        className="imagemPasta"
-                                        src="https://i.imgur.com/r3a0P0E.png"
-                                    />
-                                    <p className="item-name">Personagem</p>
-                                    <p>2x</p>
-                                </div>
-                                <div className="itens-folder">
-                                    <img
-                                        style={{ width: 70, height: 55 }}
-                                        className="imagemPasta"
-                                        src="https://i.imgur.com/r3a0P0E.png"
-                                    />
-                                    <p className="item-name">Personagem</p>
-                                    <p>1x</p>
-                                </div>
+                            {itens.map((item, index) => (
+                            <div
+                                className="itens-folder"
+                                onMouseEnter={() => atualizarValorReciclagem(item.valorReciclagem)}
+                                key={index}
+                            >
+                                <img
+                                    style={{ width: 70, height: 55 }}
+                                    className="imagemPasta"
+                                    src="https://i.imgur.com/r3a0P0E.png"
+                                />
+                                <p className="item-name">{item.nome}</p>
+                                <p>3x</p>
                             </div>
+                            ))}
+                             </div>
                         </div>
                     </Window>
                 </div>
@@ -110,7 +88,7 @@ const TelaReciclagem = () => {
                     >
                         <div className="troca-cont">
                             <p className="obter-text">OBTER:</p>
-                            <p className="tiros-text">20 Tiros</p>
+                            <p className="tiros-text">{valorReciclagem} Tiros</p>
                         </div>
                         <div className="button-troca-cont">
                             <button className="button-troca"
