@@ -66,7 +66,7 @@ const Menu = () => {
                   borderColor: "transparent",
                 }}
               >
-                <Link to="/quizzes">
+                <Link to="/sala">
                   <img
                       alt=""
                     style={{ width: 70, height: 55 }}

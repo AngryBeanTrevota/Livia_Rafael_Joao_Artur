@@ -35,7 +35,7 @@ const questionarios =
                     erros: 0,
                     respostas: [
                         "Permite esclarecer dúvidas durante a aplicação",
-                        "Permite avaliar a real freqência que as atividades ocorrem",
+                        "Permite avaliar a real frequência que as atividades ocorrem",
                         "O analista pode esquecer de perguntar algo",
                         "É um método de levantamento de dados que ocoore de maneira coletiva"
                     ],

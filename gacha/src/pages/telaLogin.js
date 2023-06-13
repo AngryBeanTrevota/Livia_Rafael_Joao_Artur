@@ -31,7 +31,7 @@ export default function Login() {
 
     return (
 
-            <Window styleWindow={{ height: "100vh", width: "100vw" }} titulo="Um nome">
+            <Window styleWindow={{ height: "100vh", width: "100vw" }} titulo="">
                 <Window
                     styleContainer={{ maxWidth: 500, minWidth: 300 }}
                     styleWindow={{ height: 200, maxWidth: 400 }}

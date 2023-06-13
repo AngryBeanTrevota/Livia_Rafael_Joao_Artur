@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import  {AuthContext}  from "../context/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-import "./telaLogin.css"
-
 import WindowsButton from "../components/WindowsButton";
 import WindowsInput from "../components/WindowsInput";
 import Window from "../components/Window";
@@ -36,9 +34,9 @@ export default function Cadastro() {
     }
 
     return (
-        <Window clickX={() => navigate('/login')} styleWindow={{height: "100vh", width: "100vw"}} titulo="Um nome">
+        <Window clickX={() => navigate('/')} styleWindow={{height: "100vh", width: "100vw"}} titulo="">
 
-            <Window clickX={() => navigate('/login')} styleContainer={{maxWidth: 500, minWidth: 300}} styleWindow={{height: 200, maxWidth: 400}} styleTitulo={{maxWidth: 400}} titulo={"Fazer Cadastro"}>
+            <Window clickX={() => navigate('/')} styleContainer={{maxWidth: 500, minWidth: 300}} styleWindow={{height: 200, maxWidth: 400}} styleTitulo={{maxWidth: 400}} titulo={"Fazer Cadastro"}>
                 <WindowsInput type="text" style={{ marginBottom: 5 }} value={name} onChange={e => setName(e.target.value)} placeholder="Nome" />
                 <WindowsInput type="text" style={{ marginBottom: 5 }} value={registerStudent} onChange={e => setRegisterStudent(e.target.value)} placeholder="Matricula" />
                 <WindowsInput type="password" style={{ marginBottom: 5 }} value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" />
