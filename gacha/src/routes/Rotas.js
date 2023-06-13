@@ -55,10 +55,10 @@ const Rotas = () => {
         <Route path="/menu" element={<RequireAuth><Menu /></RequireAuth>} />
         <Route path="/menuadquiridos" element={<RequireAuth><MenuAdquiridos /></RequireAuth>} />
         <Route path="/quizindividual" element={<RequireAuth><QuizIndividual /></RequireAuth>} />
-        <Route path="/telajogonovo" element={<RequireAuth><TelaJogoNovo /></RequireAuth>} />
+        <Route path="/criarsala" element={<RequireAuth><TelaJogoNovo /></RequireAuth>} />
         <Route path="/animacaoBanner" element={<RequireAuth><AnimacaoBanner /></RequireAuth>} />
         <Route path="/itemSorteado" element={<RequireAuth><ItemSorteado /></RequireAuth>} />
-        <Route path="/telasalaaluno" element={<RequireAuth><TelaSalaAluno /></RequireAuth>} />
+        <Route path="/sala" element={<RequireAuth><TelaSalaAluno /></RequireAuth>} />
         <Route path="/telareciclagem" element={<RequireAuth><TelaReciclagem /></RequireAuth>} />
         <Route path="/quizzes" element={<RequireAuth><TelaListaQuestionario /></RequireAuth>} />
         <Route path="/historia" element={<RequireAuth><TelaHistoria /></RequireAuth>} />
