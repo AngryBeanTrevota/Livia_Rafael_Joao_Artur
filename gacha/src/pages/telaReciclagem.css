@@ -116,3 +116,14 @@ p {
 .feita-text {
     font-size: 22px;
 }
+
+/* Painel de Valores */
+
+.valor-armazenado-painel {
+    z-index: 4;
+}
+
+.valor-armazenado-text {
+    padding: 1rem 0.1rem 1rem 0.1rem;
+    font-size: 20px;
+}
