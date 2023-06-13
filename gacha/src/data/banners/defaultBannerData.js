@@ -1,4 +1,4 @@
-const defaultBannerDataArray = [
+export const defaultBannerData = [
   {
     nome: "Marina",
     tipo: "personagem",
@@ -55,7 +55,7 @@ const defaultBannerDataArray = [
   {
     nome: "Marina item 3",
     tipo: "item",
-    id: "MarinaDefaultIt3",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#ffb0e1", "#ce519f", "#df80a8", "#ea7091", "#f8ccf2"],
@@ -68,7 +68,7 @@ const defaultBannerDataArray = [
   {
     nome: "Gatsby item 3",
     tipo: "item",
-    id: "GatsbyDefaultIt3",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#a8caeb", "#67c7d3", "#58549b", "#927997", "#9f5977"],
@@ -81,7 +81,7 @@ const defaultBannerDataArray = [
   {
     nome: "Bengie item 3",
     tipo: "item",
-    id: "BengieDefaultIt3",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#e6d7f4", "#7b3eb3", "#ab75b4", "#93759e", "#8e5083"],
@@ -94,7 +94,7 @@ const defaultBannerDataArray = [
   {
     nome: "Gatsby item 2",
     tipo: "item",
-    id: "GatsbyDefaultIt2",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#a8caeb", "#67c7d3", "#58549b", "#927997", "#9f5977"],
@@ -107,7 +107,7 @@ const defaultBannerDataArray = [
   {
     nome: "Bengie item 2",
     tipo: "item",
-    id: "BengieDefaultIt2",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#e6d7f4", "#7b3eb3", "#ab75b4", "#93759e", "#8e5083"],
@@ -120,7 +120,7 @@ const defaultBannerDataArray = [
   {
     nome: "Marina item 2",
     tipo: "item",
-    id: "MarinaDefaultIt2",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#ffb0e1", "#ce519f", "#df80a8", "#ea7091", "#f8ccf2"],
@@ -133,7 +133,7 @@ const defaultBannerDataArray = [
   {
     nome: "Bengie item 1",
     tipo: "item",
-    id: "BengieDefaultIt1",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#e6d7f4", "#7b3eb3", "#ab75b4", "#93759e", "#8e5083"],
@@ -146,7 +146,7 @@ const defaultBannerDataArray = [
   {
     nome: "Gatsby item 1",
     tipo: "item",
-    id: "GatsbyDefaultIt1",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#a8caeb", "#67c7d3", "#58549b", "#927997", "#9f5977"],
@@ -159,7 +159,7 @@ const defaultBannerDataArray = [
   {
     nome: "Marina item 1",
     tipo: "item",
-    id: "MarinaDefaultIt1",
+    id: "BengieDefault",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#ffb0e1", "#ce519f", "#df80a8", "#ea7091", "#f8ccf2"],
@@ -169,10 +169,3 @@ const defaultBannerDataArray = [
     raridade: "N",
   },
 ];
-
-export const defaultBannerData = defaultBannerDataArray.map((objeto) => [
-  {
-    id: objeto.id,
-    obj: objeto,
-  },
-]);
