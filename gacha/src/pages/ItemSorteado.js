@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ItemSorteado.css";
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { sorteadoAtom } from "../atoms/sorteadoAtom";
+import axios from "axios";
+import { AuthContext } from "../context/Auth/AuthContext";
+
 
 const Imagem = ({ sorteado }) => {
   return (
@@ -36,8 +39,25 @@ const Cores = ({ sorteado }) => {
   );
 };
 
+
 const ItemSorteado = () => {
   const sorteado = useRecoilValue(sorteadoAtom);
+  const auth = useContext(AuthContext);
+  
+  async function postItem(item_id) {
+
+    try {
+      await axios.put(`http://localhost:3333/student/${auth.user.id}`, {
+        itens_id: item_id,
+      });
+    } catch (error) {
+      console.error("Error posting item:", error);
+    }
+  }
+  const itens_id = [
+    parseInt(sorteado.id),
+  ];
+  postItem(itens_id);
 
   return (
     <div className="fundo">

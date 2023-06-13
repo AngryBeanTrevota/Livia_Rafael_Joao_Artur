@@ -33,6 +33,7 @@ router.post("/student", studentCtrl.create);
 router.get("/student/:id", studentCtrl.view);
 router.put("/student/:id", studentCtrl.update);
 router.delete("/student/:id", studentCtrl.delete);
+router.get("/student/:id/itens", studentCtrl.getItens);
 
 // Teachers
 router.post("/teacher", teacherCtrl.create);

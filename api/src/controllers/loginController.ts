@@ -1,8 +1,7 @@
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { prismaClient } from "../database/prismaCient";
-import e, { Request, Response } from "express";
-import { json } from "stream/consumers";
+import { Request, Response } from "express";
 
 interface IRequest {
   register: string;

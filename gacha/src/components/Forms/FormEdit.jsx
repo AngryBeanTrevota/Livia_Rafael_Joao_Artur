@@ -64,7 +64,8 @@ function FormEdit({ fields, initialData, handleSubmit, table }) {
           onClick={() => {
             navigate(table);
           }}
-          className="button-back">
+          className="button-back"
+        >
           Voltar
         </button>
       </div>

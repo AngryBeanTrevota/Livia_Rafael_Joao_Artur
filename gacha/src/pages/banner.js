@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./banner.css";
 import { Link } from "react-router-dom";
-import { defaultBannerData } from "../data/banners/defaultBannerData";
+import { defaultBannerData } from "../data/banners/defaultBannerData2";
 import {
-  RecoilRoot,
-  atom,
-  selector,
   useRecoilState,
-  useRecoilValue,
 } from "recoil";
 import { sorteadoAtom } from "../atoms/sorteadoAtom";
 import { storageAtom } from "../atoms/storageAtom";
 import { bitsMoedaAtom } from "../atoms/bitsMoedaAtom";
-import PopupConfirmacao from "../components/PopupConfirmacao";
+import { AuthContext } from "../context/Auth/AuthContext";
+import axios from "axios";
 
 const PopUpRodaGacha = ({ bits, rodaGacha, visivel, fechaPopUp }) => {
   let textoCorpo, textoBotao, funcaoBotaoConfirmacao, endereco;
@@ -93,28 +90,59 @@ const Banner = () => {
   const [sorteado, setSorteado] = useRecoilState(sorteadoAtom);
   const [storage, setStorage] = useRecoilState(storageAtom);
   const [imagemExibida, setImagemExibida] = useState(
-    defaultBannerData[0].imagem
+    defaultBannerData[0][0].obj.imagem
   );
   const [bitsMoeda, setBitsMoeda] = useRecoilState(bitsMoedaAtom);
   const [popUpVisivel, setPopUpVisivel] = useState("hidden");
+  const auth = useContext(AuthContext);
+
+  // TENTANDO ATUALIZAR O USER
+
+  const atualizaEstudante = (itensAtualizados) => {
+    axios
+      .put(`http://localhost:3333/student/${auth.user.id}`, {
+        itens: itensAtualizados,
+      })
+      .then(() => {
+      });
+    setStorage(itensAtualizados);
+  };
+
+  const pegaItens = () => {
+    axios
+      .get(`http://localhost:3333/student/${auth.user.id}`)
+      .then((response) => {
+      });
+  };
+
+  const atualizaSorteado = (numSorteio) => {
+    /*
+    await axios.get(`http://localhost:3333/item/${numSorteio}")
+    .then((response) => {
+      setSorteado(response);
+    });
+    */
+    setSorteado(defaultBannerData[numSorteio][0].obj);
+  };
 
   const botaoPassaEsquerda = () => {
-    if (imagemExibida === defaultBannerData[0].imagem) {
-      setImagemExibida(defaultBannerData[2].imagem);
+    pegaItens();
+    if (imagemExibida === defaultBannerData[0][0].obj.imagem) {
+      setImagemExibida(defaultBannerData[2][0].obj.imagem);
     } else if (imagemExibida === defaultBannerData[2].imagem) {
-      setImagemExibida(defaultBannerData[1].imagem);
+      setImagemExibida(defaultBannerData[1][0].obj.imagem);
     } else {
-      setImagemExibida(defaultBannerData[0].imagem);
+      setImagemExibida(defaultBannerData[0][0].obj.imagem);
     }
   };
 
   const botaoPassaDireita = () => {
-    if (imagemExibida === defaultBannerData[0].imagem) {
-      setImagemExibida(defaultBannerData[1].imagem);
-    } else if (imagemExibida === defaultBannerData[1].imagem) {
-      setImagemExibida(defaultBannerData[2].imagem);
+    if (imagemExibida === defaultBannerData[0][0].obj.imagem) {
+      setImagemExibida(defaultBannerData[1][0].obj.imagem);
+    } else if (imagemExibida === defaultBannerData[1][0].obj.imagem) {
+      setImagemExibida(defaultBannerData[2][0].obj.imagem);
     } else {
-      setImagemExibida(defaultBannerData[0].imagem);
+      setImagemExibida(defaultBannerData[0][0].obj.imagem);
     }
   };
 
@@ -123,50 +151,59 @@ const Banner = () => {
   };
 
   const rodaGacha = () => {
-    if (bitsMoeda >= 500) {
-      setBitsMoeda(bitsMoeda - 500);
-      console.log(defaultBannerData[0].imagem);
-      const raridade = Math.random() * (100 - 0) + 0;
-      let numSorteio;
-      if (raridade <= 5) {
-        numSorteio = Math.floor(Math.random() * (3 - 0) + 0);
-        setSorteado(defaultBannerData[numSorteio]);
-      } else if (raridade <= 20) {
-        numSorteio = 3 + Math.floor(Math.random() * (3 - 0) + 0);
-        setSorteado(defaultBannerData[numSorteio]);
-      } else if (raridade <= 55) {
-        numSorteio = 6 + Math.floor(Math.random() * (3 - 0) + 0);
-        setSorteado(defaultBannerData[numSorteio]);
-      } else {
-        numSorteio = 9 + Math.floor(Math.random() * (3 - 0) + 0);
-        setSorteado(defaultBannerData[numSorteio]);
-      }
+    // TEMPORÁRIO, quando fizer o quiz pra atualizar o dinheiro, tem que tirar isso
+    setBitsMoeda(bitsMoeda - 500);
 
-      if (storage.size === 0) {
-        setStorage(storage.push(defaultBannerData[numSorteio]));
-      } else {
-        let itemEncontrado = false;
-
-        const storageAtualizado = storage.map((item) => {
-          if (item.nome === defaultBannerData[numSorteio].nome) {
-            let novoItem = { ...item };
-            novoItem.quantidade++;
-            itemEncontrado = true;
-            return novoItem;
-          } else {
-            return item;
-          }
-        });
-
-        if (!itemEncontrado) {
-          storageAtualizado.push(defaultBannerData[numSorteio]);
-        }
-
-        setStorage(storageAtualizado);
-        console.log(storage);
-      }
+    const raridade = Math.random() * (100 - 0) + 0;
+    let numSorteio;
+    if (raridade <= 5) {
+      numSorteio = Math.floor(Math.random() * (3 - 0) + 0);
+      atualizaSorteado(numSorteio);
+    } else if (raridade <= 20) {
+      numSorteio = 3 + Math.floor(Math.random() * (3 - 0) + 0);
+      atualizaSorteado(numSorteio);
+    } else if (raridade <= 55) {
+      numSorteio = 6 + Math.floor(Math.random() * (3 - 0) + 0);
+      atualizaSorteado(numSorteio);
+    } else {
+      numSorteio = 9 + Math.floor(Math.random() * (3 - 0) + 0);
+      atualizaSorteado(numSorteio);
     }
+
+    // Parte pra salvar no banco
+
+    // Pega lista do usuário
+
+    axios
+      .get(`http://localhost:3333/student/${auth.user.id}`)
+      .then((response) => {
+        let itens = [...response.data.itens];
+
+        let itensStorage = [...storage]; // Apaga quando conseguir fazer os itens salvarem no banco
+
+        // Atualiza moedas
+
+        let moedasAtualizado = response.data.xp - 500;
+
+        axios
+          .put(`http://localhost:3333/student/${auth.user.id}`, {
+            xp: moedasAtualizado,
+          })
+          .then(() => {
+            pegaItens();
+          });
+
+        itens.push(numSorteio);
+        itensStorage.push(numSorteio); // Apaga quando conseguir fazer os itens salvarem no banco
+
+        // Atualiza no banco de dados
+
+        atualizaEstudante(itens);
+        setStorage(itensStorage); // Apaga quando conseguir fazer os itens salvarem no banco
+      });
   };
+
+  
 
   const abrePopUp = () => {
     setPopUpVisivel("visible");
@@ -175,7 +212,7 @@ const Banner = () => {
   return (
     <div>
       <PopUpRodaGacha
-        bits={bitsMoeda}
+        bits={bitsMoeda /*auth.user.xp*/}
         rodaGacha={rodaGacha}
         visivel={popUpVisivel}
         fechaPopUp={fechaPopUp}
@@ -221,7 +258,10 @@ const Banner = () => {
             >
               ◄◄
             </button>
-            <BotaoRodaGacha abrePopUp={abrePopUp} bitsMoedaValor={bitsMoeda} />
+            <BotaoRodaGacha
+              abrePopUp={abrePopUp}
+              bitsMoedaValor={bitsMoeda /*auth.user.xp*/}
+            />
             <button
               className="windowsButton"
               type="button"

@@ -38,13 +38,12 @@ function Dashboard() {
         colors: banner.cores,
         rarity: banner.raridade,
       };
-      console.log(item);
       itens.push(item);
     }
   
     try {
-      const response = await axios.post("http://localhost:3333/itens", itens);
-      console.log(response);
+      await axios.post("http://localhost:3333/itens", itens);
+      alert("Itens atualizados com sucesso!");
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +84,7 @@ function Dashboard() {
           </div>
           <div className="col-12 col-md-6 col-lg-4">
             <div
-              className="card"
+              className="card-itens"
               onClick={() => {
                 atualizarItens();
               }}>

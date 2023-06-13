@@ -1,8 +1,8 @@
-export const defaultBannerData = [
+const defaultBannerDataArray = [
   {
     nome: "Marina",
     tipo: "personagem",
-    id: "MarinaDefault",
+    id: "1",
     descricao: "blablabadsnasdjfnsoedifd descrição da mina competitiva",
     frases: [
       "Não vou perder!",
@@ -21,7 +21,7 @@ export const defaultBannerData = [
   {
     nome: "Gatsby",
     tipo: "personagem",
-    id: "GatsbyDefault",
+    id: "2",
     descricao: "mentirosinho da porra",
     frases: [
       "Hm? Eu não sei do que você está falando...",
@@ -40,7 +40,7 @@ export const defaultBannerData = [
   {
     nome: "Bengie",
     tipo: "personagem",
-    id: "BengieDefault",
+    id: "3",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     frases: ["Que sono...", "Isso é trabalho demais...", "Zzzzzz..."],
     cores: ["#e6d7f4", "#7b3eb3", "#ab75b4", "#93759e", "#8e5083"],
@@ -55,7 +55,7 @@ export const defaultBannerData = [
   {
     nome: "Marina item 3",
     tipo: "item",
-    id: "BengieDefault",
+    id: "4",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#ffb0e1", "#ce519f", "#df80a8", "#ea7091", "#f8ccf2"],
@@ -68,7 +68,7 @@ export const defaultBannerData = [
   {
     nome: "Gatsby item 3",
     tipo: "item",
-    id: "BengieDefault",
+    id: "5",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#a8caeb", "#67c7d3", "#58549b", "#927997", "#9f5977"],
@@ -81,7 +81,7 @@ export const defaultBannerData = [
   {
     nome: "Bengie item 3",
     tipo: "item",
-    id: "BengieDefault",
+    id: "6",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#e6d7f4", "#7b3eb3", "#ab75b4", "#93759e", "#8e5083"],
@@ -94,7 +94,7 @@ export const defaultBannerData = [
   {
     nome: "Gatsby item 2",
     tipo: "item",
-    id: "BengieDefault",
+    id: "7",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#a8caeb", "#67c7d3", "#58549b", "#927997", "#9f5977"],
@@ -107,7 +107,7 @@ export const defaultBannerData = [
   {
     nome: "Bengie item 2",
     tipo: "item",
-    id: "BengieDefault",
+    id: "8",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#e6d7f4", "#7b3eb3", "#ab75b4", "#93759e", "#8e5083"],
@@ -120,7 +120,7 @@ export const defaultBannerData = [
   {
     nome: "Marina item 2",
     tipo: "item",
-    id: "BengieDefault",
+    id: "9",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#ffb0e1", "#ce519f", "#df80a8", "#ea7091", "#f8ccf2"],
@@ -133,7 +133,7 @@ export const defaultBannerData = [
   {
     nome: "Bengie item 1",
     tipo: "item",
-    id: "BengieDefault",
+    id: "10",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#e6d7f4", "#7b3eb3", "#ab75b4", "#93759e", "#8e5083"],
@@ -146,7 +146,7 @@ export const defaultBannerData = [
   {
     nome: "Gatsby item 1",
     tipo: "item",
-    id: "BengieDefault",
+    id: "11",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#a8caeb", "#67c7d3", "#58549b", "#927997", "#9f5977"],
@@ -159,7 +159,7 @@ export const defaultBannerData = [
   {
     nome: "Marina item 1",
     tipo: "item",
-    id: "BengieDefault",
+    id: "11",
     descricao: "zzzzzzzzzzzzzzzzzzzzzz ta dormindo po",
     bonus: "nada ainda",
     cores: ["#ffb0e1", "#ce519f", "#df80a8", "#ea7091", "#f8ccf2"],
@@ -169,3 +169,10 @@ export const defaultBannerData = [
     raridade: "N",
   },
 ];
+
+export const defaultBannerData = defaultBannerDataArray.map((objeto) => [
+  {
+    id: objeto.id,
+    obj: objeto,
+  },
+]);
