@@ -30,7 +30,10 @@ function EditStudent() {
   }, [id]);
   student.password = "";
 
+  
   const handleSubmit = (data) => {
+    data.xp = parseInt(data.xp);
+    data.shots = parseInt(data.shots);
     axios.put(`http://localhost:3333/student/${id}`, data).then(() => {
       navigate("/admin/students");
     });

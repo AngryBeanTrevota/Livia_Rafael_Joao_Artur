@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import "./banner.css";
 import { Link } from "react-router-dom";
 import { defaultBannerData } from "../data/banners/defaultBannerData2";
@@ -184,6 +184,7 @@ const Banner = () => {
         // Atualiza moedas
 
         let moedasAtualizado = response.data.xp - 500;
+        auth.user.xp = moedasAtualizado;
 
         axios
           .put(`http://localhost:3333/student/${auth.user.id}`, {
@@ -212,7 +213,7 @@ const Banner = () => {
   return (
     <div>
       <PopUpRodaGacha
-        bits={bitsMoeda /*auth.user.xp*/}
+        bits={auth.user.xp}
         rodaGacha={rodaGacha}
         visivel={popUpVisivel}
         fechaPopUp={fechaPopUp}
@@ -260,7 +261,7 @@ const Banner = () => {
             </button>
             <BotaoRodaGacha
               abrePopUp={abrePopUp}
-              bitsMoedaValor={bitsMoeda /*auth.user.xp*/}
+              bitsMoedaValor={auth.user.xp}
             />
             <button
               className="windowsButton"

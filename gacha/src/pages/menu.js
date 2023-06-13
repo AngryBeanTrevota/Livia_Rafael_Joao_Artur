@@ -1,19 +1,12 @@
 import React, { useContext } from "react";
 import "./menu.css";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
-import { bitsMoedaAtom } from "../atoms/bitsMoedaAtom";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/Auth/AuthContext";
 
 const Menu = () => {
-  const [bitsMoeda, setBitsMoeda] = useRecoilState(bitsMoedaAtom);
+
   const auth = useContext(AuthContext);
+  console.log(auth.user);
     return (
     <div>
       <div id="janelaFrente">
@@ -29,6 +22,7 @@ const Menu = () => {
           <button className="windowsButton">x</button>
         </div>
         <img
+            alt=""
           id="imagemItem"
           src="https://uploads-ssl.webflow.com/626a4a48b11ca84b33d9865c/628a6e45751aa342592bcf29_Honeycam%202022-05-22%2011-01-43.gif"
         ></img>
@@ -36,7 +30,7 @@ const Menu = () => {
       <div id="todo">
         <div id="topo">
           <div id="moedas">
-            <p>¢{bitsMoeda}</p>
+            <p>¢{auth.user.xp}</p>
           </div>
           <button id="botaoFechar" className="windowsButton"
             onClick={() => {
@@ -61,6 +55,7 @@ const Menu = () => {
                     style={{ width: 70, height: 55 }}
                     className="imagemPasta"
                     src="https://i.imgur.com/r3a0P0E.png"
+                    alt=""
                   ></img>
                 </Link>
               </button>
@@ -73,6 +68,7 @@ const Menu = () => {
               >
                 <Link to="/quizzes">
                   <img
+                      alt=""
                     style={{ width: 70, height: 55 }}
                     className="imagemPasta"
                     src="https://i.imgur.com/r3a0P0E.png"

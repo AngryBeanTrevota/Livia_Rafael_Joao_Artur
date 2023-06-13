@@ -28,6 +28,8 @@ export class studentController {
           name: name,
           registerStudent: register,
           password: passwordHash,
+          shots: 1000,
+          xp: 1000,
         },
       });
 
@@ -60,6 +62,8 @@ export class studentController {
             name: name,
             registerStudent: registerStudent,
             password: passwordHash,
+            shots: 1000,
+            xp: 1000,
           },
         });
       } catch (err) {

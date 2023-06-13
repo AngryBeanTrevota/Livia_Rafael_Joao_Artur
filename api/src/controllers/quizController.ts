@@ -11,7 +11,8 @@ export class quizController {
                 data: {
                     title: title,
                     options: options,
-                    answer: answer,                },
+                    answer: answer,                
+                },
             });
 
             return response.json(quiz);
