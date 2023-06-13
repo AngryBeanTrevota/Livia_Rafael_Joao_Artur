@@ -157,11 +157,27 @@ const MenuAdquirido = () => {
   const [storage, setStorage] = useRecoilState(storageAtom);
   const listaItens = [];
 
-  defaultBannerData.map((item) => {
-    if (storage.includes(item[0].id)) {
-      listaItens.push(item[0].obj);
+  storage.map((id) => {
+    if (!listaItens.includes(defaultBannerData[id][0].obj)) {
+      listaItens.push(defaultBannerData[id][0].obj);
     }
   });
+
+  // Quando conseguir atualizar a lista de itens, apague esse map de cima e coloque isso aqui:
+
+  /* 
+  
+  auth.user.itens.map((id) => {
+    await axios.get(`http://localhost:3333/item/${id}")
+    .then((response) => {
+      if(!listaItens.includes(response))
+      {
+        listaItens.push(response);
+      }
+    });
+  });
+  
+  */
 
   const mudaDisplay = (item) => {
     if (pastasVisiveis === "flex") {
