@@ -1,4 +1,4 @@
-.main-quiz{
+.main-quiz {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,7 +6,7 @@
     gap: 2rem;
 }
 
-.question-options{
+.question-options {
     width: 100%;
     padding: 0;
     margin: 0;
@@ -15,4 +15,39 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+}
+
+.question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.pontuacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.pontuacao p {
+    font-weight: 600;
+}
+
+.titulo-pontuacao {
+    font-size: 18;
+}
+
+.errorWindow{
+    position: absolute;
+    top: 0;
+
+}
+
+.pergunta{
+    text-align: center;
 }

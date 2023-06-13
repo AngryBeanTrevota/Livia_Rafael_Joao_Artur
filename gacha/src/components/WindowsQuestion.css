@@ -8,15 +8,31 @@
 
 .windowsQuestion-button {
     all:unset;
-    width: 50%;
+    width: 80%;
     border-color: #808080 #fff #fff #808080;
     border-style: solid;
-    font-size: 2rem;
+    font-size: 1rem;
     font-family: Tahoma;
-    padding: 0 2rem;
+    padding: 0 1.2rem;
   }
 
 .windowsQuestion-button:hover {
+    border-color: #fff #808080 #808080 #fff;
+    color: rgb(69, 25, 113);
+}
+
+.WindowsQuestionSelected {
+    color: rgb(69, 25, 113);
+    all:unset;
+    width: 80%;
+    border-style: solid;
+    font-size: 1rem;
+    font-family: Tahoma;
+    padding: 0 1.2rem;
+    border-color: #fff #808080 #808080 #fff;
+}
+
+.WindowsQuestionSelected:hover {
     border-color: #fff #808080 #808080 #fff;
     color: rgb(69, 25, 113);
 }

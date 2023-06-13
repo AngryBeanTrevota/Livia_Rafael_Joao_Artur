@@ -4,6 +4,55 @@ import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [quiz, setQuiz] = useState(null);
+    const [historia, setHistoria] = useState(-1);
+    const conversas = [
+        {
+            personagem: "Nome Personagem",
+            mensagens: [
+                {
+                    nome: "Personagem",
+                    mensagem: "Uma mensagem",
+                },
+                {
+                    nome: "Jogador",
+                    mensagem: "Uma mensagem"
+                },
+                {
+                    nome: "Jogador",
+                    mensagem: "Uma mensagem"
+                },
+                {
+                    nome: "Jogador",
+                    mensagem: "Uma mensagem"
+                },
+                {
+                    nome: "Personagem",
+                    mensagem: "Uma mensagem"
+                },
+                {
+                    nome: "Personagem",
+                    mensagem: "Uma mensagem"
+                },
+                {
+                    nome: "Jogador",
+                    mensagem: "Uma mensagem"
+                },
+                {
+                    nome: "Jogador",
+                    mensagem: "Uma mensagem"
+                },
+                {
+                    nome: "Jogador",
+                    mensagem: "Uma mensagem"
+                },
+                {
+                    nome: "Personagem",
+                    mensagem: "Uma mensagem asdf;kja;sdkjf ;alksjd f;lkajsdflk jas;ldf ha;ksjdh f';oas hdflkja hgsdlki"
+                }
+            ]
+        }
+    ];
 
     const signin = (register, password, is_student) => {
         axios
@@ -39,7 +88,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, signin, register, signout }}>
+        <AuthContext.Provider value={{ user, setUser, signin, register, signout, quiz, setQuiz, setHistoria, historia, conversas }}>
             {children}
         </AuthContext.Provider>
     );

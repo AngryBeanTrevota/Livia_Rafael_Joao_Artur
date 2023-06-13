@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import './WindowsQuestion.css'
 
-export default function WindowsQuestion({ children, ...props }) {
+export default function WindowsQuestion({ children, selected, disabled, ...props }) {
 
     return (
         <div {...props} className='windowsQuestion-div' >
-            <button className="windowsQuestion-button">
+            <button disabled={disabled} className={selected ? 'WindowsQuestionSelected' : "windowsQuestion-button"}>
                 {children}
             </button>
         </div>
