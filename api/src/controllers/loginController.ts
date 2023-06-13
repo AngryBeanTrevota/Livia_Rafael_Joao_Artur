@@ -57,7 +57,6 @@ export class loginController {
       return response.status(500).json({ error: err.message });
     }
   }
-
   async login(request: Request, response: Response): Promise<Response> {
     const { register, password, is_student } = request.body;
     try {
@@ -69,7 +68,6 @@ export class loginController {
         },
         response
       );
-      response.cookie("token", token, { httpOnly: true, secure: true });
 
       let user;
       if (is_student) {
@@ -93,7 +91,7 @@ export class loginController {
         });
       }
 
-      return response.json(user);
+      return response.json({user, token});
     } catch (err) {
       return response.status(403).json({ error: err.message });
     }

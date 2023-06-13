@@ -97,7 +97,7 @@ function Dashboard() {
             <Link
               className="card-link"
               onClick={() => {
-                auth.logout(false);
+                auth.logout();
               }}>
               <div className="card">
                 <div className="card-body">

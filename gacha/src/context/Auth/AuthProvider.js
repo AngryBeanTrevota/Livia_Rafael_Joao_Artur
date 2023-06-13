@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 
@@ -13,21 +13,15 @@ export const AuthProvider = ({ children }) => {
                 is_student,
             })
             .then((response) => {
-                console.log(response.data);
-                document.cookie = `token=${response.data.cookie}; path=/;`;
-                response.data.is_student = is_student;
-                setUser(response.data);
+                localStorage.setItem("token", response.data.token);
+                response.data.user.is_student = is_student;
+                setUser(response.data.user);
             });
     };
 
-    const signout = (is_student) => {
+    const signout = () => {
         setUser(null);
-        if (is_student) {
-            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            return;
-        }
-        else
-            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/admin;";
+        localStorage.removeItem("token");
     };
 
     const register = (name, registerStudent, password) => {
@@ -38,9 +32,9 @@ export const AuthProvider = ({ children }) => {
                 password,
             })
             .then((response) => {
-                document.cookie = `token=${response.data.token}; path=/;`;
-                response.data.is_student = true;
-                setUser(response.data);
+                localStorage.setItem("token", response.data.token);
+                response.data.user.is_student = true;
+                setUser(response.data.user);
             });
     };
 
