@@ -4,9 +4,6 @@ import "./Forms.css";
 
 function FormView({ data, fields, table }) {
   const navigate = useNavigate();
-
-  console.log(data);
-  console.log(fields);
   return (
     <div className="form">
       {fields.map((field) => (
@@ -14,14 +11,29 @@ function FormView({ data, fields, table }) {
           <label htmlFor={field.name} className="input-label">
             {field.label}
           </label>
-          <input
-            type={field.type}
-            name={field.name}
-            id={field.name}
-            value={data[field.name] || ""}
-            readOnly
-            className="input"
-          />
+          {field.type === "dropdown" ? (
+            <select
+              name={field.name}
+              id={field.name}
+              value={data[field.name] || ""}
+              readOnly
+              className="input">
+              {field.options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type={field.type}
+              name={field.name}
+              id={field.name}
+              value={data[field.name] || ""}
+              readOnly
+              className="input"
+            />
+          )}
         </div>
       ))}
       <div className="buttons">

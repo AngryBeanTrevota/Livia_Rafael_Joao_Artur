@@ -51,6 +51,10 @@ export class classController {
         where: {
           id: Number(id),
         },
+        include: {
+          teacher: true,
+          Students: true,
+        }
       });
 
       if (!classe) {
