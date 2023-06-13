@@ -14,8 +14,7 @@ import { AuthContext } from "../context/Auth/AuthContext";
 const Menu = () => {
   const [bitsMoeda, setBitsMoeda] = useRecoilState(bitsMoedaAtom);
   const auth = useContext(AuthContext);
-
-  return (
+    return (
     <div>
       <div id="janelaFrente">
         <div id="footerJanelaFrente">

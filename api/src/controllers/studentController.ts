@@ -73,8 +73,9 @@ export class studentController {
       return loginCtrl.login(
         {
           body: {
-            registerStudent: registerStudent,
+            register: registerStudent,
             password: password,
+            is_student: true,
           },
         } as Request,
         response

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import  {AuthContext}  from "../context/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +17,12 @@ export default function Cadastro() {
     const auth = useContext(AuthContext);
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (auth.user) {
+            navigate("/menu");
+        }
+    }, [auth.user, navigate]);
+
     const handleRegister = () => {
 
         if (name && registerStudent && password && confirmPassword) {
@@ -26,12 +32,6 @@ export default function Cadastro() {
             } else {
                 alert("As senhas não são iguais");
             }
-        }
-
-        if (auth.user) {
-            navigate("/menu");
-        } else {
-            alert("Preencha todos os campos corretamente");
         }
     }
 

@@ -1,12 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { RequireAuth } from "../context/Auth/RequireAuth";
+import { RequireAuthStudent } from "../context/Auth/RequireAuthStudent";
+import { RequireAuthAdmin } from "../context/Auth/RequireAuthAdmin";
 
 import Menu from "../pages/menu";
 import TelaLogin from "../pages/telaLogin";
+import LoginAdm from "../pages/LoginAdm";
 import MenuAdquiridos from "../pages/menuAdquiridos";
 import QuizIndividual from "../pages/quizIndividual";
-import Quizzes from "../pages/quizzes";
 import TelaInicial from "../pages/telaInicial";
 import AnimacaoBanner from "../pages/AnimacaoBanner";
 import Banner from "../pages/banner";
@@ -47,39 +48,40 @@ const Rotas = () => {
       <Routes>
         <Route path="/" element={<TelaLogin />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<LoginAdm />} />
 
-        <Route path="/nav" element={<RequireAuth><TelaInicial /></RequireAuth>} />
-        <Route path="/banner" element={<RequireAuth><Banner /></RequireAuth>} />
-        <Route path="/menu" element={<RequireAuth><Menu /></RequireAuth>} />
-        <Route path="/menuadquiridos" element={<RequireAuth><MenuAdquiridos /></RequireAuth>} />
-        <Route path="/quizindividual" element={<RequireAuth><QuizIndividual /></RequireAuth>} />
-        <Route path="/animacaoBanner" element={<RequireAuth><AnimacaoBanner /></RequireAuth>} />
-        <Route path="/itemSorteado" element={<RequireAuth><ItemSorteado /></RequireAuth>} />
-        <Route path="/sala" element={<RequireAuth><TelaSalaAluno /></RequireAuth>} />
-        <Route path="/telareciclagem" element={<RequireAuth><TelaReciclagem /></RequireAuth>} />
-        <Route path="/quizzes" element={<RequireAuth><TelaListaQuestionario /></RequireAuth>} />
-        <Route path="/historia" element={<RequireAuth><TelaHistoria /></RequireAuth>} />
-        <Route path="/revisao" element={<RequireAuth><TelaRevisao /></RequireAuth>} />
+        <Route path="/nav" element={<RequireAuthStudent><TelaInicial /></RequireAuthStudent>} />
+        <Route path="/banner" element={<RequireAuthStudent><Banner /></RequireAuthStudent>} />
+        <Route path="/menu" element={<RequireAuthStudent><Menu /></RequireAuthStudent>} />
+        <Route path="/menuadquiridos" element={<RequireAuthStudent><MenuAdquiridos /></RequireAuthStudent>} />
+        <Route path="/quizindividual" element={<RequireAuthStudent><QuizIndividual /></RequireAuthStudent>} />
+        <Route path="/animacaoBanner" element={<RequireAuthStudent><AnimacaoBanner /></RequireAuthStudent>} />
+        <Route path="/itemSorteado" element={<RequireAuthStudent><ItemSorteado /></RequireAuthStudent>} />
+        <Route path="/sala" element={<RequireAuthStudent><TelaSalaAluno /></RequireAuthStudent>} />
+        <Route path="/telareciclagem" element={<RequireAuthStudent><TelaReciclagem /></RequireAuthStudent>} />
+        <Route path="/quizzes" element={<RequireAuthStudent><TelaListaQuestionario /></RequireAuthStudent>} />
+        <Route path="/historia" element={<RequireAuthStudent><TelaHistoria /></RequireAuthStudent>} />
+        <Route path="/revisao" element={<RequireAuthStudent><TelaRevisao /></RequireAuthStudent>} />
 
-        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin" element={<RequireAuthAdmin><Dashboard /></RequireAuthAdmin>} />
 
-        <Route path="/admin/students" element={<StudentsTable />} />
-        <Route path="/admin/students/create" element={<CreateStudent />} />
-        <Route path="/admin/students/view/:id" element={<ViewStudent />} />
-        <Route path="/admin/students/edit/:id" element={<EditStudent />} />
-        <Route path="/admin/students/delete/:id" element={<DeleteStudent />} />
+        <Route path="/admin/students" element={<RequireAuthAdmin><StudentsTable /></RequireAuthAdmin>} />
+        <Route path="/admin/students/create" element={<RequireAuthAdmin><CreateStudent /></RequireAuthAdmin>} />
+        <Route path="/admin/students/view/:id" element={<RequireAuthAdmin><ViewStudent /></RequireAuthAdmin>} />
+        <Route path="/admin/students/edit/:id" element={<RequireAuthAdmin><EditStudent /></RequireAuthAdmin>} />
+        <Route path="/admin/students/delete/:id" element={<RequireAuthAdmin><DeleteStudent /></RequireAuthAdmin>} />
 
-        <Route path="/admin/teachers" element={<TeachersTable />} />
-        <Route path="/admin/teachers/create" element={<CreateTeacher />} />
-        <Route path="/admin/teachers/view/:id" element={<ViewTeacher />} />
-        <Route path="/admin/teachers/edit/:id" element={<EditTeacher />} />
-        <Route path="/admin/teachers/delete/:id" element={<DeleteTeacher />} />
+        <Route path="/admin/teachers" element={<RequireAuthAdmin><TeachersTable /></RequireAuthAdmin>} />
+        <Route path="/admin/teachers/create" element={<RequireAuthAdmin><CreateTeacher /></RequireAuthAdmin>} />
+        <Route path="/admin/teachers/view/:id" element={<RequireAuthAdmin><ViewTeacher /></RequireAuthAdmin>} />
+        <Route path="/admin/teachers/edit/:id" element={<RequireAuthAdmin><EditTeacher /></RequireAuthAdmin>} />
+        <Route path="/admin/teachers/delete/:id" element={<RequireAuthAdmin><DeleteTeacher /></RequireAuthAdmin>} />
 
-        <Route path="/admin/classes" element={<ClassesTable />} />
-        <Route path="/admin/classes/create" element={<CreateClass />} />
-        <Route path="/admin/classes/view/:id" element={<ViewClass />} />
-        <Route path="/admin/classes/edit/:id" element={<EditClass />} />
-        <Route path="/admin/classes/delete/:id" element={<DeleteClass />} />
+        <Route path="/admin/classes" element={<RequireAuthAdmin><ClassesTable /></RequireAuthAdmin>} />
+        <Route path="/admin/classes/create" element={<RequireAuthAdmin><CreateClass /></RequireAuthAdmin>} />
+        <Route path="/admin/classes/view/:id" element={<RequireAuthAdmin><ViewClass /></RequireAuthAdmin>} />
+        <Route path="/admin/classes/edit/:id" element={<RequireAuthAdmin><EditClass /></RequireAuthAdmin>} />
+        <Route path="/admin/classes/delete/:id" element={<RequireAuthAdmin><DeleteClass /></RequireAuthAdmin>} />
       </Routes>
     </div>
   );

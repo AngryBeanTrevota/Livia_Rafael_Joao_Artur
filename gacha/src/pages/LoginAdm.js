@@ -6,23 +6,23 @@ import WindowsInput from "../components/WindowsInput";
 import Window from "../components/Window";
 import { AuthContext } from "../context/Auth/AuthContext";
 
-export default function Login() {
+export default function LoginAdm() {
     const auth = useContext(AuthContext);
 
-    const [registerStudent, setRegisterStudent] = useState("");
+    const [register, setRegister] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (auth.user) {
-            navigate("/menu");
+            navigate("/admin");
         }
     }, [auth.user, navigate]);
 
     const handleLogin = () => {
-        if (registerStudent && password) {
-            auth.signin(registerStudent, password, true);
+        if (register && password) {
+            auth.signin(register, password, false);
             console.log(auth.user);
         } else {
             alert("Preencha todos os campos");
@@ -36,13 +36,13 @@ export default function Login() {
                     styleContainer={{ maxWidth: 500, minWidth: 300 }}
                     styleWindow={{ height: 200, maxWidth: 400 }}
                     styleTitulo={{ maxWidth: 400 }}
-                    titulo={"Fazer Login"}
+                    titulo={"Fazer login para a área administrativa"}
                 >
                     <WindowsInput
                         type="text"
                         style={{ margin: 5 }}
-                        value={registerStudent}
-                        onChange={(e) => setRegisterStudent(e.target.value)}
+                        value={register}
+                        onChange={(e) => setRegister(e.target.value)}
                         placeholder="Matricula"
                     />
                     <WindowsInput
@@ -54,7 +54,6 @@ export default function Login() {
                     />
 
                     <WindowsButton onClick={handleLogin}>Login</WindowsButton>
-                    <WindowsButton onClick={() => navigate("/cadastro")}>Cadastro</WindowsButton>
                 </Window>
             </Window>
 
