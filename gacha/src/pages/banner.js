@@ -65,13 +65,7 @@ const PopUpRodaGacha = ({ bits, rodaGacha, visivel, fechaPopUp }) => {
   );
 };
 
-const BotaoRodaGacha = ({
-  abrePopUp,
-  bitsMoedaValor,
-  auth,
-  atualizaEstudante,
-}) => {
-  atualizaEstudante();
+const BotaoRodaGacha = ({ abrePopUp, bitsMoedaValor }) => {
   let endereco;
   if (bitsMoedaValor >= 500) {
     endereco = "/animacaoBanner";
@@ -110,22 +104,32 @@ const Banner = () => {
   // TENTANDO ATUALIZAR O USER
 
   const atualizaEstudante = (itensAtualizados) => {
-    let bla = [{ id: 122, qtd: 1 }];
     axios
       .put(`http://localhost:3333/student/${auth.user.id}`, {
-        itens: bla,
+        itens: itensAtualizados,
       })
       .then(() => {
         console.log("atualizaEstudante", itensAtualizados);
       });
+    setStorage(itensAtualizados);
   };
 
   const pegaItens = () => {
     axios
       .get(`http://localhost:3333/student/${auth.user.id}`)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
       });
+  };
+
+  const atualizaSorteado = (numSorteio) => {
+    /*
+    await axios.get(`http://localhost:3333/item/${numSorteio}")
+    .then((response) => {
+      setSorteado(response);
+    });
+    */
+    setSorteado(defaultBannerData[numSorteio][0].obj);
   };
 
   const botaoPassaEsquerda = () => {
@@ -154,21 +158,23 @@ const Banner = () => {
   };
 
   const rodaGacha = () => {
+    // TEMPORÁRIO, quando fizer o quiz pra atualizar o dinheiro, tem que tirar isso
     setBitsMoeda(bitsMoeda - 500);
+
     const raridade = Math.random() * (100 - 0) + 0;
     let numSorteio;
     if (raridade <= 5) {
       numSorteio = Math.floor(Math.random() * (3 - 0) + 0);
-      setSorteado(defaultBannerData[numSorteio][0].obj);
+      atualizaSorteado(numSorteio);
     } else if (raridade <= 20) {
       numSorteio = 3 + Math.floor(Math.random() * (3 - 0) + 0);
-      setSorteado(defaultBannerData[numSorteio][0].obj);
+      atualizaSorteado(numSorteio);
     } else if (raridade <= 55) {
       numSorteio = 6 + Math.floor(Math.random() * (3 - 0) + 0);
-      setSorteado(defaultBannerData[numSorteio][0].obj);
+      atualizaSorteado(numSorteio);
     } else {
       numSorteio = 9 + Math.floor(Math.random() * (3 - 0) + 0);
-      setSorteado(defaultBannerData[numSorteio][0].obj);
+      atualizaSorteado(numSorteio);
     }
 
     // Parte pra salvar no banco
@@ -178,51 +184,30 @@ const Banner = () => {
     axios
       .get(`http://localhost:3333/student/${auth.user.id}`)
       .then((response) => {
-        console.log(response.data.itens);
         let itens = [...response.data.itens];
-        let encontrado = false;
-        if (itens.length != 0) {
-          itens.map((item) => {
-            if (item.id === defaultBannerData[numSorteio][0].id) {
-              item.qtd += item.qtd;
-              encontrado = true;
-              console.log("clone: ", item);
-            }
+
+        let itensStorage = [...storage]; // Apaga quando conseguir fazer os itens salvarem no banco
+
+        // Atualiza moedas
+
+        let moedasAtualizado = response.data.xp - 500;
+
+        axios
+          .put(`http://localhost:3333/student/${auth.user.id}`, {
+            xp: moedasAtualizado,
+          })
+          .then(() => {
+            pegaItens();
           });
-        }
-        if (encontrado === false) {
-          let item = { id: defaultBannerData[numSorteio][0].id, qtd: 1 };
-          itens.push(item);
-          console.log("itens atualizado: ", itens);
-        }
+
+        itens.push(numSorteio);
+        itensStorage.push(numSorteio); // Apaga quando conseguir fazer os itens salvarem no banco
 
         // Atualiza no banco de dados
 
         atualizaEstudante(itens);
+        setStorage(itensStorage); // Apaga quando conseguir fazer os itens salvarem no banco
       });
-
-    if (storage.size === 0) {
-      setStorage(storage.push(defaultBannerData[numSorteio][0].id));
-    } else {
-      let itemEncontrado = false;
-
-      const storageAtualizado = storage.map((item) => {
-        if (item === defaultBannerData[numSorteio][0].id) {
-          let novoItem = { ...item };
-          novoItem.quantidade++;
-          itemEncontrado = true;
-          return novoItem;
-        } else {
-          return item;
-        }
-      });
-
-      if (!itemEncontrado) {
-        storageAtualizado.push(defaultBannerData[numSorteio][0].id);
-      }
-
-      setStorage(storageAtualizado);
-    }
   };
 
   const abrePopUp = () => {
@@ -232,7 +217,7 @@ const Banner = () => {
   return (
     <div>
       <PopUpRodaGacha
-        bits={bitsMoeda}
+        bits={bitsMoeda /*auth.user.xp*/}
         rodaGacha={rodaGacha}
         visivel={popUpVisivel}
         fechaPopUp={fechaPopUp}
@@ -280,9 +265,7 @@ const Banner = () => {
             </button>
             <BotaoRodaGacha
               abrePopUp={abrePopUp}
-              bitsMoedaValor={bitsMoeda}
-              auth={auth}
-              atualizaEstudante={atualizaEstudante}
+              bitsMoedaValor={bitsMoeda /*auth.user.xp*/}
             />
             <button
               className="windowsButton"
