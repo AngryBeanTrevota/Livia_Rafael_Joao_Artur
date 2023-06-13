@@ -10,7 +10,8 @@ function ViewClass() {
   const [studentsOptions, setStudentsOptions] = React.useState([]);
 
   React.useEffect(() => {
-    const fetchStudents = async () => {
+    //pegar todos os estudantes que estão na sala
+    async function fetchStudents() {
       try {
         const response = await axios.get("http://localhost:3333/student");
         const students = response.data;
@@ -22,11 +23,8 @@ function ViewClass() {
       } catch (error) {
         console.log(error);
       }
-    };
-
-    fetchStudents();
-  }
-  , []);
+    }
+  });
 
   const fields = [
     { label: "Nome", name: "name", type: "text" },
@@ -37,9 +35,10 @@ function ViewClass() {
       name: "students",
       type: "dropdown",
       options: [
+        { label: "Alunos inscritos", value: "" },
         ...studentsOptions,
-      ],
-    }
+      ]
+    },
   ];
 
   const [sala, setSala] = React.useState({});
@@ -49,6 +48,13 @@ function ViewClass() {
       try {
         const response = await axios.get(`http://localhost:3333/class/${id}`);
         response.data.teacher = response.data.teacher.name;
+        const students = response.data.Students;
+        const options = students.map((student) => ({
+          label: student.name,
+          value: student.id,
+        }));
+        setStudentsOptions(options);
+        response.data.students = options;
         setSala(response.data);
       } catch (error) {
         console.log(error);
