@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./banner.css";
 import { Link } from "react-router-dom";
-import { defaultBannerData } from "../data/banners/defaultBannerData";
+import { defaultBannerData } from "../data/banners/defaultBannerData2";
 import {
   RecoilRoot,
   atom,
@@ -209,6 +209,8 @@ const Banner = () => {
         setStorage(itensStorage); // Apaga quando conseguir fazer os itens salvarem no banco
       });
   };
+
+  
 
   const abrePopUp = () => {
     setPopUpVisivel("visible");

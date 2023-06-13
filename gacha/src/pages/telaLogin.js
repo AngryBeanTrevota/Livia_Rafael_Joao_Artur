@@ -23,7 +23,6 @@ export default function Login() {
     const handleLogin = () => {
         if (registerStudent && password) {
             auth.signin(registerStudent, password);
-            console.log(auth.user);
         } else {
             alert("Preencha todos os campos");
         }
