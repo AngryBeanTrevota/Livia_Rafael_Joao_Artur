@@ -27,10 +27,11 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
   const auth = useContext(AuthContext);
   const setEquipedItem = async () => {
     try {
-      const response = await axios.put(`http://localhost:3333/item/${auth.user.id}/itens/${item.id}`);
-      
-
-
+      await axios.put(`http://localhost:3333/studentItem/equip`, {
+        student_id: auth.user.id,
+        item_id: item.id,
+      });
+      alert("Item equipado com sucesso!");
     } catch (error) {
       console.error("Error fetching items:", error);
     }
@@ -104,7 +105,7 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
       >
         <button
           className="botaoGeralWindows"
-          onClick={() => funcaoMudaDisplay({})}
+          onClick={() => setEquipedItem()}
           style={{
             fontSize: 20,
           }}
@@ -113,7 +114,7 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
         </button>
         <button
           className="botaoGeralWindows"
-          onClick={() => setEquipedItem()}
+          onClick={() => funcaoMudaDisplay({})} 
           style={{
             fontSize: 20,
           }}

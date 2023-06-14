@@ -63,11 +63,11 @@ router.delete("/quiz/:id", quizCtrl.delete);
 // StudentItems
 router.post("/studentItem", studentItemCtrl.create);
 router.get("/studentItem", studentItemCtrl.index);
-router.get("/students/:id/items/:id", studentItemCtrl.view);
-router.put("/students/:id/items/:id", studentItemCtrl.update);
+router.get("/students/:student_id/items/:item_id", studentItemCtrl.view);
+router.put("/students/:student_id/items/:item_id", studentItemCtrl.update);
 router.put("/studentItem/equip", studentItemCtrl.equipItem);
-router.get("/student/:id/items", studentItemCtrl.getEquippedItem);
-router.put("/students/:id/items/:id/quantity", studentItemCtrl.updateQuantity);
+router.get("/student/:student_id/equipment", studentItemCtrl.getEquippedItem);
+router.put( "/students/:student_id/items/:item_id/quantity", studentItemCtrl.updateQuantity );
 
 router.delete("/students/:id/items/:id", studentItemCtrl.delete);
 

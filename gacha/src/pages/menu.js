@@ -1,13 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./menu.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/Auth/AuthContext";
+import axios from "axios";
 
 const Menu = () => {
 
   const auth = useContext(AuthContext);
-  console.log(auth.user);
-    return (
+  const [itemEquipped, setItemEquipped] = useState("https://uploads-ssl.webflow.com/626a4a48b11ca84b33d9865c/628a6e45751aa342592bcf29_Honeycam%202022-05-22%2011-01-43.gif");
+  const [characterEquipped, setCharacterEquipped] = useState("");
+
+  useState(() => {
+    async function fetchEquipment() {
+      const response = await axios.get(`http://localhost:3333/student/${auth.user.id}/equipment`);
+      console.log(response.data);
+      setCharacterEquipped(response.data.characterEquipped.image);
+      setItemEquipped(response.data.itemEquipped.image);
+    }
+    fetchEquipment();
+  });
+
+  return (
     <div>
       <div id="janelaFrente">
         <div id="footerJanelaFrente">
@@ -22,9 +35,10 @@ const Menu = () => {
           <button className="windowsButton">x</button>
         </div>
         <img
-            alt=""
+          alt=""
           id="imagemItem"
-          src="https://uploads-ssl.webflow.com/626a4a48b11ca84b33d9865c/628a6e45751aa342592bcf29_Honeycam%202022-05-22%2011-01-43.gif"
+          style={{ width: "60%", height: "60%" }}
+          src={itemEquipped}
         ></img>
       </div>
       <div id="todo">
@@ -36,7 +50,7 @@ const Menu = () => {
             onClick={() => {
               auth.signout();
             }
-          }
+            }
           >
             x
           </button>
@@ -68,7 +82,7 @@ const Menu = () => {
               >
                 <Link to="/sala">
                   <img
-                      alt=""
+                    alt=""
                     style={{ width: 70, height: 55 }}
                     className="imagemPasta"
                     src="https://i.imgur.com/r3a0P0E.png"
@@ -79,7 +93,19 @@ const Menu = () => {
             </div>
           </div>
           <div id="corpoDir">
-            <div id="imagemPersonagem"></div>
+            <div id="imagemPersonagem">
+              <img
+                alt=""
+                id="imagemPersonagem"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  
+                }}
+
+                src={characterEquipped}
+              ></img>
+            </div>
           </div>
         </div>
         <div id="footer">

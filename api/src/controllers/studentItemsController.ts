@@ -185,16 +185,12 @@ export class studentItemsController {
 
   async equipItem(request: Request, response: Response): Promise<Response> {
     try {
-      const { student_id, item_id, is_equipped } = request.body;
+      const { student_id, item_id } = request.body;
       const studentId = parseInt(student_id);
       const itemId = parseInt(item_id);
 
-      let isEquipped;
-      if (is_equipped === "true") {
-        isEquipped = true;
-      } else {
-        isEquipped = false;
-      }
+      let isEquipped: boolean;
+      
 
       const studentItem = await prisma.studentItem.findUnique({
         where: {
@@ -213,6 +209,8 @@ export class studentItemsController {
           .status(404)
           .json({ error: "Item do aluno não encontrado!" });
       }
+
+      isEquipped = !studentItem.is_equipped;
 
       await prisma.studentItem.update({
         where: {
@@ -248,7 +246,18 @@ export class studentItemsController {
           item: true,
         },
       });
-      return response.json(studentItems);
+      let characterEquipped, itemEquipped;
+      studentItems.map((studentItem) => {
+        if(studentItem.item.is_character){
+           characterEquipped = studentItem.item;
+           return;
+        }else {
+          itemEquipped = studentItem.item;
+          return;
+        }
+      });
+
+      return response.json({characterEquipped, itemEquipped});
     } catch (error) {
       return response.status(400).json({ error: error.message });
     }

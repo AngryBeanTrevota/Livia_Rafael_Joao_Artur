@@ -139,9 +139,12 @@ export class itemController {
 
     async deleteAll(request: Request, response: Response): Promise<Response> {
     try {
+      await prismaClient.studentItem.deleteMany();
       await prismaClient.item.deleteMany();
       //zerar o auto incremento
       await prismaClient.$executeRaw<Sql>`ALTER SEQUENCE "items_id_seq" RESTART WITH 1;`;
+
+
       return response.json("Itens deletados com sucesso!");
     } catch (err) {
       return response.status(500).json({ error: err.message });
