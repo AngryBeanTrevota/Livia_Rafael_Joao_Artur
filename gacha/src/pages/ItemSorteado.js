@@ -48,16 +48,14 @@ const ItemSorteado = () => {
 
     try {
       await axios.put(`http://localhost:3333/student/${auth.user.id}`, {
-        itens_id: item_id,
+        item_id: item_id,
       });
     } catch (error) {
       console.error("Error posting item:", error);
     }
   }
-  const itens_id = [
-    parseInt(sorteado.id),
-  ];
-  postItem(itens_id);
+  
+  postItem(parseInt(sorteado.id));
 
   return (
     <div className="fundo">

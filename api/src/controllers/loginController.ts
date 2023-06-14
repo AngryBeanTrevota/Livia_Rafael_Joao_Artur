@@ -2,11 +2,11 @@ import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { prismaClient } from "../database/prismaCient";
 import { Request, Response } from "express";
-import { json } from "stream/consumers";
 
 interface IRequest {
-  registerStudent: string;
+  register: string;
   password: string;
+  is_student: boolean;
 }
 
 export class loginController {
@@ -14,21 +14,33 @@ export class loginController {
     this.login = this.login.bind(this);
   }
 
-  async execute({ registerStudent, password }: IRequest, response: Response) {
+  async execute(
+    { register, password, is_student }: IRequest,
+    response: Response
+  ) {
     try {
-      const student = await prismaClient.student.findUnique({
-        where: {
-          registerStudent: registerStudent,
-        },
-      });
+      let user;
+      if (is_student) {
+        user = await prismaClient.student.findUnique({
+          where: {
+            registerStudent: register,
+          },
+        });
+      } else {
+        user = await prismaClient.teacher.findUnique({
+          where: {
+            registerTeacher: register,
+          },
+        });
+      }
 
-      if (!student) {
+      if (!user) {
         return response
           .status(403)
           .json({ error: "Matrícula ou senha inválidos!" });
       }
 
-      const passwordMatch = await compare(password, student.password);
+      const passwordMatch = await compare(password, user.password);
 
       if (!passwordMatch) {
         return response
@@ -37,7 +49,7 @@ export class loginController {
       }
 
       const token = sign({}, "code", {
-        subject: "student.id",
+        subject: "user.id",
         expiresIn: "60h",
       });
       return { token };
@@ -45,30 +57,41 @@ export class loginController {
       return response.status(500).json({ error: err.message });
     }
   }
-
-
   async login(request: Request, response: Response): Promise<Response> {
-    const { registerStudent, password } = request.body;
+    const { register, password, is_student } = request.body;
     try {
       const token = await this.execute(
         {
-          registerStudent,
+          register,
           password,
+          is_student,
         },
         response
       );
 
-      const student = await prismaClient.student.findUnique({
-        where: {
-          registerStudent: registerStudent,
-        },
-        include: {
-          classroom: true,
-          itens: true,
-        }
-      });
+      let user;
+      if (is_student) {
+        user = await prismaClient.student.findUnique({
+          where: {
+            registerStudent: register,
+          },
+          include: {
+            classroom: true,
+            itens: true,
+          },
+        });
+      } else {
+        user = await prismaClient.teacher.findUnique({
+          where: {
+            registerTeacher: register,
+          },
+          include: {
+            classroom: true,
+          },
+        });
+      }
 
-      return response.json({ student, token });
+      return response.json({user, token});
     } catch (err) {
       return response.status(403).json({ error: err.message });
     }

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
 import axios from "axios";
 import { defaultBannerData } from "../../data/banners/defaultBannerData";
+import { AuthContext } from "../../context/Auth/AuthContext";
 
 
 function Dashboard() {
-  
+  const auth = useContext(AuthContext);
   const atualizarItens = async () => {
     try {
       const response = await axios.delete("http://localhost:3333/item");
@@ -94,10 +95,9 @@ function Dashboard() {
           </div>
           <div className="col-12 col-md-6 col-lg-4">
             <Link
-              to="/"
               className="card-link"
               onClick={() => {
-                localStorage.removeItem("token");
+                auth.logout();
               }}>
               <div className="card">
                 <div className="card-body">

@@ -23,7 +23,7 @@ const TelaSalaAluno = () => {
             await axios.put(`http://localhost:3333/student/${auth.user.id}`, {
                 class_id: foundClass.id,
             });
-            navigate("/historia");
+            navigate("/quizzes");
         } else {
             alert("Senha inválida");
         }

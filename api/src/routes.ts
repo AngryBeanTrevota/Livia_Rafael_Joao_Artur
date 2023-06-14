@@ -4,7 +4,7 @@ import { classController } from "./controllers/classController";import { student
 import { teacherController } from "./controllers/teacherController";
 import { itemController } from "./controllers/itemController";
 import { quizController } from "./controllers/quizController";
-import { authVerify } from "./middlewares/authVerify";
+import { studentItemsController } from "./controllers/studentItemsController";
 
 const router = Router();
 
@@ -14,6 +14,7 @@ const teacherCtrl = new teacherController();
 const itemCtrl = new itemController();
 const quizCtrl = new quizController();
 const loginCtrl = new loginController();
+const studentItemCtrl = new studentItemsController();
 
 // Login
 router.post("/login", loginCtrl.login);
@@ -58,5 +59,17 @@ router.get("/quiz/:id", quizCtrl.view);
 router.get("/quiz", quizCtrl.index);
 router.put("/quiz/:id", quizCtrl.update);
 router.delete("/quiz/:id", quizCtrl.delete);
+
+// StudentItems
+router.post("/studentItem", studentItemCtrl.create);
+router.get("/studentItem", studentItemCtrl.index);
+router.get("/students/:student_id/items/:item_id", studentItemCtrl.view);
+router.put("/students/:student_id/items/:item_id", studentItemCtrl.update);
+router.put("/studentItem/equip", studentItemCtrl.equipItem);
+router.get("/student/:student_id/equipment", studentItemCtrl.getEquippedItem);
+router.put( "/students/:student_id/items/:item_id/quantity", studentItemCtrl.updateQuantity );
+
+router.delete("/students/:id/items/:id", studentItemCtrl.delete);
+
 
 export { router };

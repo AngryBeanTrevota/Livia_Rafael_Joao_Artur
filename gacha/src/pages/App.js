@@ -1,13 +1,8 @@
-import "./App.css";
 import React from "react";
 import Rotas from "../routes/Rotas";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
   RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
 } from "recoil";
 
 function App() {

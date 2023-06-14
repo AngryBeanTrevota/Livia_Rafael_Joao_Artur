@@ -1,19 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./menu.css";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
-import { bitsMoedaAtom } from "../atoms/bitsMoedaAtom";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/Auth/AuthContext";
+import axios from "axios";
 
 const Menu = () => {
-  const [bitsMoeda, setBitsMoeda] = useRecoilState(bitsMoedaAtom);
+
   const auth = useContext(AuthContext);
+  const [itemEquipped, setItemEquipped] = useState("https://uploads-ssl.webflow.com/626a4a48b11ca84b33d9865c/628a6e45751aa342592bcf29_Honeycam%202022-05-22%2011-01-43.gif");
+  const [characterEquipped, setCharacterEquipped] = useState("");
+
+  useState(() => {
+    async function fetchEquipment() {
+      const response = await axios.get(`http://localhost:3333/student/${auth.user.id}/equipment`);
+      console.log(response.data);
+      setCharacterEquipped(response.data.characterEquipped.image);
+      setItemEquipped(response.data.itemEquipped.image);
+    }
+    fetchEquipment();
+  });
 
   return (
     <div>
@@ -30,20 +35,22 @@ const Menu = () => {
           <button className="windowsButton">x</button>
         </div>
         <img
+          alt=""
           id="imagemItem"
-          src="https://uploads-ssl.webflow.com/626a4a48b11ca84b33d9865c/628a6e45751aa342592bcf29_Honeycam%202022-05-22%2011-01-43.gif"
+          style={{ width: "60%", height: "60%" }}
+          src={itemEquipped}
         ></img>
       </div>
       <div id="todo">
         <div id="topo">
           <div id="moedas">
-            <p>¢{bitsMoeda}</p>
+            <p>¢{auth.user.xp}</p>
           </div>
           <button id="botaoFechar" className="windowsButton"
             onClick={() => {
               auth.signout();
             }
-          }
+            }
           >
             x
           </button>
@@ -62,6 +69,7 @@ const Menu = () => {
                     style={{ width: 70, height: 55 }}
                     className="imagemPasta"
                     src="https://i.imgur.com/r3a0P0E.png"
+                    alt=""
                   ></img>
                 </Link>
               </button>
@@ -72,8 +80,9 @@ const Menu = () => {
                   borderColor: "transparent",
                 }}
               >
-                <Link to="/quizzes">
+                <Link to="/sala">
                   <img
+                    alt=""
                     style={{ width: 70, height: 55 }}
                     className="imagemPasta"
                     src="https://i.imgur.com/r3a0P0E.png"
@@ -84,7 +93,19 @@ const Menu = () => {
             </div>
           </div>
           <div id="corpoDir">
-            <div id="imagemPersonagem"></div>
+            <div id="imagemPersonagem">
+              <img
+                alt=""
+                id="imagemPersonagem"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  
+                }}
+
+                src={characterEquipped}
+              ></img>
+            </div>
           </div>
         </div>
         <div id="footer">

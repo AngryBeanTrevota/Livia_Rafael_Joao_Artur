@@ -28,6 +28,8 @@ export class studentController {
           name: name,
           registerStudent: register,
           password: passwordHash,
+          shots: 1000,
+          xp: 1000,
         },
       });
 
@@ -60,6 +62,8 @@ export class studentController {
             name: name,
             registerStudent: registerStudent,
             password: passwordHash,
+            shots: 1000,
+            xp: 1000,
           },
         });
       } catch (err) {
@@ -73,8 +77,9 @@ export class studentController {
       return loginCtrl.login(
         {
           body: {
-            registerStudent: registerStudent,
+            register: registerStudent,
             password: password,
+            is_student: true,
           },
         } as Request,
         response
@@ -152,7 +157,7 @@ export class studentController {
         number_quizzes,
         number_quizzes_success,
         class_id,
-        itens_id,
+        item_id,
       } = request.body;
 
       const updateData: Prisma.StudentUpdateInput = {
@@ -171,10 +176,47 @@ export class studentController {
           connect: class_id ? { id: class_id } : undefined,
         },
         itens: {
-          connect: itens_id?.map((itemId: number) => ({ id: itemId })),
+          connect: item_id ? { id: item_id } : undefined,
         },
       };
 
+      if (item_id){
+        const hasItemStudent = await prismaClient.studentItem.findUnique(
+          {
+            where: {
+              student_id_item_id: {
+                student_id: Number(id),
+                item_id: Number(item_id),
+              }
+            }
+          }
+        )
+
+        if (hasItemStudent) {
+          const quantity = hasItemStudent.quantity + 1;
+          const itemsToStudent = await prismaClient.studentItem.update({
+            where: {
+              student_id_item_id: {
+                student_id: Number(id),
+                item_id: Number(item_id),
+              },
+            },
+            data: {
+              quantity: quantity,
+            },
+          });
+        }
+        else {
+          const itemsToStudent = await prismaClient.studentItem.create({
+            data: {
+              student_id: Number(id),
+              item_id: Number(item_id),
+              quantity: 1,
+            },
+          });
+        }
+      }
+      
       const student = await prismaClient.student.update({
         where: {
           id: Number(id),
@@ -183,7 +225,8 @@ export class studentController {
         include: {
           classroom: true,
           itens: true,
-        }
+          items_to_students: true,
+        },
       });
 
       return response.json(student);

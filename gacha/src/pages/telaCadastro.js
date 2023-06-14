@@ -1,8 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import  {AuthContext}  from "../context/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
-
-import "./telaLogin.css"
 
 import WindowsButton from "../components/WindowsButton";
 import WindowsInput from "../components/WindowsInput";
@@ -17,6 +15,12 @@ export default function Cadastro() {
     const auth = useContext(AuthContext);
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (auth.user) {
+            navigate("/menu");
+        }
+    }, [auth.user, navigate]);
+
     const handleRegister = () => {
 
         if (name && registerStudent && password && confirmPassword) {
@@ -27,18 +31,12 @@ export default function Cadastro() {
                 alert("As senhas não são iguais");
             }
         }
-
-        if (auth.user) {
-            navigate("/menu");
-        } else {
-            alert("Preencha todos os campos corretamente");
-        }
     }
 
     return (
-        <Window styleWindow={{height: "100vh", width: "100vw"}} titulo="Um nome">
+        <Window clickX={() => navigate('/')} styleWindow={{height: "100vh", width: "100vw"}} titulo="">
 
-            <Window styleContainer={{maxWidth: 500, minWidth: 300}} styleWindow={{height: 200, maxWidth: 400}} styleTitulo={{maxWidth: 400}} titulo={"Fazer Cadastro"}>
+            <Window clickX={() => navigate('/')} styleContainer={{maxWidth: 500, minWidth: 300}} styleWindow={{height: 200, maxWidth: 400}} styleTitulo={{maxWidth: 400}} titulo={"Fazer Cadastro"}>
                 <WindowsInput type="text" style={{ marginBottom: 5 }} value={name} onChange={e => setName(e.target.value)} placeholder="Nome" />
                 <WindowsInput type="text" style={{ marginBottom: 5 }} value={registerStudent} onChange={e => setRegisterStudent(e.target.value)} placeholder="Matricula" />
                 <WindowsInput type="password" style={{ marginBottom: 5 }} value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" />

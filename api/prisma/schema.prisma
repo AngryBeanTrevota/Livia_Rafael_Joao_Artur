@@ -19,6 +19,7 @@ model Student {
   class_id               Int?
   classroom              Class? @relation(fields: [class_id], references: [id])
   itens                  Item[] @relation("ItemToStudent")
+  items_to_students      StudentItem []
 
   @@map("students")
 }
@@ -37,6 +38,7 @@ model Item {
   quotes       String[]
 
   students Student[] @relation("ItemToStudent")
+  items_to_students StudentItem []
 
   @@map("items")
 }
@@ -69,4 +71,19 @@ model Quiz {
   answer  Int
 
   @@map("quizzes")
+}
+
+
+model StudentItem  {
+  @@id([student_id, item_id])
+  student_id    Int @map("studentId")
+  item_id       Int @map("itemId")
+  quantity     Int      @default(1)
+  is_equipped   Boolean  @default(false)
+
+
+  student      Student  @relation(fields: [student_id], references: [id])
+  item         Item     @relation(fields: [item_id], references: [id])
+
+  @@map("student_items")
 }

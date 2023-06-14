@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../context/Auth/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 import "./telaHistoria.css"
@@ -9,53 +8,7 @@ import WindowsInput from "../components/WindowsInput";
 import Window from "../components/Window";
 
 import fotoPersonagem from "../imagens/chibi.png"
-
-const conversa =
-{
-    personagem: "Nome Personagem",
-    mensagens: [
-        {
-            nome: "Personagem",
-            mensagem: "Uma mensagem",
-        },
-        {
-            nome: "Jogador",
-            mensagem: "Uma mensagem"
-        },
-        {
-            nome: "Jogador",
-            mensagem: "Uma mensagem"
-        },
-        {
-            nome: "Jogador",
-            mensagem: "Uma mensagem"
-        },
-        {
-            nome: "Personagem",
-            mensagem: "Uma mensagem"
-        },
-        {
-            nome: "Personagem",
-            mensagem: "Uma mensagem"
-        },
-        {
-            nome: "Jogador",
-            mensagem: "Uma mensagem"
-        },
-        {
-            nome: "Jogador",
-            mensagem: "Uma mensagem"
-        },
-        {
-            nome: "Jogador",
-            mensagem: "Uma mensagem"
-        },
-        {
-            nome: "Personagem",
-            mensagem: "Uma mensagem asdf;kja;sdkjf ;alksjd f;lkajsdflk jas;ldf ha;ksjdh f';oas hdflkja hgsdlki"
-        }
-    ]
-}
+import { AuthContext } from "../context/Auth/AuthContext";
 
 export default function Historia() {
     const [falas, setFalas] = useState([]);
@@ -64,7 +17,13 @@ export default function Historia() {
     const [mensage, setMensage] = useState("");
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
+    const navigate = useNavigate()
+
     const containerRef = useRef(null);
+    const auth = useContext(AuthContext);
+    const conversa = auth.conversas[auth.historia];
+
+    
 
     const scrollToBottom = () => {
         if (containerRef.current) {
@@ -72,6 +31,8 @@ export default function Historia() {
             container.scrollTop = container.scrollHeight;
         }
     };
+
+
 
     const Fala = (fala) => {
         return (
@@ -105,13 +66,17 @@ export default function Historia() {
     };
 
     useEffect(() => {
+        if(auth.historia === -1){
+            navigate('/menu')
+        }
         scrollToBottom();
 
-        if (conversa.mensagens[numFalas] && conversa.mensagens[numFalas].nome === "Personagem") {
+        if (conversa && conversa.mensagens[numFalas]  && conversa.mensagens[numFalas].nome === "Personagem") {
             proximo();
         }
 
         if (
+            conversa &&
             conversa.mensagens[numFalas] &&
             numFalas < conversa.mensagens.length &&
             conversa.mensagens[numFalas].nome === "Jogador" &&
@@ -144,24 +109,29 @@ export default function Historia() {
 
     return (
         <Window
-            styleWindow={{ height: "100vh", width: "100vw", justifyContent: "start", padding: 10 }}
+            styleContainer={{ width: '100vw', width: "100vw", }}
+            styleWindow={{ height: "100vh", width: "100vw", justifyContent: "start", alignItems: 'center' }}
             titulo="História"
         >
             <div className="container-personagem">
                 <img src={fotoPersonagem} width={120} height={120} />
-                <p>{conversa.personagem}</p>
+                <p>{conversa ? conversa.personagem : null}</p>
             </div>
 
             <Window
                 showX={false}
                 windowRef={containerRef}
+                styleContainer={{
+                    height: "300px",
+                    width: "90vw",
+                    maxWidth: 600,
+                }}
                 styleWindow={{
-                    height: "352px",
-                    width: "355px",
+                    height: 300,
+                    maxWidth: 600,
                     backgroundColor: "#FFF",
                     justifyContent: "start",
-                    alignItems: "start",
-                    padding: 6,
+                    alignItems: "center",
                     overflow: "hidden",
                     overflowY: "scroll",
                 }}
@@ -174,16 +144,16 @@ export default function Historia() {
 
             <div className="input-wrapper">
 
-                <textarea type="" disabled={true} value={mensage}></textarea>
+                <textarea type="" style={{width: '85vw', maxWidth: 600}} disabled={true} value={mensage}></textarea>
             </div>
 
 
             <WindowsButton
-                style={{ height: 40, width: 370, marginTop: 20, fontSize: 18 }}
-                onClick={() => { proximo(); setMensage("") }}
+                style={{ height: 40, width: '90vw', marginTop: 20, maxWidth: 600, fontSize: 18 }}
+                onClick={conversa && numFalas < conversa.mensagens.length ? () => {proximo(); setMensage("")} : () => navigate('/quizIndividual')}
                 disabled={isTyping || isButtonDisabled}
             >
-                Enviar
+                {conversa && numFalas < conversa.mensagens.length ? 'Enviar' : 'Terminar'}
             </WindowsButton>
         </Window>
     );
