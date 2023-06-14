@@ -10,14 +10,14 @@ const TelaReciclagem = () => {
   const [nomeItem, setNomeItem] = useState("");
   const [valorItemSelecionado, setValorItemSelecionado] = useState(0);
   const [itens, setItens] = useState([
-    { nome: "Item 1", valorReciclagem: 5, quantidade: 2 },
-    { nome: "Item 2", valorReciclagem: 10, quantidade: 3 },
-    { nome: "Item 3", valorReciclagem: 8, quantidade: 2 },
-    { nome: "Item 4", valorReciclagem: 3, quantidade: 1 },
-    { nome: "Item 5", valorReciclagem: 7, quantidade: 2 },
-    { nome: "Item 6", valorReciclagem: 12, quantidade: 2 },
-    { nome: "Item 7", valorReciclagem: 23, quantidade: 4 },
-    { nome: "Item 8", valorReciclagem: 45, quantidade: 1 },
+    { nome: "Marina", valorReciclagem: 5, quantidade: 2 },
+    { nome: "Gatsby item 3", valorReciclagem: 10, quantidade: 3 },
+    { nome: "Bengie item 3", valorReciclagem: 8, quantidade: 2 },
+    { nome: "Marina item 1", valorReciclagem: 3, quantidade: 1 },
+    { nome: "Bengie item 2", valorReciclagem: 7, quantidade: 2 },
+    { nome: "Bengie", valorReciclagem: 12, quantidade: 2 },
+    { nome: "Gatsby item 2", valorReciclagem: 23, quantidade: 4 },
+    { nome: "Gatsby", valorReciclagem: 45, quantidade: 1 },
   ]);
   const [valorTotalReciclagem, setValorTotalReciclagem] = useState(0);
 
