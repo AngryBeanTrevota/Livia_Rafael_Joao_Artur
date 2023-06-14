@@ -39,7 +39,7 @@ import EditClass from "../pages/admin/Classes/EditClass";
 import DeleteClass from "../pages/admin/Classes/DeleteClass";
 import ViewClass from "../pages/admin/Classes/ViewClass";
 
-
+//mudando alguma coisa
 
 const Rotas = () => {
 
