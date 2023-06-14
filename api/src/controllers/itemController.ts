@@ -107,7 +107,7 @@ export class itemController {
         image_chibi: image_chibi ?? undefined,
         quotes: quotes ?? undefined,
         students: student_ids
-          ? { connect: student_ids.map((id: number) => ({ id })) }
+          ? { set: student_ids.map((id: number) => ({ id })) }
           : undefined,
       };
 

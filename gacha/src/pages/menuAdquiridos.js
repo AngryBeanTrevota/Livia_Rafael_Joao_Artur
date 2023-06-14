@@ -24,6 +24,18 @@ const Cores = ({ item }) => {
 };
 
 const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
+  const auth = useContext(AuthContext);
+  const setEquipedItem = async () => {
+    try {
+      const response = await axios.put(`http://localhost:3333/item/${auth.user.id}/itens/${item.id}`);
+      
+
+
+    } catch (error) {
+      console.error("Error fetching items:", error);
+    }
+  }
+
   let corJanelas = "#f0f0f0";
   return (
     <div
@@ -34,6 +46,7 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
         flexDirection: "column",
         justifyContent: "space-around",
         alignItems: "center",
+        fontSize: 20,
       }}
     >
       <div
@@ -46,7 +59,7 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
       >
         <p
           className="textoCorpo"
-          style={{ fontSize: 20, marginLeft: 10, marginRight: 10 }}
+          style={{ fontSize: 30, marginLeft: 10, marginRight: 10 }}
         >
           {item.name}
         </p>
@@ -58,7 +71,7 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
             "url(https://opengameart.org/sites/default/files/Transparency500.png)",
         }}
       >
-        <img src={item.image} alt="" style={{ height: 150, width: 150 }}/>
+        <img src={item.image} alt="" style={{ height: 400, width: 350 }}/>
       </div>
       <div
         className="janelaWindows"
@@ -75,24 +88,39 @@ const DisplayInformacao = ({ displayObj, funcaoMudaDisplay, item }) => {
           style={{
             marginLeft: 10,
             marginRight: 10,
+            fontSize: 20,
           }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          {item.description}
         </p>
       </div>
       <Cores item={item} />
-      <button
-        className="botaoGeralWindows"
-        onClick={() => funcaoMudaDisplay({})}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 0,
+        }}
       >
-        retornar
-      </button>
+        <button
+          className="botaoGeralWindows"
+          onClick={() => funcaoMudaDisplay({})}
+          style={{
+            fontSize: 20,
+          }}
+        >
+          EQUIPAR
+        </button>
+        <button
+          className="botaoGeralWindows"
+          onClick={() => setEquipedItem()}
+          style={{
+            fontSize: 20,
+          }}
+        >
+          Retornar
+        </button>
+      </div>
     </div>
   );
 };
