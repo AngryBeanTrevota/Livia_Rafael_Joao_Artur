@@ -13,7 +13,6 @@ const Menu = () => {
   useState(() => {
     async function fetchEquipment() {
       const response = await axios.get(`http://localhost:3333/student/${auth.user.id}/equipment`);
-      console.log(response.data);
       setCharacterEquipped(response.data.characterEquipped.image);
       setItemEquipped(response.data.itemEquipped.image);
     }
@@ -74,6 +73,24 @@ const Menu = () => {
                 </Link>
               </button>
               <p>Storage</p>
+
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  borderColor: "transparent",
+                }}
+              >
+                <Link to="/reciclagem">
+                  <img
+                    style={{ width: 70, height: 55 }}
+                    className="imagemPasta"
+                    src="https://i.imgur.com/r3a0P0E.png"
+                    alt=""
+                  ></img>
+                </Link>
+              </button>
+              <p>Recycle</p>
+
               <button
                 style={{
                   backgroundColor: "transparent",

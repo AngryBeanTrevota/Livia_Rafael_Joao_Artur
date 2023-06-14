@@ -58,7 +58,7 @@ const Rotas = () => {
         <Route path="/animacaoBanner" element={<RequireAuthStudent><AnimacaoBanner /></RequireAuthStudent>} />
         <Route path="/itemSorteado" element={<RequireAuthStudent><ItemSorteado /></RequireAuthStudent>} />
         <Route path="/sala" element={<RequireAuthStudent><TelaSalaAluno /></RequireAuthStudent>} />
-        <Route path="/telareciclagem" element={<RequireAuthStudent><TelaReciclagem /></RequireAuthStudent>} />
+        <Route path="/reciclagem" element={<RequireAuthStudent><TelaReciclagem /></RequireAuthStudent>} />
         <Route path="/quizzes" element={<RequireAuthStudent><TelaListaQuestionario /></RequireAuthStudent>} />
         <Route path="/historia" element={<RequireAuthStudent><TelaHistoria /></RequireAuthStudent>} />
         <Route path="/revisao" element={<RequireAuthStudent><TelaRevisao /></RequireAuthStudent>} />

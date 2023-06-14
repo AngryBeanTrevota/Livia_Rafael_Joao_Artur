@@ -72,21 +72,25 @@ const TelaReciclagem = () => {
     <Window
       titulo={"Tela de Reciclagem"}
       styleWindow={{
-        height: "100vh",
         width: "100vw",
-        display: "",
+        height: "100vh",
       }}
     >
-      <div className="Recycle-window-cont" id="corpoRecycle">
+      <div className="Recycle-window-cont" id="corpoRecycle"
+        style={{
+          paddingTop: 10,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 20,
+        }}
+      >
         <div className="reciclar-painel">
           <Window
             titulo={"RECICLAR"}
             styleContainer={{
-              width: 300,
-              height: 400,
-              position: "absolute",
-              top: "20%",
-              left: "35%",
+
             }}
           >
             <div className="recycle-cont">
@@ -123,11 +127,6 @@ const TelaReciclagem = () => {
           <Window
             titulo={"TROCAR"}
             styleContainer={{
-              width: 350,
-              height: 400,
-              position: "absolute",
-              top: "45%",
-              left: "50%",
             }}
           >
             <div className="troca-cont">
@@ -161,11 +160,10 @@ const TelaReciclagem = () => {
           <Window
             titulo={"TROCA CONCLUÍDA"}
             styleContainer={{
-              width: 250,
-              height: 400,
               position: "absolute",
-              top: "25%",
-              left: "40%",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
               visibility: popUpVisivel ? "visible" : "hidden",
             }}
           >
@@ -191,11 +189,6 @@ const TelaReciclagem = () => {
           <Window
             titulo={"VALOR ARMAZENADO"}
             styleContainer={{
-              width: 250,
-              height: 200,
-              position: "absolute",
-              top: "20%",
-              left: "60%",
             }}
           >
             <div className="valor-armazenado-cont">
