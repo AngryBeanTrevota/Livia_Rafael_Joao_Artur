@@ -21,9 +21,11 @@ export default function Historia() {
 
     const containerRef = useRef(null);
     const auth = useContext(AuthContext);
-    const conversa = auth.conversas[auth.historia];
+    const conversa = auth.conversas[auth.quiz.num];
 
-    
+    if (!auth.quiz) {
+        navigate('/menu');
+    }
 
     const scrollToBottom = () => {
         if (containerRef.current) {
@@ -36,9 +38,15 @@ export default function Historia() {
 
     const Fala = (fala) => {
         return (
-            <div key={Math.random() % 9999} className={fala.nome === "Personagem" ? "mensagem-personagem" : "mensagem-jogador"}>
+            <div key={Math.random() % 9999} className={fala.nome === conversa.personagem ? "mensagem-personagem" : "mensagem-jogador"}>
                 <p style={{ opacity: 0.6, fontSize: 14 }}>{fala.nome} diz:</p>
-                <p style={{ opacity: 0.9, fontSize: 15 }}>{`${fala.mensagem}`}</p>
+                <p style={{ opacity: 0.9, fontSize: 15 }}>{fala.mensagem ? `${fala.mensagem}` : ''}</p>
+                {
+                    fala.imagem ?
+                    <img width={200} src={fala.imagem} alt="Imagem" />
+                    :
+                    null
+                }
             </div>
         );
     };
@@ -47,7 +55,7 @@ export default function Historia() {
         if (numFalas !== conversa.mensagens.length) {
             setNumFalas(numFalas + 1);
 
-            if (conversa.mensagens[numFalas].nome === "Personagem") {
+            if (conversa.mensagens[numFalas].nome === conversa.personagem) {
                 setIsTyping(true)
                 setIsButtonDisabled(true);
 
@@ -71,7 +79,7 @@ export default function Historia() {
         }
         scrollToBottom();
 
-        if (conversa && conversa.mensagens[numFalas]  && conversa.mensagens[numFalas].nome === "Personagem") {
+        if (conversa && conversa.mensagens[numFalas]  && conversa.mensagens[numFalas].nome === conversa.personagem) {
             proximo();
         }
 
@@ -79,7 +87,7 @@ export default function Historia() {
             conversa &&
             conversa.mensagens[numFalas] &&
             numFalas < conversa.mensagens.length &&
-            conversa.mensagens[numFalas].nome === "Jogador" &&
+            conversa.mensagens[numFalas].nome != conversa.personagem &&
             !isTyping
         ) {
             const mensagem = conversa.mensagens[numFalas].mensagem;
@@ -91,7 +99,7 @@ export default function Historia() {
                 i++;
 
                 if (i < mensagem.length) {
-                    setTimeout(displayNextCharacter, 100);
+                    setTimeout(displayNextCharacter, 2);
                 } else {
                     setIsButtonDisabled(false)
                 }
@@ -144,7 +152,7 @@ export default function Historia() {
 
             <div className="input-wrapper">
 
-                <textarea type="" style={{width: '85vw', maxWidth: 600}} disabled={true} value={mensage}></textarea>
+                <textarea type="" style={{width: '85vw', maxWidth: 600, height: '100%'}} disabled={true} value={mensage}></textarea>
             </div>
 
 

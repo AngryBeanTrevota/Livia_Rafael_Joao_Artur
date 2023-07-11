@@ -13,6 +13,7 @@ const questionarios =
     [
         {
             nome: "Questionario 1",
+            num: 0,
             liberado: true,
             questoes: [
                 {
@@ -80,7 +81,8 @@ const questionarios =
         },
         {
             nome: "Questionario 2",
-            liberado: false,
+            num: 1,
+            liberado: true,
             questoes: [
                 {
                     pergunta: "Pergunta 1",
@@ -144,7 +146,8 @@ const questionarios =
             ]
         }, {
             nome: "Questionario 3",
-            liberado: false,
+            num: 2,
+            liberado: true,
             questoes: [
                 {
                     pergunta: "Pergunta 1",
@@ -209,7 +212,8 @@ const questionarios =
             ]
         }, {
             nome: "Questionario 4",
-            liberado: false,
+            num: 3,
+            liberado: true,
             questoes: [
                 {
                     pergunta: "Pergunta 1",
@@ -274,7 +278,8 @@ const questionarios =
             ]
         }, {
             nome: "Questionario 5",
-            liberado: false,
+            num:4,
+            liberado: true,
             questoes: [
                 {
                     pergunta: "Pergunta 1",

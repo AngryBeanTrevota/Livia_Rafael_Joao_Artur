@@ -42,7 +42,6 @@ const QuizIndividual = () => {
                 console.log(err)
             })
         
-        
     }
 
     useEffect(() => {
