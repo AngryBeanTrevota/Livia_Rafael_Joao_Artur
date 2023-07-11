@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { AuthContext } from "../context/Auth/AuthContext";
 import Window from "../components/Window";
 import recycle from "../icones/recycle.png";
 import "./telaReciclagem.css";
@@ -6,38 +10,23 @@ import "./telaReciclagem.css";
 const TelaReciclagem = () => {
   const [popUpVisivel, setPopUpVisivel] = useState(false);
   const [valorReciclagem, setValorReciclagem] = useState(0);
-  const [nomeVisivel, setNomeVisivel] = useState(false);
+  const [nomeVisivel, setNomeVisivel] = useState(true);
   const [nomeItem, setNomeItem] = useState("");
   const [valorItemSelecionado, setValorItemSelecionado] = useState(0);
-  const [itens, setItens] = useState([
-    { nome: "Marina", valorReciclagem: 5, quantidade: 2 },
-    { nome: "Gatsby item 3", valorReciclagem: 10, quantidade: 3 },
-    { nome: "Bengie item 3", valorReciclagem: 8, quantidade: 2 },
-    { nome: "Marina item 1", valorReciclagem: 3, quantidade: 1 },
-    { nome: "Bengie item 2", valorReciclagem: 7, quantidade: 2 },
-    { nome: "Bengie", valorReciclagem: 12, quantidade: 2 },
-    { nome: "Gatsby item 2", valorReciclagem: 23, quantidade: 4 },
-    { nome: "Gatsby", valorReciclagem: 45, quantidade: 1 },
-  ]);
   const [valorTotalReciclagem, setValorTotalReciclagem] = useState(0);
+  const [item, setItem] = useState();
+
+  const [listaItens, setListaItens] = useState([]);
+  const [contagem, setContagem] = useState([]);
+  const [repetidos, setRepetidos] = useState({});
+
+  const auth = useContext(AuthContext);
 
   const abrePopUp = () => {
     setPopUpVisivel(true);
-    const itemSelecionado = itens.find((item) => item.nome === nomeItem);
+    const itemSelecionado = repetidos.find((item) => item.itemname === nomeItem);
     if (itemSelecionado && itemSelecionado.quantidade > 0) {
       setValorReciclagem(itemSelecionado.valorReciclagem);
-
-      // Diminuir a quantidade do item em 1
-      const novosItens = itens.map((item) => {
-        if (item.nome === nomeItem) {
-          return {
-            ...item,
-            quantidade: item.quantidade - 1,
-          };
-        }
-        return item;
-      });
-      setItens(novosItens);
 
       // Atualizar o valor total de reciclagem
       setValorTotalReciclagem(
@@ -45,6 +34,48 @@ const TelaReciclagem = () => {
       );
     }
   };
+
+  function encontrarElementosRepetidos(listaItens) {
+    let repetidos = {};
+    listaItens.forEach((item) => {
+      if (item.quantity > 1) {
+        repetidos[item.item.name] = {quantidade: item.quantity, item_id: item.item.id};
+      }
+    });
+    return repetidos;
+  }
+
+  async function updateItemQuantity(studentId, itemId, quantity) {
+    try {
+      const response = await axios.put(
+        `http://localhost:3333/students/${studentId}/items/${itemId}/quantity`,
+        { quantity }
+      );
+      const updatedStudentItem = response.data;
+      // Faça o que for necessário com o student_item atualizado
+      console.log(updatedStudentItem);
+    } catch (error) {
+      console.error('Error updating item quantity:', error);
+    }
+  }
+
+  useEffect(() => {
+    async function fetchItems() {
+      try {
+        const response = await axios.get(
+          `http://localhost:3333/student/${auth.user.id}/items`
+        );
+        
+        const itensRepetidos = encontrarElementosRepetidos(response.data);
+        setRepetidos(itensRepetidos);
+        setListaItens(response.data);
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    }
+
+    fetchItems();
+  }, [repetidos]);
 
   const fechaPopUp = () => {
     setPopUpVisivel(false);
@@ -65,12 +96,13 @@ const TelaReciclagem = () => {
   const esconderNomeItem = () => {
     setNomeVisivel(false);
   };
+  const navigate = useNavigate();
 
-  const itensDisponiveis = itens.filter((item) => item.quantidade > 0);
 
   return (
     <Window
       titulo={"Tela de Reciclagem"}
+      clickX={() => navigate('/menu')}
       styleWindow={{
         width: "100vw",
         height: "100vh",
@@ -78,7 +110,7 @@ const TelaReciclagem = () => {
     >
       <div className="Recycle-window-cont" id="corpoRecycle"
         style={{
-          paddingTop: 10,
+          paddingTop: '20%',
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -90,22 +122,25 @@ const TelaReciclagem = () => {
           <Window
             titulo={"RECICLAR"}
             styleContainer={{
-
+              maxWidth: '300px',
+              maxHeigth: '400px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              overflowY: 'auto',
             }}
           >
             <div className="recycle-cont">
               <div className="recycle">
-                {itensDisponiveis.map((item, index) => (
+                {Object.entries(repetidos).map(([itemName, dados], index) => (
                   <div
-                    className={`itens-folder ${
-                      nomeItem === item.nome ? "item-selecionado" : ""
-                    }`}
-                    onMouseEnter={() =>
-                      atualizarValorReciclagem(item.valorReciclagem)
-                    }
-                    onClick={() =>
-                      mostrarNomeItem(item.nome, item.valorReciclagem)
-                    }
+                    className={`itens-folder ${nomeItem === itemName ? "item-selecionado" : ""}`}
+                    onMouseEnter={() => atualizarValorReciclagem(10)}
+                    onClick={() => {
+                      mostrarNomeItem(itemName, 10);
+                      setItem({ name: itemName, valorReciclagem: 10, quantidade: dados.quantidade, item_id: dados.item_id });
+                    }}
                     key={index}
                   >
                     <img
@@ -114,12 +149,13 @@ const TelaReciclagem = () => {
                       src="https://i.imgur.com/r3a0P0E.png"
                       alt="item-icon"
                     />
-                    <p className="item-name">{item.nome}</p>
-                    <p>{item.quantidade}x</p>
+                    <p className="item-name">{itemName}</p>
+                    <p className="item-quantity">{dados.quantidade}</p>
                   </div>
                 ))}
               </div>
             </div>
+
           </Window>
         </div>
 
@@ -141,7 +177,7 @@ const TelaReciclagem = () => {
               )}
               <button
                 className="button-troca"
-                onClick={abrePopUp}
+                onClick={() => updateItemQuantity(auth.user.id, item.item_id, item.quantidade - 1)}
                 disabled={!nomeItem}
               >
                 <img

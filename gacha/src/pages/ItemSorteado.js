@@ -54,8 +54,6 @@ const ItemSorteado = () => {
       console.error("Error posting item:", error);
     }
   }
-  
-  postItem(parseInt(sorteado.id));
 
   return (
     <div className="fundo">
@@ -93,7 +91,7 @@ const ItemSorteado = () => {
           }}
           className="windowsButton"
         >
-          <Link to="/menu">Menu</Link>
+          <Link to="/menu" onClick={() => postItem(parseInt(sorteado.id))} >Menu</Link>
         </button>
       </div>
     </div>

@@ -29,10 +29,9 @@ const TelaSalaAluno = () => {
         }
     };
 
-    
-
     return (
         <Window titulo={"Tela de Sala"}
+        clickX={() => navigate('/menu')}
             styleWindow={{
                 height: "100vh",
                 width: "100vw",

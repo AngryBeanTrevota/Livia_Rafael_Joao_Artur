@@ -47,17 +47,21 @@ p {
     font-size: 20px;
 }
 
-.itens-folder .item-name {
-    display: none;
-    font-size: 16px;
-}
+
 
 .itens-folder:hover {
     cursor: pointer;
+    opacity: 1;
 }
 
-.itens-folder:hover .item-name {
-    display: block;
+.item-name{
+    font-size: 14px;
+    text-align: center;
+}
+
+
+.itens-folder{
+    opacity: 0.6;
 }
 
 /* Painel Tiros */

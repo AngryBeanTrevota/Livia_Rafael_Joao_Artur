@@ -13,8 +13,10 @@ const Menu = () => {
   useState(() => {
     async function fetchEquipment() {
       const response = await axios.get(`http://localhost:3333/student/${auth.user.id}/equipment`);
-      setCharacterEquipped(response.data.characterEquipped.image);
-      setItemEquipped(response.data.itemEquipped.image);
+      if(response.data.characterEquipped)
+        setCharacterEquipped(response.data.characterEquipped.image);
+      if(response.data.itemEquipped)
+        setItemEquipped(response.data.itemEquipped.image);
     }
     fetchEquipment();
   });
