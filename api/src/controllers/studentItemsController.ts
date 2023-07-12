@@ -37,6 +37,7 @@ export class studentItemsController {
               id: itemId,
             },
           },
+          quantity: 0
         },
         include: {
           student: true,
@@ -179,6 +180,7 @@ export class studentItemsController {
       });
       return response.json(studentItem);
     } catch (error) {
+      console.log(error)
       return response.status(400).json({ error: error.message });
     }
   }
@@ -263,6 +265,27 @@ export class studentItemsController {
     }
   }
 
+  async findStudentItems(request: Request, response: Response): Promise<Response> {
+    try {
+      const { student_id } = request.params;
+      const studentId = parseInt(student_id);
+      
+      const studentItems = await prisma.studentItem.findMany({
+        where: {
+          student_id: studentId,
+        },
+        include: {
+          student: true,
+          item: true,
+        },
+      });
+  
+      return response.json(studentItems);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+
   async updateQuantity(
     request: Request,
     response: Response
@@ -306,6 +329,7 @@ export class studentItemsController {
       });
       return response.json(studentItem);
     } catch (error) {
+      console.log(error)
       return response.status(400).json({ error: error.message });
     }
   }

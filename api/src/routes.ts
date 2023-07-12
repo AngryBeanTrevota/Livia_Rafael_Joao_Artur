@@ -66,6 +66,7 @@ router.get("/studentItem", studentItemCtrl.index);
 router.get("/students/:student_id/items/:item_id", studentItemCtrl.view);
 router.put("/students/:student_id/items/:item_id", studentItemCtrl.update);
 router.put("/studentItem/equip", studentItemCtrl.equipItem);
+router.get("/student/:student_id/items", studentItemCtrl.findStudentItems);
 router.get("/student/:student_id/equipment", studentItemCtrl.getEquippedItem);
 router.put( "/students/:student_id/items/:item_id/quantity", studentItemCtrl.updateQuantity );
 
